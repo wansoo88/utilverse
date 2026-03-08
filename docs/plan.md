@@ -613,3 +613,38 @@ pickerwheel.com의 상위 오가닉 키워드 (참고용):
 - Set real AdSense client and slot IDs after approval.
 - Connect Search Console and submit sitemap.
 - Run final production test (`pnpm build`, route smoke test, CSP validation).
+
+---
+
+## 2026-03-08 Validation Update (Post-Implementation)
+
+### Functional and Architecture Validation
+- Verified total tool routes expanded to **15**.
+- Verified all random generators migrated to crypto-based helper (`lib/random.ts`) using `crypto.getRandomValues`.
+- Verified locale pages (`en/es/pt/ar/hi/tr`) and RTL behavior for `ar`.
+- Verified legal pages are now locale-backed via `lib/content/legal.ts`.
+
+### URL Strategy Validation
+- Current production target `https://utilverse.info/randomdecision` is valid with current codebase.
+- `next.config.js` uses `basePath: /randomdecision`, and route generation/canonical strategy aligns with this.
+- Metadata routes (`sitemap.xml`, `robots.txt`) are configured to work under the same base path.
+
+### Alternative URL Options (Reviewed)
+- `https://randomdecision.utilverse.info`:
+  - Pros: cleaner app identity, better long-term product separation
+  - Cons: requires DNS/subdomain rollout and migration planning
+- `https://utilverse.info/random`:
+  - Pros: shorter URL
+  - Cons: path rename + potential canonical migration effort
+
+### Recommendation
+- Keep `https://utilverse.info/randomdecision` for upcoming Vercel test and initial launch.
+- Re-evaluate subdomain migration after stable traffic and monetization baseline.
+
+### Vercel Test Preparation Status
+- Deployment guide updated: `docs/deployment-guide.md`
+- Security headers/CSP configured in `next.config.js`
+- Remaining pre-AdSense operational tasks:
+  - real contact email replacement
+  - real AdSense client + slot IDs
+  - ads.txt addition (after publisher id issuance)
