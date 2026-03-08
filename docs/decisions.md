@@ -85,3 +85,33 @@
 - Impact:
   - faster repeated interactions
   - consistent motion timing and result readability
+
+## ADR-2026-03-08-15: Premium Fancy UI upgrade with Framer Motion
+- Decision: Add Framer Motion + canvas-confetti, Bento Grid homepage, per-tool accent animations
+- Why: Upgrade from "generic SaaS template" to premium feel for target audience
+- Impact:
+  - +~46KB bundle (framer-motion ~40KB + canvas-confetti ~6KB)
+  - Bento Grid replaces flat tool gallery on homepage and tools hub
+  - 5 core tools get bespoke animations (3D coin, stagger dice, canvas wheel, slot numbers, dramatic yes/no)
+  - 10 remaining tools get AnimatePresence result reveal
+  - MobileNav hamburger with AnimatePresence slide-down
+  - ThemeToggle upgraded to sun/moon SVG with rotation
+  - prefers-reduced-motion: all animations disabled
+  - focus-visible rings added globally
+
+## ADR-2026-03-08-16: AdSense compliance hardening
+- Decision: Apply all Google AdSense policy requirements before submission
+- Why: Prevent rejection due to missing legal content, incorrect technical setup, or policy gaps
+- Changes applied:
+  - `html lang` 동적화: `[locale]/layout.tsx`에서 인라인 스크립트로 `document.documentElement.lang/dir` 즉시 설정
+  - `adsbygoogle.js` 전역 1회 로드: `app/layout.tsx`에서 env-gated Script, AdSlot은 `push({})` 만 실행
+  - AdSlot에 "Advertisement" 레이블 추가 (일부 국가 정책 의무)
+  - Privacy Policy 대폭 보강: AdSense/DoubleClick 명시, opt-out 링크, GDPR/CCPA 조항, 아동보호, 데이터보존 — 6개 언어 모두 적용
+  - Contact 이메일 `hello@utilverse.info` 실제 값으로 교체, mailto 링크화
+  - About 페이지 보강: 신뢰 통계 + 전체 도구 목록 + 기술 투명성 섹션
+  - 쿠키 동의 배너(`CookieBanner.tsx`): 최초 방문 시 하단 고정 배너, Accept/Decline → localStorage 저장, Privacy Policy 링크
+  - `public/ads.txt` 템플릿 생성 (승인 후 publisher ID 교체 안내)
+- Remaining before submission:
+  - `ads.txt`에 실제 publisher ID 입력
+  - `NEXT_PUBLIC_ADSENSE_CLIENT` 환경변수 실제 값 설정
+  - 실제 이메일 수신함 운영 확인

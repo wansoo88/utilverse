@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomInt } from '@/lib/random'
 
@@ -33,7 +34,20 @@ export function RandomDateGeneratorTool() {
         <label><span style={{ fontWeight: 600 }}>End date</span><input className="input" type="date" value={end} onChange={(e) => setEnd(e.target.value)} /></label>
         <div className="flex items-end"><button className="btn btn-primary w-full" type="button" onClick={generate}>Generate Date</button></div>
       </div>
-      <p style={{ marginTop: '0.75rem', fontWeight: 700 }}>Result: {result || '-'}</p>
+      <AnimatePresence mode="wait">
+        {result && (
+          <motion.p
+            key={result}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+            style={{ marginTop: '0.75rem', fontWeight: 800, fontSize: '1.2rem', color: '#8B5CF6' }}
+          >
+            📅 {result}
+          </motion.p>
+        )}
+      </AnimatePresence>
       <div style={{ marginTop: '0.9rem' }}>
         <p style={{ fontWeight: 700 }}>History</p>
         <ul className="section-copy" style={{ paddingLeft: '1rem' }}>{items.slice(0, 10).map((item) => <li key={item}>{item}</li>)}</ul>

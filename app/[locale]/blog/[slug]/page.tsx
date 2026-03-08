@@ -23,7 +23,7 @@ export function generateMetadata({ params }: { params: { locale: string; slug: s
   }
 
   return buildMeta({
-    title: `${post.title} | Decision Toolkit`,
+    title: `${post.title} | Random Decision`,
     description: post.description,
     path: `/${params.locale}/blog/${params.slug}`
   })

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomInt } from '@/lib/random'
 
@@ -59,7 +60,51 @@ export function RandomNumberTool() {
         Unique values only
       </label>
 
-      <p style={{ marginTop: '0.75rem', fontWeight: 700 }}>Result: {result.length ? result.join(', ') : '-'}</p>
+      {/* Slot-machine style result */}
+      <AnimatePresence mode="wait">
+        {result.length > 0 && (
+          <motion.div
+            key={result.join(',')}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.9rem' }}
+          >
+            {result.map((num, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: -20, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 400,
+                  damping: 20,
+                  delay: i * 0.07
+                }}
+                style={{
+                  minWidth: '56px',
+                  padding: '0.5rem 0.75rem',
+                  borderRadius: '12px',
+                  background: 'linear-gradient(135deg, #0EA5E9, #0284C7)',
+                  color: '#fff',
+                  fontWeight: 800,
+                  fontSize: '1.1rem',
+                  textAlign: 'center',
+                  boxShadow: '0 4px 12px rgba(14, 165, 233, 0.4)'
+                }}
+              >
+                {num}
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {result.length > 0 && (
+        <button className="btn" style={{ marginTop: '0.75rem' }} type="button" onClick={generate}>
+          Rerun
+        </button>
+      )}
 
       <div style={{ marginTop: '0.9rem' }}>
         <p style={{ fontWeight: 700 }}>History</p>

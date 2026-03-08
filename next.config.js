@@ -37,6 +37,12 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   basePath: '/random-decision',
+  images: {
+    unoptimized: true
+  },
+  experimental: {
+    optimizePackageImports: ['framer-motion']
+  },
   async headers() {
     return [
       {

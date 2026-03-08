@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomInt } from '@/lib/random'
 
@@ -36,7 +37,42 @@ export function RandomLetterTool() {
           <button className="btn btn-primary w-full" type="button" onClick={generate}>Generate Letters</button>
         </div>
       </div>
-      <p style={{ marginTop: '0.8rem', fontWeight: 700 }}>Result: {result.length ? result.join(', ') : '-'}</p>
+      <AnimatePresence mode="wait">
+        {result.length > 0 && (
+          <motion.div
+            key={result.join('')}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginTop: '0.8rem' }}
+          >
+            {result.map((letter, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.05, type: 'spring', stiffness: 400, damping: 18 }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '2.2rem',
+                  height: '2.2rem',
+                  borderRadius: '8px',
+                  background: 'linear-gradient(135deg, #84CC16, #65A30D)',
+                  color: '#fff',
+                  fontWeight: 800,
+                  fontSize: '1.1rem',
+                  boxShadow: '0 3px 8px rgba(132, 204, 22, 0.35)'
+                }}
+              >
+                {letter}
+              </motion.span>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div style={{ marginTop: '0.9rem' }}>
         <p style={{ fontWeight: 700 }}>History</p>
         <ul className="section-copy" style={{ paddingLeft: '1rem' }}>

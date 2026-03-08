@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomInt } from '@/lib/random'
 
@@ -24,7 +25,22 @@ export function RandomColorTool() {
 
   return (
     <div className="card" style={{ padding: '1rem' }}>
-      <div className="card" style={{ height: '140px', background: color.hex, border: '1px solid var(--line)' }} />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={color.hex}
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
+          style={{
+            height: '140px',
+            background: color.hex,
+            borderRadius: '14px',
+            border: '1px solid var(--line)',
+            boxShadow: `0 8px 24px ${color.hex}55`
+          }}
+        />
+      </AnimatePresence>
       <div className="flex flex-wrap items-center gap-3" style={{ marginTop: '0.8rem' }}>
         <button className="btn btn-primary" type="button" onClick={generate}>Generate Color</button>
         <p style={{ fontWeight: 700 }}>HEX: {color.hex}</p>

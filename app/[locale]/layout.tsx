@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import type { ReactNode } from 'react'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
+import { CookieBanner } from '@/components/common/CookieBanner'
 import { isLocale, locales, type Locale } from '@/lib/i18n'
 
 export function generateStaticParams() {
@@ -24,6 +25,12 @@ export default function LocaleLayout({
 
   return (
     <div lang={locale} dir={rtl ? 'rtl' : 'ltr'}>
+      {/* html 요소의 lang/dir 속성을 로케일에 맞게 즉시 업데이트 */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `document.documentElement.lang='${locale}';document.documentElement.dir='${rtl ? 'rtl' : 'ltr'}'`
+        }}
+      />
       <main className="container-page" style={{ paddingBottom: 0 }}>
         <Header locale={locale} />
       </main>
@@ -31,6 +38,7 @@ export default function LocaleLayout({
       <main className="container-page" style={{ paddingTop: 0 }}>
         <Footer locale={locale} />
       </main>
+      <CookieBanner locale={locale} />
     </div>
   )
 }

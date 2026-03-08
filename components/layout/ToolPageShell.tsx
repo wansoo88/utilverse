@@ -1,11 +1,83 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import type { ReactNode } from 'react'
 import { AdSlot } from '@/components/common/AdSlot'
 import { getRelatedPostsByToolTitle } from '@/lib/content/blog'
-import { getRelatedToolsByTitle } from '@/lib/content/catalog'
+import { getRelatedToolsByTitle, getCatalogItemByTitle } from '@/lib/content/catalog'
 import type { ToolContent } from '@/lib/content/tools'
 import { breadcrumbSchema, itemListSchema } from '@/lib/seo'
+
+function ToolHeroVisual({ icon, accentColor, title }: { icon: string; accentColor: string; title: string }) {
+  const r = parseInt(accentColor.slice(1, 3), 16)
+  const g = parseInt(accentColor.slice(3, 5), 16)
+  const b = parseInt(accentColor.slice(5, 7), 16)
+  const rgba = (a: number) => `rgba(${r},${g},${b},${a})`
+  // Unique gradient id per accent to avoid SVG id collisions
+  const gradId = `tg-${r}-${g}-${b}`
+  const glowId = `tglow-${r}-${g}-${b}`
+  return (
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 320 220"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-label={`${title} visual`}
+      style={{ display: 'block', borderRadius: '20px', maxWidth: '320px', margin: '0 auto' }}
+    >
+      <defs>
+        <radialGradient id={gradId} cx="50%" cy="40%" r="65%">
+          <stop offset="0%" stopColor={rgba(0.35)} />
+          <stop offset="100%" stopColor="rgba(0,0,0,0)" />
+        </radialGradient>
+        <filter id={glowId} x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="8" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      </defs>
+
+      {/* Background */}
+      <rect width="320" height="220" fill="var(--card, #1a1a2e)" rx="20" />
+      <rect width="320" height="220" fill={`url(#${gradId})`} rx="20" />
+
+      {/* Decorative circles */}
+      <circle cx="280" cy="40" r="70" fill={rgba(0.07)} />
+      <circle cx="40"  cy="180" r="50" fill={rgba(0.05)} />
+      <circle cx="160" cy="110" r="90" fill={rgba(0.06)} />
+
+      {/* Accent ring behind icon */}
+      <circle cx="160" cy="100" r="62" fill={rgba(0.12)} stroke={rgba(0.3)} strokeWidth="1.5" filter={`url(#${glowId})`} />
+
+      {/* Emoji icon — centered */}
+      <text
+        x="160"
+        y="100"
+        textAnchor="middle"
+        fontSize="80"
+        dominantBaseline="middle"
+        style={{ userSelect: 'none' }}
+      >
+        {icon}
+      </text>
+
+      {/* Bottom label bar */}
+      <rect x="0" y="186" width="320" height="34" fill={rgba(0.18)} rx="0" />
+      <rect x="0" y="186" width="320" height="34" fill="rgba(0,0,0,0.25)" rx="0" />
+      <rect x="0" y="204" width="320" height="16" fill="rgba(0,0,0,0)" rx="0" />
+      <text
+        x="160"
+        y="207"
+        textAnchor="middle"
+        fontSize="12"
+        fontWeight="600"
+        fill={accentColor}
+        fontFamily="system-ui, sans-serif"
+        dominantBaseline="middle"
+        letterSpacing="0.5"
+      >
+        {title}
+      </text>
+    </svg>
+  )
+}
 
 export function ToolPageShell({
   locale,
@@ -20,18 +92,9 @@ export function ToolPageShell({
   faqJsonLd: object
   softwareJsonLd: object
 }) {
-  const title = content.title.toLowerCase()
-  const heroImage = title.includes('coin')
-    ? '/media/coin-motion.svg'
-    : title.includes('wheel')
-      ? '/media/wheel-motion.svg'
-      : title.includes('dice')
-        ? '/media/dice-motion.svg'
-        : title.includes('food')
-          ? '/media/food-pick.svg'
-          : title.includes('name') || title.includes('team')
-            ? '/media/team-pick.svg'
-            : '/media/tool-generic.svg'
+  const catalogItem = getCatalogItemByTitle(content.title)
+  const toolIcon = catalogItem?.icon ?? '🎲'
+  const toolAccent = catalogItem?.accentColor ?? '#6366F1'
 
   const relatedTools = getRelatedToolsByTitle(content.title, 6)
   const relatedPosts = getRelatedPostsByToolTitle(content.title, 3)
@@ -56,7 +119,7 @@ export function ToolPageShell({
             {tool}
           </div>
           <div className="tool-shell-media">
-            <Image src={heroImage} alt={`${content.title} visual`} width={320} height={180} />
+            <ToolHeroVisual icon={toolIcon} accentColor={toolAccent} title={content.title} />
           </div>
         </div>
       </section>
@@ -127,9 +190,9 @@ export function ToolPageShell({
               {item.name}
             </Link>
           ))}
-          <Link className="btn" href={`/${locale}/blog`}>
+          <a className="btn" href="https://mylifehack-daily.blogspot.com/" target="_blank" rel="noopener noreferrer">
             Read decision guides
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -138,9 +201,9 @@ export function ToolPageShell({
         <ul className="section-copy" style={{ paddingLeft: '1rem' }}>
           {relatedPosts.map((post) => (
             <li key={post.slug} style={{ marginBottom: '0.45rem' }}>
-              <Link href={`/${locale}/blog/${post.slug}`} style={{ color: 'var(--brand)' }}>
+              <a href="https://mylifehack-daily.blogspot.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brand)' }}>
                 {post.title}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>

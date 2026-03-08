@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { pickRandom } from '@/lib/random'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 
@@ -48,7 +49,30 @@ export function IcebreakerQuestionTool() {
       <div className="flex flex-wrap items-center gap-3" style={{ marginTop: '0.75rem' }}>
         <button className="btn btn-primary" type="button" onClick={generate}>Generate Icebreaker</button>
       </div>
-      <p style={{ marginTop: '0.75rem', fontWeight: 700 }}>{result || 'No question generated yet.'}</p>
+      <AnimatePresence mode="wait">
+        {result ? (
+          <motion.p
+            key={result}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+            style={{
+              marginTop: '0.75rem',
+              fontWeight: 700,
+              padding: '0.8rem',
+              borderRadius: '12px',
+              background: 'linear-gradient(135deg, rgba(217, 70, 239, 0.1), transparent)',
+              border: '1px solid rgba(217, 70, 239, 0.25)',
+              lineHeight: 1.6
+            }}
+          >
+            💬 {result}
+          </motion.p>
+        ) : (
+          <p style={{ marginTop: '0.75rem', color: 'var(--text-muted)' }}>No question generated yet.</p>
+        )}
+      </AnimatePresence>
       <div style={{ marginTop: '0.9rem' }}>
         <p style={{ fontWeight: 700 }}>History</p>
         <ul className="section-copy" style={{ paddingLeft: '1rem' }}>{items.slice(0, 10).map((item) => <li key={item}>{item}</li>)}</ul>

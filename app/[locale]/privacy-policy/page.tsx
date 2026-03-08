@@ -6,8 +6,8 @@ import { isLocale } from '@/lib/i18n'
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   return buildMeta({
-    title: 'Privacy Policy | Decision Toolkit',
-    description: 'Privacy policy for Decision Toolkit, including cookies, analytics, and ad policy details.',
+    title: 'Privacy Policy | Random Decision',
+    description: 'Privacy policy for Random Decision, including cookies, analytics, and ad policy details.',
     path: `/${params.locale}/privacy-policy`
   })
 }

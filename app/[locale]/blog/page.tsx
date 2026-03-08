@@ -7,7 +7,7 @@ import { isLocale } from '@/lib/i18n'
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   return buildMeta({
-    title: 'Decision Guides Blog | Decision Toolkit',
+    title: 'Decision Guides Blog | Random Decision',
     description: 'Practical decision-making guides and random-tool strategy articles.',
     path: `/${params.locale}/blog`
   })
@@ -20,7 +20,7 @@ export default function BlogIndexPage({ params }: { params: { locale: string } }
 
   const listSchema = itemListSchema(
     blogPosts.map((post) => ({ name: post.title, path: `/${params.locale}/blog/${post.slug}` })),
-    'Decision Toolkit Blog Posts'
+    'Random Decision Blog Posts'
   )
 
   return (

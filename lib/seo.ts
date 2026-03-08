@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://utilverse.info/random-decision'
 
 export const siteConfig = {
-  name: 'Decision Toolkit',
+  name: 'Random Decision',
   description:
     'Free online random decision tools: coin flip, dice roller, wheel spinner, yes or no, and random number generator.',
   baseUrl

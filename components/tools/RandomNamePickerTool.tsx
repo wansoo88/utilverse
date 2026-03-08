@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { pickRandom } from '@/lib/random'
 
@@ -29,7 +30,20 @@ export function RandomNamePickerTool() {
       </label>
       <div className="flex flex-wrap items-center gap-3" style={{ marginTop: '0.75rem' }}>
         <button className="btn btn-primary" type="button" onClick={pick}>Pick a Name</button>
-        <p style={{ fontWeight: 700 }}>Selected: {result || '-'}</p>
+        <AnimatePresence mode="wait">
+          {result && (
+            <motion.p
+              key={result}
+              initial={{ opacity: 0, scale: 0.7, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 18 }}
+              style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--brand)' }}
+            >
+              Selected: {result}
+            </motion.p>
+          )}
+        </AnimatePresence>
       </div>
       <p className="section-copy" style={{ marginTop: '0.6rem' }}>Total names: {names.length}</p>
       <div style={{ marginTop: '0.9rem' }}>

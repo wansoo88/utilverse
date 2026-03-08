@@ -39,7 +39,7 @@ type Dictionary = {
 
 const dictionaries: Record<Locale, Dictionary> = {
   en: {
-    siteName: 'Decision Toolkit',
+    siteName: 'Random Decision',
     nav: {
       tools: 'Tools',
       blog: 'Blog',
@@ -64,7 +64,7 @@ const dictionaries: Record<Locale, Dictionary> = {
     }
   },
   es: {
-    siteName: 'Decision Toolkit',
+    siteName: 'Random Decision',
     nav: { tools: 'Herramientas', blog: 'Blog', about: 'Acerca de', contact: 'Contacto', privacy: 'Privacidad', terms: 'Términos' },
     home: {
       title: 'Toma decisiones rápidas con herramientas aleatorias',
@@ -77,7 +77,7 @@ const dictionaries: Record<Locale, Dictionary> = {
     toolCommon: { generate: 'Generar', result: 'Resultado', history: 'Historial', clearHistory: 'Borrar historial' }
   },
   pt: {
-    siteName: 'Decision Toolkit',
+    siteName: 'Random Decision',
     nav: { tools: 'Ferramentas', blog: 'Blog', about: 'Sobre', contact: 'Contato', privacy: 'Privacidade', terms: 'Termos' },
     home: {
       title: 'Tome decisões rápidas com ferramentas aleatórias',
@@ -90,7 +90,7 @@ const dictionaries: Record<Locale, Dictionary> = {
     toolCommon: { generate: 'Gerar', result: 'Resultado', history: 'Histórico', clearHistory: 'Limpar histórico' }
   },
   ar: {
-    siteName: 'Decision Toolkit',
+    siteName: 'Random Decision',
     nav: { tools: 'الأدوات', blog: 'المدونة', about: 'من نحن', contact: 'اتصل بنا', privacy: 'الخصوصية', terms: 'الشروط' },
     home: {
       title: 'اتخذ قرارات سريعة بأدوات عشوائية',
@@ -103,7 +103,7 @@ const dictionaries: Record<Locale, Dictionary> = {
     toolCommon: { generate: 'إنشاء', result: 'النتيجة', history: 'السجل', clearHistory: 'مسح السجل' }
   },
   hi: {
-    siteName: 'Decision Toolkit',
+    siteName: 'Random Decision',
     nav: { tools: 'टूल्स', blog: 'ब्लॉग', about: 'हमारे बारे में', contact: 'संपर्क', privacy: 'गोपनीयता', terms: 'नियम' },
     home: {
       title: 'रैंडम टूल्स से तेज़ फैसले लें',
@@ -116,7 +116,7 @@ const dictionaries: Record<Locale, Dictionary> = {
     toolCommon: { generate: 'जनरेट', result: 'परिणाम', history: 'इतिहास', clearHistory: 'इतिहास साफ करें' }
   },
   tr: {
-    siteName: 'Decision Toolkit',
+    siteName: 'Random Decision',
     nav: { tools: 'Araçlar', blog: 'Blog', about: 'Hakkında', contact: 'İletişim', privacy: 'Gizlilik', terms: 'Şartlar' },
     home: {
       title: 'Rastgele araçlarla hızlı karar verin',

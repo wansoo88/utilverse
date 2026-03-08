@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { pickRandom } from '@/lib/random'
 
@@ -26,7 +27,20 @@ export function RandomFoodPickerTool() {
       </label>
       <div className="flex flex-wrap items-center gap-3" style={{ marginTop: '0.75rem' }}>
         <button className="btn btn-primary" type="button" onClick={pick}>Pick Food</button>
-        <p style={{ fontWeight: 700 }}>Result: {result || '-'}</p>
+        <AnimatePresence mode="wait">
+          {result && (
+            <motion.p
+              key={result}
+              initial={{ opacity: 0, scale: 0.7, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 18 }}
+              style={{ fontWeight: 700, fontSize: '1.1rem', color: '#F97316' }}
+            >
+              🍽️ {result}
+            </motion.p>
+          )}
+        </AnimatePresence>
       </div>
       <div style={{ marginTop: '0.9rem' }}>
         <p style={{ fontWeight: 700 }}>History</p>

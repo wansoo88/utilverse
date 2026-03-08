@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomInt } from '@/lib/random'
 
@@ -58,9 +59,33 @@ export function CountdownTimerRandomTool() {
         </div>
       </div>
 
-      <p style={{ marginTop: '0.8rem', fontWeight: 700, fontSize: '1.1rem' }}>
-        {running ? `Remaining: ${remaining}s` : picked === null ? 'Timer not started' : `Finished (${picked}s)`}
-      </p>
+      <div style={{ marginTop: '0.8rem', minHeight: '3.5rem', display: 'flex', alignItems: 'center' }}>
+        <AnimatePresence mode="wait">
+          {running ? (
+            <motion.div
+              key={remaining}
+              initial={{ opacity: 0, scale: 1.3 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{ fontWeight: 900, fontSize: '2.5rem', color: remaining <= 5 ? '#F43F5E' : '#06B6D4', fontFamily: 'var(--font-display), sans-serif' }}
+            >
+              {remaining}s
+            </motion.div>
+          ) : picked === null ? (
+            <p style={{ fontWeight: 700, color: 'var(--text-muted)' }}>Timer not started</p>
+          ) : (
+            <motion.p
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              style={{ fontWeight: 700, color: '#10B981', fontSize: '1.1rem' }}
+            >
+              ✓ Finished ({picked}s)
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </div>
 
       <div style={{ marginTop: '0.9rem' }}>
         <p style={{ fontWeight: 700 }}>History</p>

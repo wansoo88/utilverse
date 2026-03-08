@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomInt } from '@/lib/random'
 
@@ -30,7 +31,41 @@ export function LotteryNumberGeneratorTool() {
         <label><span style={{ fontWeight: 600 }}>Max number</span><input className="input" type="number" min={10} max={99} value={max} onChange={(e) => setMax(Number(e.target.value))} /></label>
         <div className="flex items-end"><button className="btn btn-primary w-full" type="button" onClick={generate}>Generate Lottery Numbers</button></div>
       </div>
-      <p style={{ marginTop: '0.75rem', fontWeight: 700 }}>Result: {result.length ? result.join(', ') : '-'}</p>
+      <AnimatePresence mode="wait">
+        {result.length > 0 && (
+          <motion.div
+            key={result.join(',')}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.75rem' }}
+          >
+            {result.map((num, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, scale: 0.5, rotate: -15 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ delay: i * 0.08, type: 'spring', stiffness: 400, damping: 18 }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '2.8rem',
+                  height: '2.8rem',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #EAB308, #CA8A04)',
+                  color: '#fff',
+                  fontWeight: 800,
+                  fontSize: '0.95rem',
+                  boxShadow: '0 4px 12px rgba(234, 179, 8, 0.4)'
+                }}
+              >
+                {num}
+              </motion.span>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div style={{ marginTop: '0.9rem' }}>
         <p style={{ fontWeight: 700 }}>History</p>
         <ul className="section-copy" style={{ paddingLeft: '1rem' }}>{items.slice(0, 10).map((item) => <li key={item}>{item}</li>)}</ul>

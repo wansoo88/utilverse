@@ -6,8 +6,8 @@ import { isLocale } from '@/lib/i18n'
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   return buildMeta({
-    title: 'Terms of Service | Decision Toolkit',
-    description: 'Terms of service for the use of Decision Toolkit and related content.',
+    title: 'Terms of Service | Random Decision',
+    description: 'Terms of service for the use of Random Decision and related content.',
     path: `/${params.locale}/terms-of-service`
   })
 }
