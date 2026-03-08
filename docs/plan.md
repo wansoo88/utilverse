@@ -601,9 +601,9 @@ pickerwheel.com의 상위 오가닉 키워드 (참고용):
   - Placeholder fallback when AdSense client is not configured
 
 ### Deployment and Security Updates
-- Deployment target path fixed to `https://utilverse.info/randomdecision`.
+- Deployment target path fixed to `https://utilverse.info/random-decision`.
 - `next.config.js` updated:
-  - `basePath: /randomdecision`
+  - `basePath: /random-decision`
   - security headers (CSP, X-Frame-Options, etc.)
   - poweredByHeader disabled
 - `.env.example` updated with production URL and AdSense variable.
@@ -625,12 +625,12 @@ pickerwheel.com의 상위 오가닉 키워드 (참고용):
 - Verified legal pages are now locale-backed via `lib/content/legal.ts`.
 
 ### URL Strategy Validation
-- Current production target `https://utilverse.info/randomdecision` is valid with current codebase.
-- `next.config.js` uses `basePath: /randomdecision`, and route generation/canonical strategy aligns with this.
+- Current production target `https://utilverse.info/random-decision` is valid with current codebase.
+- `next.config.js` uses `basePath: /random-decision`, and route generation/canonical strategy aligns with this.
 - Metadata routes (`sitemap.xml`, `robots.txt`) are configured to work under the same base path.
 
 ### Alternative URL Options (Reviewed)
-- `https://randomdecision.utilverse.info`:
+- `https://random-decision.utilverse.info`:
   - Pros: cleaner app identity, better long-term product separation
   - Cons: requires DNS/subdomain rollout and migration planning
 - `https://utilverse.info/random`:
@@ -638,7 +638,7 @@ pickerwheel.com의 상위 오가닉 키워드 (참고용):
   - Cons: path rename + potential canonical migration effort
 
 ### Recommendation
-- Keep `https://utilverse.info/randomdecision` for upcoming Vercel test and initial launch.
+- Keep `https://utilverse.info/random-decision` for upcoming Vercel test and initial launch.
 - Re-evaluate subdomain migration after stable traffic and monetization baseline.
 
 ### Vercel Test Preparation Status

@@ -2,8 +2,8 @@
 
 ## Product scope
 - Framework: Next.js 14 App Router + TypeScript + Tailwind
-- Deployment path: `/randomdecision` (basePath enabled)
-- Target URL: `https://utilverse.info/randomdecision`
+- Deployment path: `/random-decision` (basePath enabled)
+- Target URL: `https://utilverse.info/random-decision`
 - Runtime style: hybrid static pages + client interactive tools
 - DB/Auth: not used in this stage
 - Language routes: `en`, `es`, `pt`, `ar`, `hi`, `tr`
@@ -71,7 +71,7 @@ Expansion:
 
 ## Security and platform hardening
 - `next.config.js`
-  - `basePath: '/randomdecision'`
+  - `basePath: '/random-decision'`
   - `poweredByHeader: false`
   - security headers including CSP, XFO, Referrer-Policy, Permissions-Policy
 

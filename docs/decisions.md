@@ -40,12 +40,12 @@
 - Why: SEO breadth + AdSense content depth + product completeness
 - Impact: More QA and content maintenance
 
-## ADR-2026-03-08-09: URL strategy (`/randomdecision`) validation
-- Decision: Keep `https://utilverse.info/randomdecision` in current release
+## ADR-2026-03-08-09: URL strategy (`/random-decision`) validation
+- Decision: Keep `https://utilverse.info/random-decision` in current release
 - Why: Fits multi-product domain strategy and avoids immediate domain migration
 - Alternatives reviewed:
-  - `https://randomdecision.utilverse.info` (clean separation, stronger app identity)
+  - `https://random-decision.utilverse.info` (clean separation, stronger app identity)
   - `https://utilverse.info/random` (shorter path)
 - Recommendation:
-  - Near term: keep `/randomdecision` for deployment speed
+  - Near term: keep `/random-decision` for deployment speed
   - Mid term: evaluate subdomain if product scales independently

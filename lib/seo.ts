@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://utilverse.info/randomdecision'
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://utilverse.info/random-decision'
 
 export const siteConfig = {
   name: 'Decision Toolkit',

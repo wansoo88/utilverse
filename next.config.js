@@ -25,7 +25,7 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  basePath: '/randomdecision',
+  basePath: '/random-decision',
   async headers() {
     return [
       {

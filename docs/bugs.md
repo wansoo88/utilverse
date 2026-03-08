@@ -11,8 +11,8 @@
 
 ### RISK-002: basePath deployment mismatch
 - Symptom: 404 or broken static assets under production path.
-- Cause: Hosting/reverse-proxy strips or misroutes `/randomdecision`.
-- Mitigation: Verify final URL, static assets, and metadata routes under `/randomdecision` on Vercel preview and production.
+- Cause: Hosting/reverse-proxy strips or misroutes `/random-decision`.
+- Mitigation: Verify final URL, static assets, and metadata routes under `/random-decision` on Vercel preview and production.
 
 ### RISK-003: Placeholder contact email remaining in production
 - Symptom: Trust/approval weakness due to non-operational contact channel.

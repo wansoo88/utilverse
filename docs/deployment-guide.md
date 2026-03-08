@@ -1,31 +1,31 @@
-# Deployment Guide (Vercel) for utilverse.info/randomdecision
+# Deployment Guide (Vercel) for utilverse.info/random-decision
 
 ## 1) Branch and preview flow
 - Active development branch: `dev`
 - Create Vercel project from repository
-- Set production branch policy as desired (`master` later)
-- Use `dev` preview deployments for smoke tests first
+- Use `dev` preview deployments for validation first
+- Promote to production branch after checklist pass
 
 ## 2) Environment variables
 Set in Vercel Project Settings -> Environment Variables:
-- `NEXT_PUBLIC_SITE_URL=https://utilverse.info/randomdecision`
-- `NEXT_PUBLIC_ADSENSE_CLIENT=ca-pub-xxxxxxxxxxxxxxxx` (leave placeholder until real activation)
+- `NEXT_PUBLIC_SITE_URL=https://utilverse.info/random-decision`
+- `NEXT_PUBLIC_ADSENSE_CLIENT=ca-pub-xxxxxxxxxxxxxxxx` (keep placeholder until activation)
 
-## 3) Build and runtime
+## 3) Build/runtime config
 - Framework preset: Next.js
 - Build command: `pnpm build`
 - Install command: `pnpm install`
-- Output: default Next.js output
+- Output: Next.js default
 
 ## 4) URL and basePath requirements
-This project uses `basePath: /randomdecision`.
-Required final behavior:
-- Home: `https://utilverse.info/randomdecision/en`
-- Tool sample: `https://utilverse.info/randomdecision/en/coin-flip`
-- Blog sample: `https://utilverse.info/randomdecision/en/blog/how-to-make-decisions`
+This project uses `basePath: /random-decision`.
+Required behavior:
+- Home: `https://utilverse.info/random-decision/en`
+- Tool sample: `https://utilverse.info/random-decision/en/coin-flip`
+- Blog sample: `https://utilverse.info/random-decision/en/blog/how-to-make-decisions`
 - Metadata routes:
-  - `https://utilverse.info/randomdecision/sitemap.xml`
-  - `https://utilverse.info/randomdecision/robots.txt`
+  - `https://utilverse.info/random-decision/sitemap.xml`
+  - `https://utilverse.info/random-decision/robots.txt`
 
 ## 5) Security headers
 Configured in `next.config.js`:
@@ -36,26 +36,81 @@ Configured in `next.config.js`:
 - Permissions-Policy
 - Cross-Origin-Opener-Policy
 
-After enabling real AdSense, re-check CSP console errors and adjust allow-list if needed.
+## 6) Requested #1: Post-deploy URL smoke test checklist
+Run this immediately on Vercel preview and again on production.
 
-## 6) Pre-release smoke checklist
-1. Route checks under `/randomdecision`
-2. Locale checks: `en/es/pt/ar/hi/tr`
-3. Arabic pages render RTL correctly
-4. 15 tools load and generate results
-5. Sitemap and robots resolve
-6. No blocking CSP errors in browser console
-7. Contact email placeholder replaced with real mailbox before submission
+### 6.1 Core route checks
+1. `/random-decision/en` opens without 404
+2. One route from each tool phase works:
+   - `/random-decision/en/coin-flip`
+   - `/random-decision/en/random-name-picker`
+   - `/random-decision/en/random-food-picker`
+3. Blog routes resolve:
+   - `/random-decision/en/blog`
+   - one slug detail page
+4. Legal routes resolve:
+   - `/random-decision/en/about`
+   - `/random-decision/en/contact`
+   - `/random-decision/en/privacy-policy`
+   - `/random-decision/en/terms-of-service`
 
-## 7) AdSense activation checklist (later)
+### 6.2 Locale and UI checks
+1. Locale switcher works for `en/es/pt/ar/hi/tr`
+2. Arabic pages render RTL (`dir=rtl`)
+3. Theme toggle works and persists
+4. At least 5 tools generate valid outputs
+
+### 6.3 SEO route checks
+1. `/random-decision/sitemap.xml` returns 200
+2. `/random-decision/robots.txt` returns 200
+3. Canonical links include `/random-decision`
+
+### 6.4 Reliability checks
+1. No broken static assets (JS/CSS/IMG 404)
+2. Browser console has no uncaught runtime error
+3. Contact page no placeholder mailbox before AdSense submission
+
+## 7) Requested #2: CSP error triage and patch guide
+Use this when ads or analytics fail due to CSP.
+
+### 7.1 Detect
+1. Open browser DevTools -> Console
+2. Filter by `Content Security Policy`
+3. Identify blocked URL and directive (`script-src`, `frame-src`, `connect-src`, etc.)
+
+### 7.2 Classify
+- Ad script blocked -> `script-src`
+- Ad iframe blocked -> `frame-src`
+- Tracking/beacon blocked -> `connect-src`
+- Image asset blocked -> `img-src`
+
+### 7.3 Patch safely
+1. Edit only required directive in `next.config.js`
+2. Add exact domain (avoid wildcard overreach)
+3. Redeploy preview
+4. Re-test blocked path only
+5. Re-check full page for regressions
+
+### 7.4 Typical AdSense domains to verify
+- `https://pagead2.googlesyndication.com`
+- `https://googleads.g.doubleclick.net`
+- `https://tpc.googlesyndication.com`
+- `https://www.googletagmanager.com`
+
+### 7.5 Don’t
+- Do not set `script-src *`
+- Do not remove `object-src 'none'`
+- Do not disable CSP globally to fix one integration issue
+
+## 8) AdSense activation checklist (later)
 1. Set real `NEXT_PUBLIC_ADSENSE_CLIENT`
-2. Replace slot ids in:
+2. Replace slot IDs in:
    - `components/layout/ToolPageShell.tsx`
    - `app/[locale]/page.tsx`
    - `app/[locale]/blog/[slug]/page.tsx`
-3. Add `ads.txt` at root when publisher id is finalized
-4. Verify ad loading + CLS stability
+3. Add `ads.txt` after publisher ID issuance
+4. Validate ad load + CLS stability
 
-## 8) URL strategy validation note
-Current path `utilverse.info/randomdecision` is valid and production-ready.
-Better branding alternative exists (`randomdecision.utilverse.info`) but is optional and can be postponed.
+## 9) URL strategy note
+Current path `utilverse.info/random-decision` is valid and production-ready.
+Alternative (`random-decision.utilverse.info`) is optional for future brand separation.
