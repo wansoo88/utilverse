@@ -1,7 +1,8 @@
-﻿'use client'
+'use client'
 
 import { useState } from 'react'
 import { useLocalHistory } from '@/lib/useLocalHistory'
+import { randomInt } from '@/lib/random'
 
 const diceTypes = [4, 6, 8, 10, 12, 20]
 
@@ -12,7 +13,7 @@ export function DiceRollerTool() {
   const { items, push, clear } = useLocalHistory('history-dice')
 
   const roll = () => {
-    const values = Array.from({ length: count }, () => Math.floor(Math.random() * sides) + 1)
+    const values = Array.from({ length: count }, () => randomInt(1, sides))
     setResult(values)
     const sum = values.reduce((acc, cur) => acc + cur, 0)
     push(`${new Date().toLocaleTimeString()}: [${values.join(', ')}] total=${sum}`)

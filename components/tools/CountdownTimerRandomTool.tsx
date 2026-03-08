@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useLocalHistory } from '@/lib/useLocalHistory'
+import { randomInt } from '@/lib/random'
 
 export function CountdownTimerRandomTool() {
   const [min, setMin] = useState(5)
@@ -26,7 +27,7 @@ export function CountdownTimerRandomTool() {
 
   const start = () => {
     if (max < min) return
-    const next = Math.floor(Math.random() * (max - min + 1)) + min
+    const next = randomInt(min, max)
     setPicked(next)
     setRemaining(next)
     setRunning(true)

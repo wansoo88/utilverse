@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { getLegalBundle } from '@/lib/content/legal'
 import { buildMeta } from '@/lib/seo'
 import { isLocale } from '@/lib/i18n'
 
@@ -13,15 +14,16 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
 
 export default function ContactPage({ params }: { params: { locale: string } }) {
   if (!isLocale(params.locale)) notFound()
+  const legal = getLegalBundle(params.locale)
 
   return (
     <div className="container-page">
       <section className="card" style={{ padding: '1.2rem' }}>
-        <h1 className="section-title">Contact</h1>
-        <p className="section-copy">For support requests, bug reports, content corrections, accessibility feedback, or partnership inquiries, contact us at <strong>hello@decisiontoolkit.example</strong>.</p>
-        <p className="section-copy">Please include the page URL, browser type, device model, and a short reproduction step list for technical issues. This helps us resolve tool problems quickly and reduces back-and-forth communication.</p>
-        <p className="section-copy">Typical response time is within 2-3 business days. For legal and policy requests, include "Legal" in the subject line. For ad-quality issues, include "Ad Feedback" and the affected page URL.</p>
-        <p className="section-copy">We review all submissions, but cannot guarantee individual responses for unsolicited content proposals. If you are requesting takedown or rights-related action, provide clear ownership evidence and exact references.</p>
+        <h1 className="section-title">{legal.contactTitle}</h1>
+        {legal.contactParagraphs.map((paragraph) => (
+          <p key={paragraph} className="section-copy" style={{ marginBottom: '0.7rem' }}>{paragraph}</p>
+        ))}
+        <p className="section-copy"><strong>Contact email:</strong> to be finalized after deployment.</p>
       </section>
     </div>
   )

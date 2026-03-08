@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import { useLocalHistory } from '@/lib/useLocalHistory'
+import { pickRandom } from '@/lib/random'
 
 export function RandomNamePickerTool() {
   const [raw, setRaw] = useState('Alex\nSam\nJordan\nTaylor')
@@ -15,7 +16,7 @@ export function RandomNamePickerTool() {
 
   const pick = () => {
     if (!names.length) return
-    const next = names[Math.floor(Math.random() * names.length)]
+    const next = pickRandom(names)
     setResult(next)
     push(`${new Date().toLocaleTimeString()}: ${next}`)
   }

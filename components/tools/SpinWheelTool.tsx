@@ -1,7 +1,8 @@
-﻿'use client'
+'use client'
 
 import { useMemo, useState } from 'react'
 import { useLocalHistory } from '@/lib/useLocalHistory'
+import { pickRandom } from '@/lib/random'
 
 export function SpinWheelTool() {
   const [rawOptions, setRawOptions] = useState('Pizza\nSushi\nBurger\nSalad')
@@ -19,7 +20,7 @@ export function SpinWheelTool() {
 
   const spin = () => {
     if (!options.length) return
-    const pick = options[Math.floor(Math.random() * options.length)]
+    const pick = pickRandom(options)
     setResult(pick)
     push(`${new Date().toLocaleTimeString()}: ${pick}`)
   }

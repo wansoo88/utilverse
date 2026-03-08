@@ -18,6 +18,8 @@ export function Header({ locale }: { locale: Locale }) {
           <Link href={localePath(locale, '/dice-roller')}>Dice Roller</Link>
           <Link href={localePath(locale, '/spin-the-wheel')}>Wheel</Link>
           <Link href={localePath(locale, '/random-name-picker')}>Name Picker</Link>
+          <Link href={localePath(locale, '/random-food-picker')}>Food Picker</Link>
+          <Link href={localePath(locale, '/random-food-picker')}>Food Picker</Link>
           <Link href={localePath(locale, '/blog')}>{dict.nav.blog}</Link>
           <Link href={localePath(locale, '/about')}>{dict.nav.about}</Link>
         </nav>

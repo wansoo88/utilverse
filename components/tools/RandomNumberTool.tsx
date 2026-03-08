@@ -1,7 +1,8 @@
-﻿'use client'
+'use client'
 
 import { useState } from 'react'
 import { useLocalHistory } from '@/lib/useLocalHistory'
+import { randomInt } from '@/lib/random'
 
 export function RandomNumberTool() {
   const [min, setMin] = useState(1)
@@ -19,11 +20,11 @@ export function RandomNumberTool() {
     for (let i = 0; i < count; i += 1) {
       if (unique) {
         if (!pool.length) break
-        const idx = Math.floor(Math.random() * pool.length)
+        const idx = randomInt(0, pool.length - 1)
         next.push(pool[idx])
         pool.splice(idx, 1)
       } else {
-        next.push(Math.floor(Math.random() * (max - min + 1)) + min)
+        next.push(randomInt(min, max))
       }
     }
 

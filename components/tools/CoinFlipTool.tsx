@@ -1,14 +1,15 @@
-﻿'use client'
+'use client'
 
 import { useState } from 'react'
 import { useLocalHistory } from '@/lib/useLocalHistory'
+import { randomBool } from '@/lib/random'
 
 export function CoinFlipTool() {
   const [result, setResult] = useState<string>('')
   const { items, push, clear } = useLocalHistory('history-coin-flip')
 
   const flip = () => {
-    const next = Math.random() < 0.5 ? 'Heads' : 'Tails'
+    const next = randomBool() ? 'Heads' : 'Tails'
     setResult(next)
     push(`${new Date().toLocaleTimeString()}: ${next}`)
   }

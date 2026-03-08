@@ -14,7 +14,12 @@ const tools = [
   { href: '/team-generator', name: 'Team Generator', desc: 'Split names into random teams quickly.' },
   { href: '/random-letter', name: 'Random Letter', desc: 'A-Z random letter prompts.' },
   { href: '/random-color', name: 'Random Color', desc: 'HEX and RGB color picker with preview.' },
-  { href: '/countdown-timer-random', name: 'Random Countdown Timer', desc: 'Unpredictable timer rounds for games.' }
+  { href: '/countdown-timer-random', name: 'Random Countdown Timer', desc: 'Unpredictable timer rounds for games.' },
+  { href: '/random-food-picker', name: 'Random Food Picker', desc: 'Decide what to eat from custom options.' },
+  { href: '/random-date-generator', name: 'Random Date Generator', desc: 'Generate random dates inside any range.' },
+  { href: '/lottery-number-generator', name: 'Lottery Number Generator', desc: 'Create unique lottery-style number sets.' },
+  { href: '/baby-name-generator', name: 'Baby Name Generator', desc: 'Generate baby name ideas by category.' },
+  { href: '/icebreaker-question-generator', name: 'Icebreaker Questions', desc: 'Get random conversation starters quickly.' }
 ]
 
 export default function HomePage({ params }: { params: { locale: string } }) {

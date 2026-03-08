@@ -9,6 +9,11 @@ export type ToolKey =
   | 'random-letter'
   | 'random-color'
   | 'countdown-timer-random'
+  | 'random-food-picker'
+  | 'random-date-generator'
+  | 'lottery-number-generator'
+  | 'baby-name-generator'
+  | 'icebreaker-question-generator'
 
 export type ToolContent = {
   title: string
@@ -410,6 +415,106 @@ export const toolContent: Record<ToolKey, ToolContent> = {
       { href: '/random-number-generator', label: 'Random Number Generator' },
       { href: '/spin-the-wheel', label: 'Spin the Wheel' },
       { href: '/yes-or-no', label: 'Yes or No Generator' }
+    ]
+  },
+  'random-food-picker': {
+    title: 'Random Food Picker',
+    subtitle: 'Cannot decide what to eat? Let a random picker choose quickly.',
+    howToUse: ['Add food options line by line.', 'Click pick food to generate one winner.', 'Use history to compare repeated rounds.'],
+    features: ['Custom option input', 'One-click random pick', 'Local history', 'Mobile friendly', 'Fast reruns'],
+    useCases: ['Lunch decision with teammates', 'Family dinner choice', 'Travel food planning', 'Weekend meal roulette'],
+    tips: ['Keep options realistic for your location.', 'Avoid duplicates for cleaner randomness.', 'Set one reroll limit before starting.'],
+    faqs: [
+      { question: 'Can I add my own meals?', answer: 'Yes, enter any food list you want.' },
+      { question: 'Does it store my list?', answer: 'Current list stays in page state during your session.' },
+      { question: 'Can I clear history?', answer: 'Yes, use clear history anytime.' },
+      { question: 'Is this mobile friendly?', answer: 'Yes, the picker works on phones and tablets.' },
+      { question: 'Is this suitable for groups?', answer: 'Yes, it is commonly used for quick team meal decisions.' }
+    ],
+    related: [
+      { href: '/spin-the-wheel', label: 'Spin the Wheel' },
+      { href: '/yes-or-no', label: 'Yes or No Generator' },
+      { href: '/random-number-generator', label: 'Random Number Generator' }
+    ]
+  },
+  'random-date-generator': {
+    title: 'Random Date Generator',
+    subtitle: 'Generate random dates in your selected range for planning and games.',
+    howToUse: ['Set start and end dates.', 'Click generate date.', 'Repeat and review history for multiple outcomes.'],
+    features: ['Date range input', 'Random day generation', 'Local history logging', 'Simple controls', 'Responsive layout'],
+    useCases: ['Random event schedule ideas', 'Classroom timeline exercises', 'Game challenge day selection', 'Prompt generation workflows'],
+    tips: ['Ensure end date is after start date.', 'Use narrow ranges for constrained scenarios.', 'Record outcomes before clearing history.'],
+    faqs: [
+      { question: 'Can I control the date range?', answer: 'Yes, choose start and end dates directly.' },
+      { question: 'Is the output one date at a time?', answer: 'Yes, current version returns one random date per click.' },
+      { question: 'Does this use browser timezone?', answer: 'Yes, date handling follows browser environment defaults.' },
+      { question: 'Can I use this for planning games?', answer: 'Yes, many users use it for random schedule prompts.' },
+      { question: 'Can I clear history?', answer: 'Yes, with the clear history button.' }
+    ],
+    related: [
+      { href: '/random-number-generator', label: 'Random Number Generator' },
+      { href: '/countdown-timer-random', label: 'Random Countdown Timer' },
+      { href: '/spin-the-wheel', label: 'Spin the Wheel' }
+    ]
+  },
+  'lottery-number-generator': {
+    title: 'Lottery Number Generator',
+    subtitle: 'Generate unique lottery-style number sets with configurable range.',
+    howToUse: ['Set how many numbers to pick.', 'Set max number range.', 'Click generate to create sorted unique numbers.'],
+    features: ['Unique number draw', 'Configurable count and max', 'Sorted output', 'Local history', 'Quick regenerate flow'],
+    useCases: ['Lottery-style random draws', 'Contest number simulation', 'Game setup randomization', 'Class probability demos'],
+    tips: ['Keep count lower than max range.', 'Use multiple runs for varied sets.', 'Do not use as financial advice.'],
+    faqs: [
+      { question: 'Are numbers unique?', answer: 'Yes, each generated set contains unique values.' },
+      { question: 'Can I change range?', answer: 'Yes, adjust max number before generating.' },
+      { question: 'Does it sort results?', answer: 'Yes, output is sorted ascending.' },
+      { question: 'Can I generate repeatedly?', answer: 'Yes, there is no hard run limit.' },
+      { question: 'Is history stored locally?', answer: 'Yes, on your browser only.' }
+    ],
+    related: [
+      { href: '/random-number-generator', label: 'Random Number Generator' },
+      { href: '/dice-roller', label: 'Dice Roller' },
+      { href: '/spin-the-wheel', label: 'Spin the Wheel' }
+    ]
+  },
+  'baby-name-generator': {
+    title: 'Baby Name Generator',
+    subtitle: 'Generate random baby name ideas by style category.',
+    howToUse: ['Choose a name type.', 'Click generate baby name.', 'Collect favorites from repeated rounds.'],
+    features: ['Category filter', 'Instant random name', 'History list', 'Simple one-click UX', 'Mobile ready'],
+    useCases: ['Parent naming brainstorm', 'Creative writing character names', 'Game NPC naming', 'Naming workshop prompts'],
+    tips: ['Run multiple rounds before shortlisting.', 'Combine random picks with family criteria.', 'Keep a saved list of favorites.'],
+    faqs: [
+      { question: 'Can I pick by type?', answer: 'Yes, choose neutral, girl, or boy sets.' },
+      { question: 'Are names globally exhaustive?', answer: 'No, this is a lightweight starter set.' },
+      { question: 'Can I generate repeatedly?', answer: 'Yes, generate as many names as needed.' },
+      { question: 'Does it save favorites?', answer: 'It saves generated history locally.' },
+      { question: 'Can I clear old names?', answer: 'Yes, with clear history.' }
+    ],
+    related: [
+      { href: '/random-name-picker', label: 'Random Name Picker' },
+      { href: '/random-letter', label: 'Random Letter Generator' },
+      { href: '/yes-or-no', label: 'Yes or No Generator' }
+    ]
+  },
+  'icebreaker-question-generator': {
+    title: 'Icebreaker Question Generator',
+    subtitle: 'Generate conversation starters for team, classroom, or party settings.',
+    howToUse: ['Choose a category.', 'Click generate icebreaker.', 'Use history for session flow control.'],
+    features: ['Category-based prompts', 'One-click random question', 'History logging', 'Fast pacing for facilitators', 'Clean mobile UX'],
+    useCases: ['Team meeting warm-ups', 'Class participation starters', 'Party conversation prompts', 'Workshop networking rounds'],
+    tips: ['Pick one category per round for consistency.', 'Set speaking time limits before asking.', 'Skip sensitive prompts for mixed groups.'],
+    faqs: [
+      { question: 'Can I change categories?', answer: 'Yes, switch between team, classroom, and party categories.' },
+      { question: 'Does it repeat questions?', answer: 'It may repeat over time in a small prompt pool.' },
+      { question: 'Can I track asked questions?', answer: 'Yes, recent prompts are stored in history.' },
+      { question: 'Is this good for remote teams?', answer: 'Yes, it works well for online meetings and calls.' },
+      { question: 'Can I clear old prompts?', answer: 'Yes, clear history is available.' }
+    ],
+    related: [
+      { href: '/random-name-picker', label: 'Random Name Picker' },
+      { href: '/team-generator', label: 'Team Generator' },
+      { href: '/spin-the-wheel', label: 'Spin the Wheel' }
     ]
   }
 }

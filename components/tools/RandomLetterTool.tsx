@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useLocalHistory } from '@/lib/useLocalHistory'
+import { randomInt } from '@/lib/random'
 
 const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -13,7 +14,7 @@ export function RandomLetterTool() {
 
   const generate = () => {
     const next = Array.from({ length: Math.max(1, count) }, () => {
-      const letter = LETTERS[Math.floor(Math.random() * LETTERS.length)]
+      const letter = LETTERS[randomInt(0, LETTERS.length - 1)]
       return lowercase ? letter.toLowerCase() : letter
     })
     setResult(next)

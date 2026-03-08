@@ -69,3 +69,8 @@
 - Added `AdSlot` component with env-gated AdSense rendering and safe placeholder fallback.
 - Expanded legal pages (about/contact/privacy/terms) for stronger policy and content-depth coverage.
 - Added RTL direction handling for Arabic locale at layout boundary.
+## 2026-03-08 ADR: AdSense hardening follow-up
+- Replaced tool randomness to use `crypto.getRandomValues`-based helper (`lib/random.ts`) across all generators.
+- Expanded total tools to 15 by adding: random food picker, random date generator, lottery number generator, baby name generator, and icebreaker question generator.
+- Expanded legal pages to multi-language bundles (en/es/pt/ar/hi/tr) via `lib/content/legal.ts`.
+- Renamed document: `docs/2026_adsense_startegy.md` -> `docs/2026_adsense_strategy.md`.

@@ -1,14 +1,15 @@
-﻿'use client'
+'use client'
 
 import { useState } from 'react'
 import { useLocalHistory } from '@/lib/useLocalHistory'
+import { randomBool } from '@/lib/random'
 
 export function YesNoTool() {
   const [result, setResult] = useState<string>('')
   const { items, push, clear } = useLocalHistory('history-yesno')
 
   const generate = () => {
-    const next = Math.random() < 0.5 ? 'Yes' : 'No'
+    const next = randomBool() ? 'Yes' : 'No'
     setResult(next)
     push(`${new Date().toLocaleTimeString()}: ${next}`)
   }

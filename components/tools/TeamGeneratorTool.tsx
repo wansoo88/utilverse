@@ -2,15 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import { useLocalHistory } from '@/lib/useLocalHistory'
-
-function shuffle<T>(arr: T[]) {
-  const next = [...arr]
-  for (let i = next.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[next[i], next[j]] = [next[j], next[i]]
-  }
-  return next
-}
+import { shuffle } from '@/lib/random'
 
 export function TeamGeneratorTool() {
   const [raw, setRaw] = useState('Alex\nSam\nJordan\nTaylor\nChris\nDana')
