@@ -8,6 +8,7 @@ type AdSlotProps = {
 
 export function AdSlot({ slot, format = 'auto', label }: AdSlotProps) {
   const client = process.env.NEXT_PUBLIC_ADSENSE_CLIENT
+  const minHeight = format === 'horizontal' ? 90 : format === 'rectangle' ? 250 : 120
 
   if (!client) {
     return (
@@ -15,6 +16,9 @@ export function AdSlot({ slot, format = 'auto', label }: AdSlotProps) {
         className="card"
         style={{
           padding: '1rem',
+          minHeight: `${minHeight}px`,
+          display: 'grid',
+          placeItems: 'center',
           borderStyle: 'dashed',
           textAlign: 'center',
           color: 'var(--text-muted)'
@@ -26,7 +30,7 @@ export function AdSlot({ slot, format = 'auto', label }: AdSlotProps) {
   }
 
   return (
-    <div className="card" style={{ padding: '0.5rem', overflow: 'hidden' }}>
+    <div className="card" style={{ padding: '0.5rem', overflow: 'hidden', minHeight: `${minHeight}px` }}>
       <Script
         async
         src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}`}

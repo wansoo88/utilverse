@@ -117,3 +117,13 @@ export function itemListSchema(items: Array<{ name: string; path: string }>, nam
     }))
   }
 }
+
+export function collectionPageSchema(params: { name: string; description: string; path: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: params.name,
+    description: params.description,
+    url: `${siteConfig.baseUrl}${params.path}`
+  }
+}

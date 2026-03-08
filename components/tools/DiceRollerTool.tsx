@@ -10,18 +10,24 @@ export function DiceRollerTool() {
   const [sides, setSides] = useState(6)
   const [count, setCount] = useState(2)
   const [result, setResult] = useState<number[]>([])
+  const [phase, setPhase] = useState<'input' | 'running' | 'result'>('input')
   const { items, push, clear } = useLocalHistory('history-dice')
 
   const roll = () => {
-    const values = Array.from({ length: count }, () => randomInt(1, sides))
-    setResult(values)
-    const sum = values.reduce((acc, cur) => acc + cur, 0)
-    push(`${new Date().toLocaleTimeString()}: [${values.join(', ')}] total=${sum}`)
+    setPhase('running')
+    window.setTimeout(() => {
+      const values = Array.from({ length: count }, () => randomInt(1, sides))
+      setResult(values)
+      setPhase('result')
+      const sum = values.reduce((acc, cur) => acc + cur, 0)
+      push(`${new Date().toLocaleTimeString()}: [${values.join(', ')}] total=${sum}`)
+    }, 550)
   }
 
   return (
     <div className="card" style={{ padding: '1rem' }}>
-      <div className="grid md:grid-cols-3 gap-3">
+      <p className="section-copy">Step 1. Choose die and count. Step 2. Roll. Step 3. Check total and rerun.</p>
+      <div className="grid md:grid-cols-3 gap-3" style={{ marginTop: '0.7rem' }}>
         <label>
           <span style={{ fontWeight: 600 }}>Die type</span>
           <select className="select" value={sides} onChange={(e) => setSides(Number(e.target.value))}>
@@ -35,15 +41,20 @@ export function DiceRollerTool() {
           <input className="input" type="number" min={1} max={10} value={count} onChange={(e) => setCount(Number(e.target.value))} />
         </label>
         <div className="flex items-end">
-          <button className="btn btn-primary w-full" type="button" onClick={roll}>
+          <button className="btn btn-primary w-full" type="button" onClick={roll} disabled={phase === 'running'}>
             Roll Dice
           </button>
         </div>
       </div>
 
-      <p style={{ marginTop: '0.75rem', fontWeight: 700 }}>
-        Result: {result.length ? `${result.join(', ')} (total ${result.reduce((a, b) => a + b, 0)})` : '-'}
-      </p>
+      <div className="flex flex-wrap items-center gap-3" style={{ marginTop: '0.75rem' }}>
+        <p className="result-chip result-good">
+          Result: {result.length ? `${result.join(', ')} (total ${result.reduce((a, b) => a + b, 0)})` : '-'}
+        </p>
+        <button className="btn" type="button" onClick={roll} disabled={phase === 'running'}>
+          Rerun
+        </button>
+      </div>
 
       <div style={{ marginTop: '0.9rem' }}>
         <p style={{ fontWeight: 700 }}>History</p>

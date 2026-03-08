@@ -1,0 +1,11 @@
+<svg width="320" height="180" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="180" rx="20" fill="#13243B"/>
+  <g transform="translate(160 90)">
+    <ellipse cx="0" cy="48" rx="54" ry="12" fill="#0C1522" opacity="0.6"/>
+    <g>
+      <circle r="44" fill="#FFC857" stroke="#F7A928" stroke-width="8"/>
+      <text x="0" y="8" text-anchor="middle" font-size="22" fill="#4D2F00" font-family="Arial" font-weight="700">HEADS</text>
+      <animateTransform attributeName="transform" type="scale" values="1 1;0.08 1;1 1" dur="1.2s" repeatCount="indefinite"/>
+    </g>
+  </g>
+</svg>

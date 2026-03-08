@@ -1,4 +1,15 @@
 /** @type {import('next').NextConfig} */
+const isDev = process.env.NODE_ENV !== 'production'
+
+const scriptSrc = [
+  "'self'",
+  "'unsafe-inline'",
+  ...(isDev ? ["'unsafe-eval'"] : []),
+  'https://pagead2.googlesyndication.com',
+  'https://www.googletagservices.com',
+  'https://www.googletagmanager.com'
+].join(' ')
+
 const csp = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -8,7 +19,7 @@ const csp = [
   "img-src 'self' data: https:",
   "font-src 'self' data:",
   "style-src 'self' 'unsafe-inline'",
-  "script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagservices.com https://www.googletagmanager.com",
+  `script-src ${scriptSrc}`,
   "connect-src 'self' https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://www.google-analytics.com",
   "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://pagead2.googlesyndication.com"
 ].join('; ')

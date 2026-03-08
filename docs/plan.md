@@ -648,3 +648,56 @@ pickerwheel.com의 상위 오가닉 키워드 (참고용):
   - real contact email replacement
   - real AdSense client + slot IDs
   - ads.txt addition (after publisher id issuance)
+
+---
+
+## 2026-03-08 UX Refresh Update
+
+### Completed in this update
+- Site layout was restructured to reduce the template-like look:
+  - New hero-first homepage composition
+  - Visual featured tool gallery with local SVG image assets
+  - Refined header/footer navigation and spacing
+  - Tool page top section redesigned with visual media split
+- Added visual assets under `public/media` including animated SVG previews:
+  - `coin-motion.svg`, `wheel-motion.svg`, `dice-motion.svg`
+  - supporting assets: `hero-decision.svg`, `food-pick.svg`, `team-pick.svg`, `tool-generic.svg`
+- Added `lib/content/catalog.ts` to centralize tool card metadata (name, desc, badge, image).
+- Duplicate navigation entry bug fixed (`Food Picker` duplicated in header).
+- Local development CSP issue addressed:
+  - dev-only `'unsafe-eval'` enabled to allow Next.js React Refresh
+  - production CSP remains strict
+
+### Validation
+- `npm run build` completed successfully after UI refresh and media additions.
+- Tool route generation and static page output remained healthy.
+
+### Next optional enhancements
+- If you want heavier motion, replace SVG motion with selective Lottie on top 2 tools only.
+- Add per-tool OG image generation for social sharing consistency.
+
+---
+
+## 2026-03-08 Product Direction Update (Applied)
+
+### Scope applied from design/SEO/monetization directive
+- Brand/design:
+  - Playful visual tone with subtle motion
+  - Fixed top 3 hero CTA pattern on homepage
+  - Large CTA touch targets (mobile-safe sizing)
+- Tool UX:
+  - Coin/Dice/Wheel now follow input->run->result pattern
+  - Result color feedback and adjacent rerun button
+- SEO structure:
+  - Added `/[locale]/tools` index page
+  - Added category hubs: random, picker, games, utility
+  - Expanded structured data with CollectionPage + ItemList + BreadcrumbList
+  - Tool page related links expanded to related tools (6) + related posts (3)
+- Content flow:
+  - Blog detail page now includes tool CTA at top and middle
+- Monetization:
+  - Medium ad density pattern kept
+  - Ad slot min-height guard added to reduce CLS
+
+### Validation
+- `npm run build` passed after all updates.

@@ -8,22 +8,26 @@ export function randomInt(min: number, max: number): number {
     throw new Error('invalid range')
   }
 
-  const cryptoObj = globalThis.crypto
-  if (!cryptoObj?.getRandomValues) {
-    return Math.floor(Math.random() * range) + min
+  try {
+    const cryptoObj = globalThis.crypto
+    if (cryptoObj?.getRandomValues) {
+      const maxUint = 0xffffffff
+      const limit = maxUint - (maxUint % range)
+      const buffer = new Uint32Array(1)
+
+      let value = 0
+      do {
+        cryptoObj.getRandomValues(buffer)
+        value = buffer[0]
+      } while (value >= limit)
+
+      return min + (value % range)
+    }
+  } catch {
+    // Fall back to Math.random if Web Crypto is blocked/unavailable.
   }
 
-  const maxUint = 0xffffffff
-  const limit = maxUint - (maxUint % range)
-  const buffer = new Uint32Array(1)
-
-  let value = 0
-  do {
-    cryptoObj.getRandomValues(buffer)
-    value = buffer[0]
-  } while (value >= limit)
-
-  return min + (value % range)
+  return Math.floor(Math.random() * range) + min
 }
 
 export function randomBool(): boolean {

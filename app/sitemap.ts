@@ -21,6 +21,7 @@ const toolPaths = [
   '/lottery-number-generator',
   '/baby-name-generator',
   '/icebreaker-question-generator',
+  '/tools',
   '/blog',
   '/about',
   '/contact',
@@ -33,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     toolPaths.map((path) => ({
       url: `${baseUrl}/${locale}${path}`,
       lastModified: new Date(),
-      changeFrequency: path === '' ? 'weekly' : 'monthly',
+      changeFrequency: path === '' ? ('weekly' as const) : ('monthly' as const),
       priority: path === '' ? 1 : 0.7
     }))
   )

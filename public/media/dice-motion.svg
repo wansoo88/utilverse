@@ -1,0 +1,17 @@
+<svg width="320" height="180" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="180" rx="20" fill="#102238"/>
+  <g transform="translate(102 90)">
+    <rect x="-34" y="-34" width="68" height="68" rx="14" fill="#F9FDFF"/>
+    <circle cx="-14" cy="-14" r="6" fill="#162438"/>
+    <circle cx="14" cy="0" r="6" fill="#162438"/>
+    <circle cx="-14" cy="14" r="6" fill="#162438"/>
+    <circle cx="14" cy="14" r="6" fill="#162438"/>
+    <animateTransform attributeName="transform" type="rotate" values="0 102 90;8 102 90;-8 102 90;0 102 90" dur="1.4s" repeatCount="indefinite"/>
+  </g>
+  <g transform="translate(208 90)">
+    <rect x="-28" y="-28" width="56" height="56" rx="12" fill="#E8F1FF"/>
+    <circle cx="0" cy="0" r="6" fill="#22344E"/>
+    <circle cx="-12" cy="-12" r="6" fill="#22344E"/>
+    <circle cx="12" cy="12" r="6" fill="#22344E"/>
+  </g>
+</svg>

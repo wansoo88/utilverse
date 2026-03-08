@@ -67,9 +67,20 @@ export default function BlogDetailPage({ params }: { params: { locale: string; s
           {post.intro}
         </p>
 
+        <section className="card" style={{ padding: '1rem', marginBottom: '1rem' }}>
+          <h2 style={{ fontSize: '1.1rem', fontWeight: 800, marginBottom: '0.5rem' }}>Try a Tool Now</h2>
+          <div className="flex flex-wrap gap-3">
+            {relatedTools.slice(0, 2).map((tool) => (
+              <Link key={`top-${tool.href}`} className="btn btn-primary" href={`/${params.locale}${tool.href}`}>
+                Try {tool.label}
+              </Link>
+            ))}
+          </div>
+        </section>
+
         <AdSlot slot="0000000004" label="Blog top in-article" />
 
-        {sections.map((section) => (
+        {sections.map((section, index) => (
           <section key={section.heading} style={{ marginBottom: '1rem', marginTop: '1rem' }}>
             <h2 style={{ fontSize: '1.2rem', fontWeight: 800, marginBottom: '0.45rem' }}>{section.heading}</h2>
             {section.body.map((paragraph) => (
@@ -77,6 +88,15 @@ export default function BlogDetailPage({ params }: { params: { locale: string; s
                 {paragraph}
               </p>
             ))}
+            {index === 1 ? (
+              <div className="flex flex-wrap gap-3" style={{ marginTop: '0.75rem' }}>
+                {relatedTools.slice(0, 2).map((tool) => (
+                  <Link key={`mid-${tool.href}`} className="btn" href={`/${params.locale}${tool.href}`}>
+                    Use {tool.label}
+                  </Link>
+                ))}
+              </div>
+            ) : null}
           </section>
         ))}
 

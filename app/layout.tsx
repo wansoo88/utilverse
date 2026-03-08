@@ -1,7 +1,11 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import { DM_Sans, Space_Grotesk } from 'next/font/google'
 import { siteConfig } from '@/lib/seo'
+
+const bodyFont = DM_Sans({ subsets: ['latin'], variable: '--font-body' })
+const displayFont = Space_Grotesk({ subsets: ['latin'], variable: '--font-display' })
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -11,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" data-theme="dark">
+    <html lang="en" data-theme="dark" className={`${bodyFont.variable} ${displayFont.variable}`}>
       <body>
         <script
           dangerouslySetInnerHTML={{

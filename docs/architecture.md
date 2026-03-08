@@ -38,6 +38,7 @@ Expansion:
 
 ## Route map
 - `/{locale}`
+- `/{locale}/tools`
 - `/{locale}/[tool-slug]` (15 tool routes)
 - `/{locale}/blog`
 - `/{locale}/blog/{slug}`
@@ -61,6 +62,7 @@ Expansion:
 - Locale-aware canonical metadata via `generateMetadata`
 - Tool structured data: `SoftwareApplication`, `FAQPage`
 - Blog structured data: `ItemList`, `BlogPosting`, `BreadcrumbList`, `FAQPage`
+- Tools hub structured data: `CollectionPage`, `ItemList`, `BreadcrumbList`
 - Legal pages present and localized
 - Internal linking: tool <-> blog related sections
 
@@ -68,12 +70,36 @@ Expansion:
 - `AdSlot` component is env-gated
 - If `NEXT_PUBLIC_ADSENSE_CLIENT` is empty, safe placeholder is shown
 - Ad slots pre-positioned in tool pages, homepage, and blog detail pages
+- Slot container min-height is fixed per format to reduce CLS
+
+## Tool UX pattern (2026-03-08 update)
+- Core interaction pattern for Coin/Dice/Wheel:
+  - Input -> Run animation (400~800ms) -> Result
+  - Immediate rerun button next to result
+  - Result state chip with color feedback
 
 ## Security and platform hardening
 - `next.config.js`
   - `basePath: '/random-decision'`
   - `poweredByHeader: false`
   - security headers including CSP, XFO, Referrer-Policy, Permissions-Policy
+  - dev-mode CSP includes `'unsafe-eval'` only for Next.js HMR compatibility
+
+## UI architecture refresh (2026-03-08)
+- New visual system:
+  - display/body font split via `next/font` (`Space Grotesk` + `DM Sans`)
+  - dark-first gradient background with clean light theme fallback
+  - stronger card hierarchy (`hero`, `tool-card`, `post-card`, `tool-shell`)
+- Image strategy:
+  - local SVG assets in `public/media/*` (no external hotlink dependency)
+  - animated SVG previews for coin/wheel/dice style interactions
+  - tool catalog metadata (`lib/content/catalog.ts`) drives card images and badges
+- Home information architecture:
+  - Hero -> featured tools gallery -> blog guides
+  - compact trust stats (tool count, language count, client-side random model)
+- Tool page architecture:
+  - top hero split (content + visual media)
+  - preserved long-form SEO blocks (How to Use / Features / Use Cases / Tips / FAQ)
 
 ## Open operational tasks
 - Set real AdSense client + slot ids after account approval

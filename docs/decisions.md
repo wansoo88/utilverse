@@ -49,3 +49,39 @@
 - Recommendation:
   - Near term: keep `/random-decision` for deployment speed
   - Mid term: evaluate subdomain if product scales independently
+
+## ADR-2026-03-08-10: Visual redesign with local media assets
+- Decision: Replace generic layout with a custom hero/gallery system and local SVG media assets
+- Why: Improve perceived quality, reduce "template/AI" feel, and keep performance predictable
+- Impact:
+  - added `public/media/*` design assets
+  - introduced `lib/content/catalog.ts` to map tool cards to visuals/badges
+  - updated home/tool shell/header/footer layout and interaction styles
+
+## ADR-2026-03-08-11: CSP policy for development compatibility
+- Decision: Allow `'unsafe-eval'` only in development `script-src` while keeping production CSP strict
+- Why: Next.js React Refresh in dev requires eval; strict policy blocked local interaction testing
+- Impact:
+  - fixes local dev runtime failures (`ERR_CONNECTION_REFUSED` path resolved, HMR script execution restored)
+  - production remains without `'unsafe-eval'` to maintain security baseline
+
+## ADR-2026-03-08-12: Tools hub and category IA
+- Decision: Add `/{locale}/tools` as category index (`random`, `picker`, `games`, `utility`)
+- Why: Improve SEO crawl depth and utility-platform navigation model
+- Impact:
+  - new tools hub route and sitemap coverage
+  - stronger internal link graph for tools
+
+## ADR-2026-03-08-13: Mid-intensity ad policy with CLS guard
+- Decision: Keep medium ad density and enforce slot min-height by ad format
+- Why: Balance monetization with UX stability
+- Impact:
+  - home/tool/blog ads remain visible
+  - reduced layout shift risk before/after ad fill
+
+## ADR-2026-03-08-14: Playful-subtle core tool UX standard
+- Decision: Standardize Coin/Dice/Wheel flows to input->run->result with rerun CTA
+- Why: Match target users (students/streamers/friends) with clearer action loops
+- Impact:
+  - faster repeated interactions
+  - consistent motion timing and result readability

@@ -281,6 +281,19 @@ export function getRelatedPosts(slug: string, size = 3): BlogPost[] {
   return blogPosts.filter((post) => post.slug !== slug).slice(0, size)
 }
 
+export function getRelatedPostsByToolTitle(title: string, size = 3): BlogPost[] {
+  const lower = title.toLowerCase()
+  const keywords = ['coin', 'dice', 'wheel', 'name', 'team', 'random', 'yes', 'number']
+  const hit = keywords.find((keyword) => lower.includes(keyword))
+  if (!hit) {
+    return blogPosts.slice(0, size)
+  }
+
+  const matched = blogPosts.filter((post) => post.slug.includes(hit) || post.title.toLowerCase().includes(hit))
+  const fallback = blogPosts.filter((post) => !matched.includes(post))
+  return [...matched, ...fallback].slice(0, size)
+}
+
 export function buildExpandedSections(post: BlogPost): BlogPost['sections'] {
   const extension = [
     {

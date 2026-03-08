@@ -5,9 +5,9 @@ export function Footer({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale)
 
   return (
-    <footer className="card" style={{ marginTop: '2rem', padding: '1rem' }}>
+    <footer className="card site-footer">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p style={{ color: 'var(--text-muted)' }}>© {new Date().getFullYear()} Decision Toolkit</p>
+        <p style={{ color: 'var(--text-muted)', margin: 0 }}>© {new Date().getFullYear()} Decision Toolkit by Utilverse</p>
         <div className="flex flex-wrap gap-3" style={{ color: 'var(--text-muted)' }}>
           <Link href={localePath(locale, '/about')}>{dict.nav.about}</Link>
           <Link href={localePath(locale, '/contact')}>{dict.nav.contact}</Link>

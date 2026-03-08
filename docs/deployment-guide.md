@@ -21,6 +21,7 @@ Set in Vercel Project Settings -> Environment Variables:
 This project uses `basePath: /random-decision`.
 Required behavior:
 - Home: `https://utilverse.info/random-decision/en`
+- Tools hub: `https://utilverse.info/random-decision/en/tools`
 - Tool sample: `https://utilverse.info/random-decision/en/coin-flip`
 - Blog sample: `https://utilverse.info/random-decision/en/blog/how-to-make-decisions`
 - Metadata routes:
@@ -45,10 +46,12 @@ Run this immediately on Vercel preview and again on production.
    - `/random-decision/en/coin-flip`
    - `/random-decision/en/random-name-picker`
    - `/random-decision/en/random-food-picker`
-3. Blog routes resolve:
+3. Tools hub route works:
+   - `/random-decision/en/tools`
+4. Blog routes resolve:
    - `/random-decision/en/blog`
    - one slug detail page
-4. Legal routes resolve:
+5. Legal routes resolve:
    - `/random-decision/en/about`
    - `/random-decision/en/contact`
    - `/random-decision/en/privacy-policy`

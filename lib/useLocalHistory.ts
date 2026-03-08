@@ -19,12 +19,20 @@ export function useLocalHistory(key: string) {
   const push = (value: string) => {
     const next = [value, ...items].slice(0, 30)
     setItems(next)
-    localStorage.setItem(key, JSON.stringify(next))
+    try {
+      localStorage.setItem(key, JSON.stringify(next))
+    } catch {
+      // Ignore storage failures (private mode, blocked storage, quota issues).
+    }
   }
 
   const clear = () => {
     setItems([])
-    localStorage.removeItem(key)
+    try {
+      localStorage.removeItem(key)
+    } catch {
+      // Ignore storage failures.
+    }
   }
 
   return { items, push, clear }
