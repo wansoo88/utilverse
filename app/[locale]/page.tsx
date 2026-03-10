@@ -8,6 +8,7 @@ import { BentoCard } from '@/components/home/BentoCard'
 import { FadeIn } from '@/components/motion/FadeIn'
 import { StaggerChildren, StaggerItem } from '@/components/motion/StaggerChildren'
 import { ScaleIn } from '@/components/motion/ScaleIn'
+import { withBasePath } from '@/lib/site'
 
 export default function HomePage({ params }: { params: { locale: string } }) {
   if (!isLocale(params.locale)) {
@@ -62,7 +63,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         <div className="hero-media">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/random-decision/media/hero-decision.svg"
+            src={withBasePath('/media/hero-decision.svg')}
             alt="Decision tools visual"
             width={640}
             height={360}

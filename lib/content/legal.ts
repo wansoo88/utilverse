@@ -32,7 +32,7 @@ const en: LegalBundle = {
   privacySections: [
     {
       heading: 'Overview',
-      body: 'This Privacy Policy explains how Random Decision ("we", "us", or "our") collects, uses, and protects information when you use our website at https://utilverse.info/random-decision. By using our services, you agree to the practices described here.'
+      body: 'This Privacy Policy explains how Random Decision ("we", "us", or "our") collects, uses, and protects information when you use our website at https://utilverse.info. By using our services, you agree to the practices described here.'
     },
     {
       heading: 'Information We Collect',
@@ -79,7 +79,7 @@ const en: LegalBundle = {
   termsSections: [
     {
       heading: 'Acceptance of Terms',
-      body: 'By accessing or using Random Decision at https://utilverse.info/random-decision, you agree to be bound by these Terms of Service. If you do not agree, please discontinue use of the service.'
+      body: 'By accessing or using Random Decision at https://utilverse.info, you agree to be bound by these Terms of Service. If you do not agree, please discontinue use of the service.'
     },
     {
       heading: 'Service Scope',

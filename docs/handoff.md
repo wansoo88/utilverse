@@ -90,6 +90,7 @@ Latest commit: `382e797` (`feat: redesign UX, add tools hub, and strengthen SEO/
 - `docs/decisions.md`
 - `docs/deployment-guide.md`
 - `docs/design-benchmark.md` (new)
+- `docs/deploy-netlify-subpath.md` (new)
 
 ## 8) Git / branch status
 - Pushed to remote: `origin/dev` up to `382e797`
@@ -98,6 +99,9 @@ Latest commit: `382e797` (`feat: redesign UX, add tools hub, and strengthen SEO/
   - `master` (local only, not pushed by request)
 - Working tree note:
   - untracked local build artifact exists: `tsconfig.tsbuildinfo` (intentionally not committed)
+  - additional uncommitted deployment files added for Netlify subpath support:
+    - `netlify.toml`
+    - `docs/deploy-netlify-subpath.md`
 
 ## 9) Run/verify
 - Install: `npm install` (or `pnpm install`)
@@ -115,3 +119,34 @@ Latest commit: `382e797` (`feat: redesign UX, add tools hub, and strengthen SEO/
    - replace placeholder slot IDs
    - add `ads.txt`
 5. Run Vercel preview smoke test using `docs/deployment-guide.md`.
+
+## 11) Netlify subpath deployment status
+- User reported that `http://utilverse.info/random-decision/en` was not accessible after Netlify deployment.
+- Local code/build check result:
+  - `npm run build` passes
+  - no code-level build failure was found
+- Current diagnosis:
+  - app uses `basePath: '/random-decision'` in `next.config.js`
+  - this works only if requests to `/random-decision/*` actually reach the deployed Next.js app
+  - Netlify deployment alone is not sufficient when `utilverse.info` is hosted elsewhere and does not forward that path
+- Netlify support added in repo:
+  - `netlify.toml` created
+  - official Next.js Netlify plugin enabled
+  - Node 20 and `NEXT_PUBLIC_SITE_URL=https://utilverse.info/random-decision` set
+- Important operational conclusion:
+  - if `https://<site>.netlify.app/random-decision/en` works but `https://utilverse.info/random-decision/en` does not, the problem is domain routing / reverse proxy, not the app build
+
+## 12) Next action for handoff recipient
+1. Redeploy on Netlify with the new `netlify.toml`.
+2. Verify these on the Netlify default domain:
+   - `/random-decision/en`
+   - `/random-decision/en/tools`
+   - `/random-decision/sitemap.xml`
+   - `/random-decision/robots.txt`
+3. If those pass, configure the `utilverse.info` host layer to forward:
+   - `/random-decision`
+   - `/random-decision/*`
+   - `/random-decision/_next/*`
+   - `/random-decision/robots.txt`
+   - `/random-decision/sitemap.xml`
+4. If forwarding cannot be configured, switch to subdomain deployment instead of subpath deployment.

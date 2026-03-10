@@ -33,10 +33,12 @@ const securityHeaders = [
   { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' }
 ]
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH
+
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  basePath: '/random-decision',
+  ...(basePath ? { basePath } : {}),
   images: {
     unoptimized: true
   },
