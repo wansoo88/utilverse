@@ -2,7 +2,6 @@ import './globals.css'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { DM_Sans, Space_Grotesk } from 'next/font/google'
-import Script from 'next/script'
 import { siteConfig } from '@/lib/seo'
 
 const bodyFont = DM_Sans({ subsets: ['latin'], variable: '--font-body' })
@@ -22,11 +21,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         {/* AdSense 스크립트 — head에 전역 1회만 로드 */}
         {adsenseClient && (
-          <Script
+          <script
             async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
             crossOrigin="anonymous"
-            strategy="afterInteractive"
           />
         )}
       </head>
