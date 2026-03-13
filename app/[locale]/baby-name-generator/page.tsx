@@ -2,19 +2,23 @@ import type { Metadata } from 'next'
 import { BabyNameGeneratorTool } from '@/components/tools/BabyNameGeneratorTool'
 import { ToolPageShell } from '@/components/layout/ToolPageShell'
 import { toolContent } from '@/lib/content/tools'
+import { getToolI18n } from '@/lib/content/tools-i18n'
 import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  const i18n = getToolI18n('baby-name-generator', params.locale)
   return buildMeta({
-    title: 'Baby Name Generator | Free Name Ideas Tool',
-    description: 'Generate random baby name ideas by category in one click.',
+    title: i18n?.metaTitle ?? 'Baby Name Generator | Free Name Ideas Tool',
+    description: i18n?.metaDescription ?? 'Generate random baby name ideas by category in one click.',
     path: `/${params.locale}/baby-name-generator`,
     locale: params.locale
   })
 }
 
 export default function BabyNameGeneratorPage({ params }: { params: { locale: string } }) {
-  const content = toolContent['baby-name-generator']
+  const base = toolContent['baby-name-generator']
+  const i18n = getToolI18n('baby-name-generator', params.locale)
+  const content = i18n ? { ...base, title: i18n.title, subtitle: i18n.subtitle } : base
   const path = `/${params.locale}/baby-name-generator`
 
   return (
