@@ -30,7 +30,7 @@
 | 블로그 번역 — ar (아랍어) | ✅ 완료 | guides, tools, games, fun 4개 파일 |
 | 블로그 번역 — tr (터키어) | ✅ 완료 | guides, tools, games, fun 4개 파일 |
 | 블로그 index.ts 로케일 연동 | ✅ 완료 | getBlogPostsByLocale(locale) 실제 분기 처리 |
-| 도구 콘텐츠 6개 언어 번역 | ⏳ 미완료 | |
+| 도구 콘텐츠 6개 언어 번역 | ✅ 완료 | tools-i18n.ts (es/pt/ar/hi/tr × 15개 도구) + 전체 15개 page.tsx getToolI18n 적용 |
 
 ---
 
@@ -50,4 +50,4 @@
 
 ---
 
-_마지막 업데이트: 2026-03-13 (OG 이미지, 도구 콘텐츠 강화 완료 — 도구 번역 진행 중)_
+_마지막 업데이트: 2026-03-13 (Phase 1~4 전체 완료)_
