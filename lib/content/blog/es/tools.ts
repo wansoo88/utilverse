@@ -63,3 +63,4 @@ export const toolPosts: BlogPost[] = [
     relatedToolHrefs: ['/coin-flip', '/random-number-generator', '/yes-or-no'],
     tags: ['lanzamiento de moneda', 'historia', 'aleatoriedad', 'herramientas de decisión']
   },
+]
