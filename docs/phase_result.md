@@ -13,8 +13,8 @@
 
 | 항목 | 상태 | 비고 |
 |------|------|------|
-| OG 이미지 추가 (주요 도구 5개 + 기본) | ⏳ 미완료 | |
-| 하위 10개 도구 콘텐츠 강화 | ⏳ 미완료 | food-picker, date-generator 등 |
+| OG 이미지 추가 (주요 도구 5개 + 기본) | ✅ 완료 | lib/og.tsx + opengraph-image.tsx 6개 파일 생성 (ImageResponse) |
+| 하위 10개 도구 콘텐츠 강화 | ✅ 완료 | 5개 확장 도구 coin-flip 수준으로 전면 재작성 |
 | Contact 페이지에 폼 추가 | ✅ 완료 | ContactForm 컴포넌트 생성 (mailto 연동) |
 | 블로그 글에 날짜/저자 표시 추가 | ✅ 완료 | app/[locale]/blog/[slug]/page.tsx에 이미 구현됨 |
 
@@ -50,4 +50,4 @@
 
 ---
 
-_마지막 업데이트: 2026-03-13 (hreflang, FAQ 아코디언, Contact 폼, 블로그 JSON-LD 완료)_
+_마지막 업데이트: 2026-03-13 (OG 이미지, 도구 콘텐츠 강화 완료 — 도구 번역 진행 중)_
