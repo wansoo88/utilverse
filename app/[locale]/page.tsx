@@ -40,9 +40,9 @@ export default function HomePage({ params }: { params: { locale: string } }) {
               <Link className="btn" href={`/${locale}/spin-the-wheel`}>
                 Launch Wheel
               </Link>
-              <a className="btn" href="https://mylifehack-daily.blogspot.com/" target="_blank" rel="noopener noreferrer">
+              <Link className="btn" href={`/${locale}/blog`}>
                 {dict.home.ctaSecondary}
-              </a>
+              </Link>
             </div>
           </FadeIn>
           <div className="hero-stat-grid" style={{ marginTop: '1rem' }}>
@@ -103,10 +103,10 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         <StaggerChildren className="grid-cards" staggerDelay={0.06}>
           {blogPosts.slice(0, 6).map((post) => (
             <StaggerItem key={post.slug}>
-              <a href="https://mylifehack-daily.blogspot.com/" target="_blank" rel="noopener noreferrer" className="card post-card">
+              <Link href={`/${locale}/blog/${post.slug}`} className="card post-card">
                 <h3>{post.title}</h3>
                 <p className="section-copy">{post.description}</p>
-              </a>
+              </Link>
             </StaggerItem>
           ))}
         </StaggerChildren>

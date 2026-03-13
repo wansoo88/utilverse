@@ -190,9 +190,9 @@ export function ToolPageShell({
               {item.name}
             </Link>
           ))}
-          <a className="btn" href="https://mylifehack-daily.blogspot.com/" target="_blank" rel="noopener noreferrer">
+          <Link className="btn" href={`/${locale}/blog`}>
             Read decision guides
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -201,9 +201,9 @@ export function ToolPageShell({
         <ul className="section-copy" style={{ paddingLeft: '1rem' }}>
           {relatedPosts.map((post) => (
             <li key={post.slug} style={{ marginBottom: '0.45rem' }}>
-              <a href="https://mylifehack-daily.blogspot.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brand)' }}>
+              <Link href={`/${locale}/blog/${post.slug}`} style={{ color: 'var(--brand)' }}>
                 {post.title}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

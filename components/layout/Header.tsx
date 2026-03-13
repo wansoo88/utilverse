@@ -14,7 +14,7 @@ export function Header({ locale }: { locale: Locale }) {
     { href: localePath(locale, '/spin-the-wheel'), label: 'Wheel' },
     { href: localePath(locale, '/random-name-picker'), label: 'Name Picker' },
     { href: localePath(locale, '/random-food-picker'), label: 'Food Picker' },
-    { href: 'https://mylifehack-daily.blogspot.com/', label: dict.nav.blog },
+    { href: localePath(locale, '/blog'), label: dict.nav.blog },
     { href: localePath(locale, '/about'), label: dict.nav.about }
   ]
 
@@ -27,17 +27,11 @@ export function Header({ locale }: { locale: Locale }) {
 
         {/* Desktop nav */}
         <nav className="site-nav hidden md:flex">
-          {navLinks.map((link) =>
-            link.href.startsWith('http') ? (
-              <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">
-                {link.label}
-              </a>
-            ) : (
-              <Link key={link.href} href={link.href}>
-                {link.label}
-              </Link>
-            )
-          )}
+          {navLinks.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
         <div className="flex items-center gap-2">
