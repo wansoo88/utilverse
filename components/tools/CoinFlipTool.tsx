@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomBool } from '@/lib/random'
 import { burstConfetti } from '@/lib/confetti'
+import { CopyButton } from '@/components/common/CopyButton'
 
 export function CoinFlipTool() {
   const [result, setResult] = useState<'Heads' | 'Tails' | ''>('')
@@ -77,6 +78,7 @@ export function CoinFlipTool() {
             Rerun
           </button>
         )}
+        {result && <CopyButton text={result} />}
         <AnimatePresence mode="wait">
           {result && (
             <motion.p

@@ -146,6 +146,15 @@ Expansion:
 
 ### 공통 컴포넌트
 - `Skeleton.tsx`: shimmer 애니메이션 card/text/button variants
+- `ShareButton.tsx`: Web Share API 공유, 미지원 시 URL 복사 fallback
+- `CopyButton.tsx`: Clipboard API 텍스트 복사, 완료 피드백
+- `FavoriteButton.tsx`: localStorage 즐겨찾기 토글 (star 아이콘)
+
+### 훅
+- `lib/useFavorites.ts`: 즐겨찾기 목록 localStorage 관리 (add/remove/isFavorite)
+
+### RSS
+- `app/rss.xml/route.ts`: RSS 2.0 피드 — 영어 블로그 포스트 전체 제공
 
 ### 이미지 전략
 - local SVG assets in `public/media/*`

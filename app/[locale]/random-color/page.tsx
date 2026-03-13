@@ -2,18 +2,23 @@ import type { Metadata } from 'next'
 import { RandomColorTool } from '@/components/tools/RandomColorTool'
 import { ToolPageShell } from '@/components/layout/ToolPageShell'
 import { toolContent } from '@/lib/content/tools'
+import { getToolI18n } from '@/lib/content/tools-i18n'
 import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  const i18n = getToolI18n('random-color', params.locale)
   return buildMeta({
-    title: 'Random Color Generator | Free HEX and RGB Tool',
-    description: 'Generate random colors with HEX and RGB values plus instant preview.',
-    path: `/${params.locale}/random-color`
+    title: i18n?.metaTitle ?? 'Random Color Generator | Free HEX and RGB Tool',
+    description: i18n?.metaDescription ?? 'Generate random colors with HEX and RGB values plus instant preview.',
+    path: `/${params.locale}/random-color`,
+    locale: params.locale
   })
 }
 
 export default function RandomColorPage({ params }: { params: { locale: string } }) {
-  const content = toolContent['random-color']
+  const base = toolContent['random-color']
+  const i18n = getToolI18n('random-color', params.locale)
+  const content = i18n ? { ...base, title: i18n.title, subtitle: i18n.subtitle } : base
   const path = `/${params.locale}/random-color`
 
   return (

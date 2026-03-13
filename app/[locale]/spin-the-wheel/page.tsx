@@ -2,18 +2,23 @@ import type { Metadata } from 'next'
 import { SpinWheelTool } from '@/components/tools/SpinWheelTool'
 import { ToolPageShell } from '@/components/layout/ToolPageShell'
 import { toolContent } from '@/lib/content/tools'
+import { getToolI18n } from '@/lib/content/tools-i18n'
 import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  const i18n = getToolI18n('spin-the-wheel', params.locale)
   return buildMeta({
-    title: 'Spin the Wheel | Free Random Picker',
-    description: 'Create a custom random wheel and spin to pick a winner in seconds.',
-    path: `/${params.locale}/spin-the-wheel`
+    title: i18n?.metaTitle ?? 'Spin the Wheel | Free Random Picker',
+    description: i18n?.metaDescription ?? 'Create a custom random wheel and spin to pick a winner in seconds.',
+    path: `/${params.locale}/spin-the-wheel`,
+    locale: params.locale
   })
 }
 
 export default function SpinTheWheelPage({ params }: { params: { locale: string } }) {
-  const content = toolContent['spin-the-wheel']
+  const base = toolContent['spin-the-wheel']
+  const i18n = getToolI18n('spin-the-wheel', params.locale)
+  const content = i18n ? { ...base, title: i18n.title, subtitle: i18n.subtitle } : base
   const path = `/${params.locale}/spin-the-wheel`
 
   return (

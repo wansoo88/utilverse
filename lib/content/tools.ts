@@ -418,18 +418,37 @@ export const toolContent: Record<ToolKey, ToolContent> = {
     ]
   },
   'random-food-picker': {
-    title: 'Random Food Picker',
-    subtitle: 'Cannot decide what to eat? Let a random picker choose quickly.',
-    howToUse: ['Add food options line by line.', 'Click pick food to generate one winner.', 'Use history to compare repeated rounds.'],
-    features: ['Custom option input', 'One-click random pick', 'Local history', 'Mobile friendly', 'Fast reruns'],
-    useCases: ['Lunch decision with teammates', 'Family dinner choice', 'Travel food planning', 'Weekend meal roulette'],
-    tips: ['Keep options realistic for your location.', 'Avoid duplicates for cleaner randomness.', 'Set one reroll limit before starting.'],
+    title: 'Free Random Food Picker — What Should I Eat?',
+    subtitle: 'End meal indecision in seconds. Add your options and let the picker decide for you.',
+    howToUse: [
+      'Type or paste your food options into the input field, one item per line. Include cuisines, specific dishes, or even restaurant names — anything you would genuinely enjoy eating is a valid entry.',
+      'Press the pick button and the tool instantly selects one option at random from your list. The result appears immediately with a clear highlight so there is no ambiguity about what was chosen.',
+      'Use the history panel to review previous picks if you are running multiple rounds or want to make sure the same option does not come up too often in a single session.'
+    ],
+    features: [
+      'Fully customizable food list so you can enter any meals, cuisines, or restaurants relevant to your actual choices rather than relying on a fixed preset.',
+      'Instant one-click random selection that eliminates the back-and-forth discussion that often makes group meal planning take far longer than necessary.',
+      'Persistent local history that records recent picks within your browser session, giving everyone at the table a transparent log of what the tool decided.',
+      'Fast rerun button placed directly next to the result so you can quickly regenerate if the group agrees to give it another spin without starting over.',
+      'Responsive layout optimized for both desktop and mobile screens, so you can use it right at the table on your phone when the indecision hits.'
+    ],
+    useCases: [
+      'End the classic office lunch debate by letting the tool make a fair, unbiased call that everyone at the table agreed to accept before the pick was made.',
+      'Help families settle dinner choices on busy weeknights when everyone has different cravings and a neutral third-party decision cuts through the noise quickly.',
+      'Use it for travel meal planning by loading local cuisine options at your destination and letting the picker guide your food exploration without overthinking.',
+      'Run a weekend meal roulette at home where each family member adds one suggestion and the picker selects the winner, making meal planning feel more like a fun game.'
+    ],
+    tips: [
+      'Keep your options realistic and within reach — adding an option you would not actually order defeats the purpose and leads to rerolls that erode trust in the result.',
+      'Avoid entering the same item more than once unless you genuinely want to weight it higher. True duplicates skew the probability and make the outcome feel less fair.',
+      'Agree on a reroll limit before you start, such as one free reroll per person, so the tool stays decisive rather than becoming an extended negotiation with extra steps.'
+    ],
     faqs: [
-      { question: 'Can I add my own meals?', answer: 'Yes, enter any food list you want.' },
-      { question: 'Does it store my list?', answer: 'Current list stays in page state during your session.' },
-      { question: 'Can I clear history?', answer: 'Yes, use clear history anytime.' },
-      { question: 'Is this mobile friendly?', answer: 'Yes, the picker works on phones and tablets.' },
-      { question: 'Is this suitable for groups?', answer: 'Yes, it is commonly used for quick team meal decisions.' }
+      { question: 'Can I add my own meals and restaurants?', answer: 'Yes, the input field accepts any text you type. You can add dish names, cuisine types, specific restaurants, or any combination that represents your real options for that meal.' },
+      { question: 'Does the tool store my food list between visits?', answer: 'The current food list lives in the page state during your active session. If you reload the page the list resets, so paste your options again or keep them in a note for quick reuse.' },
+      { question: 'Can I use this when deciding with a group?', answer: 'Yes, this is one of the most common use cases. Gather everyone\'s suggestions into the list first, then do a single pick that the whole group agreed to honor before pressing the button.' },
+      { question: 'What happens if I only enter one option?', answer: 'The tool will always return the only item in the list, which is not very useful. For the best experience add at least three to five genuine alternatives so the randomness feels meaningful.' },
+      { question: 'Is this suitable for dietary restriction planning?', answer: 'Yes, just make sure every option you enter fits within the shared dietary requirements of your group. The picker only selects from what you provide, so curating the list carefully handles any restrictions automatically.' }
     ],
     related: [
       { href: '/spin-the-wheel', label: 'Spin the Wheel' },
@@ -438,18 +457,37 @@ export const toolContent: Record<ToolKey, ToolContent> = {
     ]
   },
   'random-date-generator': {
-    title: 'Random Date Generator',
-    subtitle: 'Generate random dates in your selected range for planning and games.',
-    howToUse: ['Set start and end dates.', 'Click generate date.', 'Repeat and review history for multiple outcomes.'],
-    features: ['Date range input', 'Random day generation', 'Local history logging', 'Simple controls', 'Responsive layout'],
-    useCases: ['Random event schedule ideas', 'Classroom timeline exercises', 'Game challenge day selection', 'Prompt generation workflows'],
-    tips: ['Ensure end date is after start date.', 'Use narrow ranges for constrained scenarios.', 'Record outcomes before clearing history.'],
+    title: 'Free Random Date Generator',
+    subtitle: 'Pick a random date in any range — for planning, games, and creative prompts.',
+    howToUse: [
+      'Set your start date and end date using the date inputs to define the range you want to draw from. You can span a single month for near-term scheduling or several decades for historical and fictional prompts.',
+      'Click the generate button and the tool picks one fully random date within your specified range, displaying the result in a clear, readable format that is easy to copy or share.',
+      'Run multiple generations and compare them in the history panel when you need a variety of dates for planning exercises, classroom activities, or creative writing scenarios that require more than one random point in time.'
+    ],
+    features: [
+      'Configurable start and end date inputs that accept any valid calendar range, from a single week up to multi-decade spans, giving you full control over the output space.',
+      'Uniform random selection across the entire defined range so every date within your boundaries has an equal probability of being chosen, with no hidden bias toward recent or prominent dates.',
+      'Clean result display that formats the chosen date in a human-readable form, reducing misinterpretation when you are sharing the output with others during planning or classroom sessions.',
+      'Local history panel that logs recent generated dates within your browser session, which is useful for tracking variety or verifying that you have not accidentally used the same date twice.',
+      'Minimal, responsive interface that loads quickly and works on mobile devices, so you can use it on the go during travel planning or remote workshops without any friction.'
+    ],
+    useCases: [
+      'Generate random event or deadline placeholders during project planning workshops where the actual dates are unknown and a realistic stand-in is needed for timeline exercises.',
+      'Create classroom history or timeline drills by generating random historical dates for students to research, sequence, or contextualize as part of a structured learning activity.',
+      'Support creative writing and worldbuilding by picking random dates that serve as story anchors, character birthdays, or fictional event timestamps without the writer having to consciously choose.',
+      'Use in game design or tabletop roleplay to quickly assign random in-world dates to events, news items, or quest triggers, adding variety to procedurally generated content.'
+    ],
+    tips: [
+      'Double-check that your end date is later than your start date before generating, because an inverted range will produce no valid output and the tool cannot infer which direction you intended.',
+      'Use a narrow date range when you need a result that feels constrained and realistic, such as scheduling a random day within the next two weeks rather than drawing from an entire year.',
+      'Screenshot or copy the history panel before clearing it when you have generated multiple dates for a single project, since the local history resets when the page is reloaded.'
+    ],
     faqs: [
-      { question: 'Can I control the date range?', answer: 'Yes, choose start and end dates directly.' },
-      { question: 'Is the output one date at a time?', answer: 'Yes, current version returns one random date per click.' },
-      { question: 'Does this use browser timezone?', answer: 'Yes, date handling follows browser environment defaults.' },
-      { question: 'Can I use this for planning games?', answer: 'Yes, many users use it for random schedule prompts.' },
-      { question: 'Can I clear history?', answer: 'Yes, with the clear history button.' }
+      { question: 'Can I control exactly which date range is used?', answer: 'Yes, you set both the start and end date directly using the date picker inputs. The generator only draws from within those two boundaries, so the range is entirely under your control.' },
+      { question: 'Does the tool generate one date at a time or multiple?', answer: 'The current version returns one random date per click. Run the generator multiple times and use the history panel to collect a batch of dates if your use case requires more than one.' },
+      { question: 'How does the tool handle the browser timezone?', answer: 'Date calculations follow the browser environment\'s local timezone settings by default, so the output reflects dates as they appear in your local context rather than a fixed UTC reference.' },
+      { question: 'Can I use this for fictional or historical date ranges?', answer: 'Yes, the date inputs support a wide calendar range, which makes it practical for historical research exercises, fantasy worldbuilding, and any creative scenario that requires dates outside the near future.' },
+      { question: 'Is the output truly random within my range?', answer: 'Yes, the generator uses cryptographic randomness under the hood to select a day within your range, ensuring every valid date has an equal chance of being picked with no clustering or pattern.' }
     ],
     related: [
       { href: '/random-number-generator', label: 'Random Number Generator' },
@@ -458,18 +496,37 @@ export const toolContent: Record<ToolKey, ToolContent> = {
     ]
   },
   'lottery-number-generator': {
-    title: 'Lottery Number Generator',
-    subtitle: 'Generate unique lottery-style number sets with configurable range.',
-    howToUse: ['Set how many numbers to pick.', 'Set max number range.', 'Click generate to create sorted unique numbers.'],
-    features: ['Unique number draw', 'Configurable count and max', 'Sorted output', 'Local history', 'Quick regenerate flow'],
-    useCases: ['Lottery-style random draws', 'Contest number simulation', 'Game setup randomization', 'Class probability demos'],
-    tips: ['Keep count lower than max range.', 'Use multiple runs for varied sets.', 'Do not use as financial advice.'],
+    title: 'Free Lottery Number Generator',
+    subtitle: 'Generate random lottery-style number sets — unique picks in your chosen range.',
+    howToUse: [
+      'Set the total count of numbers you want in your set and define the maximum value for the range. For example, to simulate a standard 6/49 lottery, enter 6 numbers and a maximum of 49.',
+      'Press generate and the tool draws the specified count of unique numbers from within your range, then displays them in sorted ascending order so the result is immediately easy to read and verify.',
+      'Use the history panel to compare multiple generated sets side by side, which is useful when you want to explore variety, run probability demonstrations, or keep a log of draws during a group game session.'
+    ],
+    features: [
+      'Fully configurable pick count and maximum range so you can simulate any lottery format from local raffles to popular international draws with their specific rules.',
+      'Guaranteed unique numbers within each generated set, meaning no value ever repeats in a single draw — matching the fairness model of real lottery-style selection.',
+      'Sorted ascending output that presents results in the conventional lottery number format, making it easier to check against tickets or share results with participants.',
+      'Local history that persists recent draws within your browser session, giving you a reference log when running back-to-back rounds for games, classroom demos, or casual play.',
+      'Quick regenerate button that creates a fresh unique set instantly without requiring you to re-enter your settings, supporting high-frequency use during group activities.'
+    ],
+    useCases: [
+      'Simulate lottery draws for casual play and social fun with friends or family, removing any human bias from number selection while keeping the excitement of a real lottery format.',
+      'Run contest number draws for community giveaways, office pools, or school fundraisers where a transparent and repeatable random process is important for participant trust.',
+      'Use in probability and statistics education to demonstrate how lottery draws work in practice, letting students generate multiple sets and observe the distribution of outcomes over many runs.',
+      'Generate random starting positions, team seeds, or draft orders in sports leagues and game tournaments where the number range and pick count map to participant IDs or slot assignments.'
+    ],
+    tips: [
+      'Always make sure your pick count is strictly lower than your maximum range value, otherwise the tool cannot produce enough unique numbers to fill the set you requested.',
+      'Run several sets in a row and compare them using the history panel before committing to a final draw if you want to build confidence that the randomness feels sufficiently varied.',
+      'Treat results as entertainment only and never as financial guidance — while the generator uses cryptographic randomness, no tool can predict or influence the outcome of a real lottery.'
+    ],
     faqs: [
-      { question: 'Are numbers unique?', answer: 'Yes, each generated set contains unique values.' },
-      { question: 'Can I change range?', answer: 'Yes, adjust max number before generating.' },
-      { question: 'Does it sort results?', answer: 'Yes, output is sorted ascending.' },
-      { question: 'Can I generate repeatedly?', answer: 'Yes, there is no hard run limit.' },
-      { question: 'Is history stored locally?', answer: 'Yes, on your browser only.' }
+      { question: 'Are all numbers in a set guaranteed to be unique?', answer: 'Yes, every set is drawn without replacement so no number appears twice in a single result. This matches the fundamental rule of real lottery draws and ensures genuinely fair selection.' },
+      { question: 'Can I change the number range to match different lottery formats?', answer: 'Yes, both the pick count and the maximum value are fully configurable before each generation. You can match common formats like 5/50 or 6/42, or set entirely custom parameters for your own game.' },
+      { question: 'Are the results sorted when displayed?', answer: 'Yes, the output is automatically sorted in ascending order, which is the standard presentation for lottery results and makes the numbers easier to scan and verify against any reference.' },
+      { question: 'Can I generate many sets in a row without resetting?', answer: 'Yes, the regenerate button reuses your current settings so you can create back-to-back draws quickly. Each new set is independent and does not carry over any numbers from the previous one.' },
+      { question: 'Does the tool store my generated sets anywhere online?', answer: 'No, all history is stored locally in your browser only and is never sent to any server. Your sets are private and disappear when you clear history or reload the page.' }
     ],
     related: [
       { href: '/random-number-generator', label: 'Random Number Generator' },
@@ -478,18 +535,37 @@ export const toolContent: Record<ToolKey, ToolContent> = {
     ]
   },
   'baby-name-generator': {
-    title: 'Baby Name Generator',
-    subtitle: 'Generate random baby name ideas by style category.',
-    howToUse: ['Choose a name type.', 'Click generate baby name.', 'Collect favorites from repeated rounds.'],
-    features: ['Category filter', 'Instant random name', 'History list', 'Simple one-click UX', 'Mobile ready'],
-    useCases: ['Parent naming brainstorm', 'Creative writing character names', 'Game NPC naming', 'Naming workshop prompts'],
-    tips: ['Run multiple rounds before shortlisting.', 'Combine random picks with family criteria.', 'Keep a saved list of favorites.'],
+    title: 'Free Baby Name Generator',
+    subtitle: 'Discover random baby name ideas by style — a fun spark for your naming journey.',
+    howToUse: [
+      'Select a name style or category that fits the direction you have in mind, such as classic, modern, nature-inspired, or gender-neutral, to focus the generator on names that match your taste before you start browsing results.',
+      'Press the generate button and the tool returns a random name from the selected category. Each result appears clearly so you can evaluate it at a glance and decide whether to add it to your shortlist or keep generating.',
+      'Run the generator multiple times across different categories and use the history panel to collect a varied set of candidates. Reviewing a batch of names side by side makes it easier to notice which ones genuinely resonate with you.'
+    ],
+    features: [
+      'Style and category filtering that lets you narrow results to a specific naming direction — whether you prefer timeless classics, modern coinages, nature-themed names, or culturally inspired options — before each generation.',
+      'Instant one-click name generation that surfaces a fresh suggestion in under a second, removing the friction of manually browsing long name lists and letting you evaluate options at a comfortable, unhurried pace.',
+      'Local history panel that saves every name generated during your session so you can scroll back through your results, compare candidates, and avoid accidentally repeating names you already considered and rejected.',
+      'Fast regenerate flow that returns a new name from the same category without resetting your session state, making it practical to work through many options in a short sitting without losing your place.',
+      'Responsive mobile layout that works comfortably on a phone so you can browse name ideas during downtime, share the screen with a partner on the couch, or capture inspiration whenever it strikes throughout the day.'
+    ],
+    useCases: [
+      'Help expecting parents break through early naming paralysis by using the generator as a low-pressure starting point that surfaces names they may never have considered without the stress of a blank page.',
+      'Support creative writers and game designers who need character names that feel authentic and varied, using the style categories to match name tone to setting, era, or cultural context in their work.',
+      'Spark naming workshop discussions in parenting communities or pregnancy groups by generating a rotating stream of conversation-starting names that prompt reactions and help participants articulate what they actually like.',
+      'Assist parents who are stuck between two strong candidates by generating a fresh third option that sometimes resolves a deadlock, or confirms that the options already on the list are in fact the right ones.'
+    ],
+    tips: [
+      'Generate at least ten to fifteen names per category before drawing any conclusions, because a small sample often skews toward a narrow style and a larger batch gives a much more representative picture of what a category has to offer.',
+      'Pay attention to your instinctive reactions as each name appears — if you feel a small pull of interest before you have time to analyze it, mark that name down even if you cannot immediately explain why it appeals to you.',
+      'Combine the random generator with practical family criteria like syllable count, how the name sounds with your surname, or meaningful initials after you have built a long list, rather than filtering by those rules too early and missing great candidates.'
+    ],
     faqs: [
-      { question: 'Can I pick by type?', answer: 'Yes, choose neutral, girl, or boy sets.' },
-      { question: 'Are names globally exhaustive?', answer: 'No, this is a lightweight starter set.' },
-      { question: 'Can I generate repeatedly?', answer: 'Yes, generate as many names as needed.' },
-      { question: 'Does it save favorites?', answer: 'It saves generated history locally.' },
-      { question: 'Can I clear old names?', answer: 'Yes, with clear history.' }
+      { question: 'Can I filter by gender or style before generating?', answer: 'Yes, the generator includes category and style options you can select before each run so the results stay relevant to the direction you are exploring, whether that is a specific gender association, a cultural origin, or a general aesthetic like minimalist or vintage.' },
+      { question: 'How large is the name pool behind the generator?', answer: 'The generator draws from a curated starter collection covering a broad range of styles and origins. It is designed to surface discovery-worthy names rather than exhaustively list every known name, so think of it as an inspiration engine rather than a complete global database.' },
+      { question: 'Can I save names I like between visits?', answer: 'The current session history is stored locally in your browser, which means it persists while the tab is open but resets on a full page reload. For names you want to keep long-term, copy your favorites into a note or document before closing the browser.' },
+      { question: 'Is this useful for writers choosing character names rather than real baby names?', answer: 'Yes, many writers use this tool when developing characters because the style categories help match name tone to fictional setting, and the rapid generation speed lets you audition many candidates quickly without the cognitive overhead of manual research.' },
+      { question: 'What if I keep getting names I have already seen before?', answer: 'In any finite name pool, repetition becomes more likely as you generate more results. Switch to a different category to access a fresh pool, or use the history panel to track what has already appeared so you can skip repeats and focus on new suggestions.' }
     ],
     related: [
       { href: '/random-name-picker', label: 'Random Name Picker' },
@@ -498,18 +574,37 @@ export const toolContent: Record<ToolKey, ToolContent> = {
     ]
   },
   'icebreaker-question-generator': {
-    title: 'Icebreaker Question Generator',
-    subtitle: 'Generate conversation starters for team, classroom, or party settings.',
-    howToUse: ['Choose a category.', 'Click generate icebreaker.', 'Use history for session flow control.'],
-    features: ['Category-based prompts', 'One-click random question', 'History logging', 'Fast pacing for facilitators', 'Clean mobile UX'],
-    useCases: ['Team meeting warm-ups', 'Class participation starters', 'Party conversation prompts', 'Workshop networking rounds'],
-    tips: ['Pick one category per round for consistency.', 'Set speaking time limits before asking.', 'Skip sensitive prompts for mixed groups.'],
+    title: 'Free Icebreaker Question Generator',
+    subtitle: 'Spark conversations instantly with random icebreaker questions for any setting.',
+    howToUse: [
+      'Choose the category that best matches your setting — such as professional team warmup, classroom introduction, or casual social gathering — so the questions generated fit the tone and comfort level of everyone in the room.',
+      'Press generate and the tool returns a single random icebreaker question from your selected category. Read it aloud or share it on screen, give everyone a moment to think, and then invite responses in whatever order works for your group.',
+      'Use the history panel to track which questions have already been asked during a longer session, allowing you to skip repeats and maintain a fresh, engaging flow without having to remember every prompt you have already used.'
+    ],
+    features: [
+      'Category-based question sets covering distinct settings like professional team meetings, classroom activities, party and social events, and general networking, so every generated prompt feels appropriately pitched for your audience.',
+      'One-click random generation that surfaces a fresh question in under a second, removing the pressure from facilitators who would otherwise need to memorize or manually search for conversation starters during a live session.',
+      'Local history logging that records every question generated during your current browser session, giving you a running record that prevents awkward repetition and helps you plan pacing across a multi-round icebreaker activity.',
+      'Fast regenerate action that skips past any prompt that feels too sensitive or off-topic for your specific group without losing your current settings, so you can moderate the flow in real time without breaking session momentum.',
+      'Clean, minimal interface that renders well on both projected displays and personal devices, making it equally practical for a facilitator running the tool on a laptop in a conference room or a host sharing it on a phone at a dinner table.'
+    ],
+    useCases: [
+      'Warm up distributed or hybrid teams at the start of a weekly meeting, using questions that invite personal sharing and help remote participants feel present and connected before the main agenda begins.',
+      'Open classroom sessions with a low-stakes social question that helps students practice speaking in front of peers, builds psychological safety early in a course, and gives the teacher a quick read on group energy and mood.',
+      'Facilitate networking rounds at workshops, conferences, or community events by giving pairs or small groups a rotating question to react to, replacing the awkward unstructured mingle with a guided conversation that actually produces connection.',
+      'Energize party gatherings or game nights by using icebreaker prompts as conversation cards, helping guests who do not know each other find common ground quickly and creating the relaxed atmosphere that makes the rest of the evening more enjoyable.'
+    ],
+    tips: [
+      'Preview one or two questions in your selected category before the session starts so you can verify the tone matches your group, particularly for professional settings where overly personal questions could create discomfort even with good intentions.',
+      'Set a clear speaking time limit of one to two minutes per person before posing the question so participants know the expectations, which reduces anxiety for quieter members and prevents the activity from running past its allocated slot.',
+      'When facilitating a mixed group with varying familiarity levels, stick to lighter categories early in the session and only advance to deeper or more reflective questions once the group has warmed up and trust has had time to build.'
+    ],
     faqs: [
-      { question: 'Can I change categories?', answer: 'Yes, switch between team, classroom, and party categories.' },
-      { question: 'Does it repeat questions?', answer: 'It may repeat over time in a small prompt pool.' },
-      { question: 'Can I track asked questions?', answer: 'Yes, recent prompts are stored in history.' },
-      { question: 'Is this good for remote teams?', answer: 'Yes, it works well for online meetings and calls.' },
-      { question: 'Can I clear old prompts?', answer: 'Yes, clear history is available.' }
+      { question: 'Can I switch categories between questions during a live session?', answer: 'Yes, you can change the category at any time without losing your history. This is useful when you want to shift tone mid-session, such as starting with a light fun question to warm up and then moving to a more reflective professional prompt once the group is engaged.' },
+      { question: 'Will the generator repeat questions during the same session?', answer: 'Repetition becomes possible in any finite prompt pool as you generate more questions. The history panel shows everything asked so far so you can spot a repeat immediately and press generate again to get a fresh question without disrupting the session flow.' },
+      { question: 'Is this tool suitable for large groups or only small teams?', answer: 'It works for any group size. For large groups, use the generated question as a whole-room prompt where a few volunteers respond, or split into breakout pairs and have each pair use the same question simultaneously to keep the activity time-efficient.' },
+      { question: 'Can I use this tool for remote or asynchronous teams?', answer: 'Yes, it works well for remote settings. Read the generated question in a video call or paste it into a team chat channel as a thread starter. The asynchronous version works particularly well for distributed teams across time zones who cannot participate simultaneously.' },
+      { question: 'Are the questions appropriate for professional workplace settings?', answer: 'The professional and team categories are designed with workplace appropriateness in mind, focusing on light personal sharing, fun hypotheticals, and work-relevant topics. That said, always use your judgment as a facilitator — preview a few questions before your session and skip anything that feels misaligned with your specific team culture.' }
     ],
     related: [
       { href: '/random-name-picker', label: 'Random Name Picker' },

@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Privacy Policy | Random Decision',
     description: 'Privacy policy for Random Decision, including cookies, analytics, and ad policy details.',
-    path: `/${params.locale}/privacy-policy`
+    path: `/${params.locale}/privacy-policy`,
+    locale: params.locale
   })
 }
 

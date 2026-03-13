@@ -10,7 +10,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Decision-Making Blog | Random Decision',
     description: 'Practical guides on decision making, random tools, party games, and productivity — written by kimcomplete.',
-    path: `/${params.locale}/blog`
+    path: `/${params.locale}/blog`,
+    locale: params.locale
   })
 }
 
