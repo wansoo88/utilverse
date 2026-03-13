@@ -6,6 +6,7 @@ import { FaqAccordion } from '@/components/common/FaqAccordion'
 import { getRelatedToolsByTitle, getCatalogItemByTitle } from '@/lib/content/catalog'
 import type { ToolContent } from '@/lib/content/tools'
 import { breadcrumbSchema, itemListSchema } from '@/lib/seo'
+import { ShareButton } from '@/components/common/ShareButton'
 
 function ToolHeroVisual({ icon, accentColor, title }: { icon: string; accentColor: string; title: string }) {
   const r = parseInt(accentColor.slice(1, 3), 16)
@@ -113,8 +114,11 @@ export function ToolPageShell({
       <section className="card tool-shell">
         <div className="tool-shell-hero">
           <div>
-            <h1 className="section-title">{content.title}</h1>
-            <p className="section-copy" style={{ marginBottom: '0.95rem' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <h1 className="section-title" style={{ margin: 0 }}>{content.title}</h1>
+              <ShareButton title={content.title} text={content.subtitle} />
+            </div>
+            <p className="section-copy" style={{ margin: '0.55rem 0 0.95rem' }}>
               {content.subtitle}
             </p>
             {tool}

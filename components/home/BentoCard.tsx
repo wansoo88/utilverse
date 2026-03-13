@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Tilt3D } from '@/components/motion/Tilt3D'
 import type { ToolCatalogItem } from '@/lib/content/catalog'
+import { FavoriteButton } from '@/components/common/FavoriteButton'
 
 function hexToRgba(hex: string, alpha: number): string {
   const r = parseInt(hex.slice(1, 3), 16)
@@ -21,6 +22,8 @@ export function BentoCard({ tool, locale }: { tool: ToolCatalogItem; locale: str
 
   return (
     <Tilt3D className={`bento-card ${sizeClass}`} intensity={tool.bentoSize === 'lg' ? 6 : 10}>
+      <div style={{ position: 'relative' }}>
+      <FavoriteButton href={`/${locale}${tool.href}`} name={tool.name} />
       <Link
         href={`/${locale}${tool.href}`}
         style={{
@@ -116,6 +119,7 @@ export function BentoCard({ tool, locale }: { tool: ToolCatalogItem; locale: str
           →
         </motion.div>
       </Link>
+      </div>
     </Tilt3D>
   )
 }

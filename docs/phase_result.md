@@ -56,10 +56,38 @@
 
 ---
 
-## 에드센스
+## Phase 6 — 콘텐츠 보강 + UX 기능 + RSS (2026-03-13)
+
+### A. 콘텐츠 보강 (AdSense 심사 대비)
+
+| 항목 | 상태 | 비고 |
+|------|------|------|
+| BabyNameGeneratorTool 이름 풀 확장 | ✅ 완료 | 8개→50개/카테고리, classic/modern/nature 스타일 옵션 추가 |
+| IcebreakerQuestionTool 질문 풀 확장 | ✅ 완료 | 3개→20개/카테고리, professional 카테고리 신규 추가 |
+
+### B. UX 기능
+
+| 항목 | 상태 | 비고 |
+|------|------|------|
+| ShareButton (Web Share API) | ✅ 완료 | navigator.share 지원 시 네이티브 공유, 미지원 시 URL 복사 fallback |
+| CopyButton (Clipboard API) | ✅ 완료 | 결과값 한 번에 복사, 복사 완료 피드백 |
+| 도구 즐겨찾기 (useFavorites + FavoriteButton) | ✅ 완료 | localStorage 저장, BentoCard 별 아이콘 추가 |
+| 홈 Favorites 섹션 | ✅ 완료 | 즐겨찾기 도구가 있으면 상단에 표시 |
+| ShareButton → ToolPageShell 적용 | ✅ 완료 | 모든 도구 페이지 헤더에 공유 버튼 |
+| CopyButton → 5개 핵심 도구 적용 | ✅ 완료 | CoinFlip, YesNo, RandomNumber, Dice, Icebreaker |
+
+### C. RSS Feed
+
+| 항목 | 상태 | 비고 |
+|------|------|------|
+| RSS 2.0 피드 생성 | ✅ 완료 | app/rss.xml/route.ts — 영어 블로그 전체 포스트 |
+
+---
+
+## AdSense
 
 - 신청 완료 (2026-03-12 기준 심사 대기 중)
 
 ---
 
-_마지막 업데이트: 2026-03-13 (Phase 1~5 전체 완료)_
+_마지막 업데이트: 2026-03-13 (Phase 1~6 전체 완료)_

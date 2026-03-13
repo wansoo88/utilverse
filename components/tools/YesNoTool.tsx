@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomBool } from '@/lib/random'
 import { burstConfetti } from '@/lib/confetti'
+import { CopyButton } from '@/components/common/CopyButton'
 
 export function YesNoTool() {
   const [result, setResult] = useState<'Yes' | 'No' | ''>('')
@@ -100,6 +101,7 @@ export function YesNoTool() {
             {isYes ? '✓ Yes!' : '✗ No!'}
           </span>
         )}
+        {result && <CopyButton text={result} />}
       </div>
 
       <div style={{ marginTop: '0.9rem' }}>

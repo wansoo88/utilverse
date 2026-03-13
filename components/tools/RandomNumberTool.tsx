@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomInt } from '@/lib/random'
+import { CopyButton } from '@/components/common/CopyButton'
 
 export function RandomNumberTool() {
   const [min, setMin] = useState(1)
@@ -101,9 +102,10 @@ export function RandomNumberTool() {
       </AnimatePresence>
 
       {result.length > 0 && (
-        <button className="btn" style={{ marginTop: '0.75rem' }} type="button" onClick={generate}>
-          Rerun
-        </button>
+        <div className="flex flex-wrap items-center gap-3" style={{ marginTop: '0.75rem' }}>
+          <button className="btn" type="button" onClick={generate}>Rerun</button>
+          <CopyButton text={result.join(', ')} />
+        </div>
       )}
 
       <div style={{ marginTop: '0.9rem' }}>
