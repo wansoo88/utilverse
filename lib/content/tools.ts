@@ -418,18 +418,37 @@ export const toolContent: Record<ToolKey, ToolContent> = {
     ]
   },
   'random-food-picker': {
-    title: 'Random Food Picker',
-    subtitle: 'Cannot decide what to eat? Let a random picker choose quickly.',
-    howToUse: ['Add food options line by line.', 'Click pick food to generate one winner.', 'Use history to compare repeated rounds.'],
-    features: ['Custom option input', 'One-click random pick', 'Local history', 'Mobile friendly', 'Fast reruns'],
-    useCases: ['Lunch decision with teammates', 'Family dinner choice', 'Travel food planning', 'Weekend meal roulette'],
-    tips: ['Keep options realistic for your location.', 'Avoid duplicates for cleaner randomness.', 'Set one reroll limit before starting.'],
+    title: 'Free Random Food Picker — What Should I Eat?',
+    subtitle: 'End meal indecision in seconds. Add your options and let the picker decide for you.',
+    howToUse: [
+      'Type or paste your food options into the input field, one item per line. Include cuisines, specific dishes, or even restaurant names — anything you would genuinely enjoy eating is a valid entry.',
+      'Press the pick button and the tool instantly selects one option at random from your list. The result appears immediately with a clear highlight so there is no ambiguity about what was chosen.',
+      'Use the history panel to review previous picks if you are running multiple rounds or want to make sure the same option does not come up too often in a single session.'
+    ],
+    features: [
+      'Fully customizable food list so you can enter any meals, cuisines, or restaurants relevant to your actual choices rather than relying on a fixed preset.',
+      'Instant one-click random selection that eliminates the back-and-forth discussion that often makes group meal planning take far longer than necessary.',
+      'Persistent local history that records recent picks within your browser session, giving everyone at the table a transparent log of what the tool decided.',
+      'Fast rerun button placed directly next to the result so you can quickly regenerate if the group agrees to give it another spin without starting over.',
+      'Responsive layout optimized for both desktop and mobile screens, so you can use it right at the table on your phone when the indecision hits.'
+    ],
+    useCases: [
+      'End the classic office lunch debate by letting the tool make a fair, unbiased call that everyone at the table agreed to accept before the pick was made.',
+      'Help families settle dinner choices on busy weeknights when everyone has different cravings and a neutral third-party decision cuts through the noise quickly.',
+      'Use it for travel meal planning by loading local cuisine options at your destination and letting the picker guide your food exploration without overthinking.',
+      'Run a weekend meal roulette at home where each family member adds one suggestion and the picker selects the winner, making meal planning feel more like a fun game.'
+    ],
+    tips: [
+      'Keep your options realistic and within reach — adding an option you would not actually order defeats the purpose and leads to rerolls that erode trust in the result.',
+      'Avoid entering the same item more than once unless you genuinely want to weight it higher. True duplicates skew the probability and make the outcome feel less fair.',
+      'Agree on a reroll limit before you start, such as one free reroll per person, so the tool stays decisive rather than becoming an extended negotiation with extra steps.'
+    ],
     faqs: [
-      { question: 'Can I add my own meals?', answer: 'Yes, enter any food list you want.' },
-      { question: 'Does it store my list?', answer: 'Current list stays in page state during your session.' },
-      { question: 'Can I clear history?', answer: 'Yes, use clear history anytime.' },
-      { question: 'Is this mobile friendly?', answer: 'Yes, the picker works on phones and tablets.' },
-      { question: 'Is this suitable for groups?', answer: 'Yes, it is commonly used for quick team meal decisions.' }
+      { question: 'Can I add my own meals and restaurants?', answer: 'Yes, the input field accepts any text you type. You can add dish names, cuisine types, specific restaurants, or any combination that represents your real options for that meal.' },
+      { question: 'Does the tool store my food list between visits?', answer: 'The current food list lives in the page state during your active session. If you reload the page the list resets, so paste your options again or keep them in a note for quick reuse.' },
+      { question: 'Can I use this when deciding with a group?', answer: 'Yes, this is one of the most common use cases. Gather everyone\'s suggestions into the list first, then do a single pick that the whole group agreed to honor before pressing the button.' },
+      { question: 'What happens if I only enter one option?', answer: 'The tool will always return the only item in the list, which is not very useful. For the best experience add at least three to five genuine alternatives so the randomness feels meaningful.' },
+      { question: 'Is this suitable for dietary restriction planning?', answer: 'Yes, just make sure every option you enter fits within the shared dietary requirements of your group. The picker only selects from what you provide, so curating the list carefully handles any restrictions automatically.' }
     ],
     related: [
       { href: '/spin-the-wheel', label: 'Spin the Wheel' },
@@ -438,18 +457,37 @@ export const toolContent: Record<ToolKey, ToolContent> = {
     ]
   },
   'random-date-generator': {
-    title: 'Random Date Generator',
-    subtitle: 'Generate random dates in your selected range for planning and games.',
-    howToUse: ['Set start and end dates.', 'Click generate date.', 'Repeat and review history for multiple outcomes.'],
-    features: ['Date range input', 'Random day generation', 'Local history logging', 'Simple controls', 'Responsive layout'],
-    useCases: ['Random event schedule ideas', 'Classroom timeline exercises', 'Game challenge day selection', 'Prompt generation workflows'],
-    tips: ['Ensure end date is after start date.', 'Use narrow ranges for constrained scenarios.', 'Record outcomes before clearing history.'],
+    title: 'Free Random Date Generator',
+    subtitle: 'Pick a random date in any range — for planning, games, and creative prompts.',
+    howToUse: [
+      'Set your start date and end date using the date inputs to define the range you want to draw from. You can span a single month for near-term scheduling or several decades for historical and fictional prompts.',
+      'Click the generate button and the tool picks one fully random date within your specified range, displaying the result in a clear, readable format that is easy to copy or share.',
+      'Run multiple generations and compare them in the history panel when you need a variety of dates for planning exercises, classroom activities, or creative writing scenarios that require more than one random point in time.'
+    ],
+    features: [
+      'Configurable start and end date inputs that accept any valid calendar range, from a single week up to multi-decade spans, giving you full control over the output space.',
+      'Uniform random selection across the entire defined range so every date within your boundaries has an equal probability of being chosen, with no hidden bias toward recent or prominent dates.',
+      'Clean result display that formats the chosen date in a human-readable form, reducing misinterpretation when you are sharing the output with others during planning or classroom sessions.',
+      'Local history panel that logs recent generated dates within your browser session, which is useful for tracking variety or verifying that you have not accidentally used the same date twice.',
+      'Minimal, responsive interface that loads quickly and works on mobile devices, so you can use it on the go during travel planning or remote workshops without any friction.'
+    ],
+    useCases: [
+      'Generate random event or deadline placeholders during project planning workshops where the actual dates are unknown and a realistic stand-in is needed for timeline exercises.',
+      'Create classroom history or timeline drills by generating random historical dates for students to research, sequence, or contextualize as part of a structured learning activity.',
+      'Support creative writing and worldbuilding by picking random dates that serve as story anchors, character birthdays, or fictional event timestamps without the writer having to consciously choose.',
+      'Use in game design or tabletop roleplay to quickly assign random in-world dates to events, news items, or quest triggers, adding variety to procedurally generated content.'
+    ],
+    tips: [
+      'Double-check that your end date is later than your start date before generating, because an inverted range will produce no valid output and the tool cannot infer which direction you intended.',
+      'Use a narrow date range when you need a result that feels constrained and realistic, such as scheduling a random day within the next two weeks rather than drawing from an entire year.',
+      'Screenshot or copy the history panel before clearing it when you have generated multiple dates for a single project, since the local history resets when the page is reloaded.'
+    ],
     faqs: [
-      { question: 'Can I control the date range?', answer: 'Yes, choose start and end dates directly.' },
-      { question: 'Is the output one date at a time?', answer: 'Yes, current version returns one random date per click.' },
-      { question: 'Does this use browser timezone?', answer: 'Yes, date handling follows browser environment defaults.' },
-      { question: 'Can I use this for planning games?', answer: 'Yes, many users use it for random schedule prompts.' },
-      { question: 'Can I clear history?', answer: 'Yes, with the clear history button.' }
+      { question: 'Can I control exactly which date range is used?', answer: 'Yes, you set both the start and end date directly using the date picker inputs. The generator only draws from within those two boundaries, so the range is entirely under your control.' },
+      { question: 'Does the tool generate one date at a time or multiple?', answer: 'The current version returns one random date per click. Run the generator multiple times and use the history panel to collect a batch of dates if your use case requires more than one.' },
+      { question: 'How does the tool handle the browser timezone?', answer: 'Date calculations follow the browser environment\'s local timezone settings by default, so the output reflects dates as they appear in your local context rather than a fixed UTC reference.' },
+      { question: 'Can I use this for fictional or historical date ranges?', answer: 'Yes, the date inputs support a wide calendar range, which makes it practical for historical research exercises, fantasy worldbuilding, and any creative scenario that requires dates outside the near future.' },
+      { question: 'Is the output truly random within my range?', answer: 'Yes, the generator uses cryptographic randomness under the hood to select a day within your range, ensuring every valid date has an equal chance of being picked with no clustering or pattern.' }
     ],
     related: [
       { href: '/random-number-generator', label: 'Random Number Generator' },
@@ -458,18 +496,37 @@ export const toolContent: Record<ToolKey, ToolContent> = {
     ]
   },
   'lottery-number-generator': {
-    title: 'Lottery Number Generator',
-    subtitle: 'Generate unique lottery-style number sets with configurable range.',
-    howToUse: ['Set how many numbers to pick.', 'Set max number range.', 'Click generate to create sorted unique numbers.'],
-    features: ['Unique number draw', 'Configurable count and max', 'Sorted output', 'Local history', 'Quick regenerate flow'],
-    useCases: ['Lottery-style random draws', 'Contest number simulation', 'Game setup randomization', 'Class probability demos'],
-    tips: ['Keep count lower than max range.', 'Use multiple runs for varied sets.', 'Do not use as financial advice.'],
+    title: 'Free Lottery Number Generator',
+    subtitle: 'Generate random lottery-style number sets — unique picks in your chosen range.',
+    howToUse: [
+      'Set the total count of numbers you want in your set and define the maximum value for the range. For example, to simulate a standard 6/49 lottery, enter 6 numbers and a maximum of 49.',
+      'Press generate and the tool draws the specified count of unique numbers from within your range, then displays them in sorted ascending order so the result is immediately easy to read and verify.',
+      'Use the history panel to compare multiple generated sets side by side, which is useful when you want to explore variety, run probability demonstrations, or keep a log of draws during a group game session.'
+    ],
+    features: [
+      'Fully configurable pick count and maximum range so you can simulate any lottery format from local raffles to popular international draws with their specific rules.',
+      'Guaranteed unique numbers within each generated set, meaning no value ever repeats in a single draw — matching the fairness model of real lottery-style selection.',
+      'Sorted ascending output that presents results in the conventional lottery number format, making it easier to check against tickets or share results with participants.',
+      'Local history that persists recent draws within your browser session, giving you a reference log when running back-to-back rounds for games, classroom demos, or casual play.',
+      'Quick regenerate button that creates a fresh unique set instantly without requiring you to re-enter your settings, supporting high-frequency use during group activities.'
+    ],
+    useCases: [
+      'Simulate lottery draws for casual play and social fun with friends or family, removing any human bias from number selection while keeping the excitement of a real lottery format.',
+      'Run contest number draws for community giveaways, office pools, or school fundraisers where a transparent and repeatable random process is important for participant trust.',
+      'Use in probability and statistics education to demonstrate how lottery draws work in practice, letting students generate multiple sets and observe the distribution of outcomes over many runs.',
+      'Generate random starting positions, team seeds, or draft orders in sports leagues and game tournaments where the number range and pick count map to participant IDs or slot assignments.'
+    ],
+    tips: [
+      'Always make sure your pick count is strictly lower than your maximum range value, otherwise the tool cannot produce enough unique numbers to fill the set you requested.',
+      'Run several sets in a row and compare them using the history panel before committing to a final draw if you want to build confidence that the randomness feels sufficiently varied.',
+      'Treat results as entertainment only and never as financial guidance — while the generator uses cryptographic randomness, no tool can predict or influence the outcome of a real lottery.'
+    ],
     faqs: [
-      { question: 'Are numbers unique?', answer: 'Yes, each generated set contains unique values.' },
-      { question: 'Can I change range?', answer: 'Yes, adjust max number before generating.' },
-      { question: 'Does it sort results?', answer: 'Yes, output is sorted ascending.' },
-      { question: 'Can I generate repeatedly?', answer: 'Yes, there is no hard run limit.' },
-      { question: 'Is history stored locally?', answer: 'Yes, on your browser only.' }
+      { question: 'Are all numbers in a set guaranteed to be unique?', answer: 'Yes, every set is drawn without replacement so no number appears twice in a single result. This matches the fundamental rule of real lottery draws and ensures genuinely fair selection.' },
+      { question: 'Can I change the number range to match different lottery formats?', answer: 'Yes, both the pick count and the maximum value are fully configurable before each generation. You can match common formats like 5/50 or 6/42, or set entirely custom parameters for your own game.' },
+      { question: 'Are the results sorted when displayed?', answer: 'Yes, the output is automatically sorted in ascending order, which is the standard presentation for lottery results and makes the numbers easier to scan and verify against any reference.' },
+      { question: 'Can I generate many sets in a row without resetting?', answer: 'Yes, the regenerate button reuses your current settings so you can create back-to-back draws quickly. Each new set is independent and does not carry over any numbers from the previous one.' },
+      { question: 'Does the tool store my generated sets anywhere online?', answer: 'No, all history is stored locally in your browser only and is never sent to any server. Your sets are private and disappear when you clear history or reload the page.' }
     ],
     related: [
       { href: '/random-number-generator', label: 'Random Number Generator' },
