@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Coin Flip | Free Online Coin Toss Tool',
     description: 'Flip a virtual coin instantly with history and mobile-friendly controls.',
-    path: `/${params.locale}/coin-flip`
+    path: `/${params.locale}/coin-flip`,
+    locale: params.locale
   })
 }
 

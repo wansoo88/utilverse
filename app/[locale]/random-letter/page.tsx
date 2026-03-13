@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Random Letter Generator | Free A-Z Picker',
     description: 'Generate random letters for games, writing prompts, and classroom exercises.',
-    path: `/${params.locale}/random-letter`
+    path: `/${params.locale}/random-letter`,
+    locale: params.locale
   })
 }
 

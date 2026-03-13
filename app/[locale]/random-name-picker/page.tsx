@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Random Name Picker | Free Online Tool',
     description: 'Pick random names instantly for classrooms, raffles, and group activities.',
-    path: `/${params.locale}/random-name-picker`
+    path: `/${params.locale}/random-name-picker`,
+    locale: params.locale
   })
 }
 

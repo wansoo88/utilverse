@@ -2,6 +2,7 @@ import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { AdSlot } from '@/components/common/AdSlot'
 import { getRelatedPostsByToolTitle } from '@/lib/content/blog'
+import { FaqAccordion } from '@/components/common/FaqAccordion'
 import { getRelatedToolsByTitle, getCatalogItemByTitle } from '@/lib/content/catalog'
 import type { ToolContent } from '@/lib/content/tools'
 import { breadcrumbSchema, itemListSchema } from '@/lib/seo'
@@ -172,14 +173,7 @@ export function ToolPageShell({
 
       <section className="card" style={{ marginTop: '1rem', padding: '1.2rem' }}>
         <h2 className="section-title">FAQ</h2>
-        {content.faqs.map((faq) => (
-          <details key={faq.question} style={{ marginBottom: '0.6rem' }}>
-            <summary style={{ fontWeight: 700 }}>{faq.question}</summary>
-            <p className="section-copy" style={{ marginTop: '0.4rem' }}>
-              {faq.answer}
-            </p>
-          </details>
-        ))}
+        <FaqAccordion items={content.faqs} />
       </section>
 
       <section className="card" style={{ marginTop: '1rem', padding: '1.2rem' }}>

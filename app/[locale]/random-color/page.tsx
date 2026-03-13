@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Random Color Generator | Free HEX and RGB Tool',
     description: 'Generate random colors with HEX and RGB values plus instant preview.',
-    path: `/${params.locale}/random-color`
+    path: `/${params.locale}/random-color`,
+    locale: params.locale
   })
 }
 

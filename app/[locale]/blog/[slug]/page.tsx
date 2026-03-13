@@ -8,6 +8,7 @@ import {
   getRelatedPosts,
   getRelatedToolsBySlug,
 } from '@/lib/content/blog'
+import { FaqAccordion } from '@/components/common/FaqAccordion'
 import { blogPostingSchema, breadcrumbSchema, buildMeta, faqSchema } from '@/lib/seo'
 import { isLocale, locales } from '@/lib/i18n'
 
@@ -23,7 +24,8 @@ export function generateMetadata({ params }: { params: { locale: string; slug: s
   return buildMeta({
     title: `${post.title} | Random Decision`,
     description: post.description,
-    path: `/${params.locale}/blog/${params.slug}`
+    path: `/${params.locale}/blog/${params.slug}`,
+    locale: params.locale
   })
 }
 
@@ -44,7 +46,10 @@ export default function BlogDetailPage({ params }: { params: { locale: string; s
     title: p.title,
     description: p.description,
     locale: params.locale,
-    slug: params.slug
+    slug: params.slug,
+    publishedDate: p.publishedDate,
+    updatedDate: p.updatedDate,
+    author: p.author
   })
 
   const crumbs = breadcrumbSchema([
@@ -156,13 +161,8 @@ export default function BlogDetailPage({ params }: { params: { locale: string; s
 
         {/* FAQ */}
         <section className="card" style={{ padding: '1rem', marginTop: '1rem' }}>
-          <h2 style={{ fontSize: '1.05rem', fontWeight: 800, marginBottom: '0.5rem' }}>Frequently Asked Questions</h2>
-          {faqs.map((faq) => (
-            <details key={faq.question} style={{ marginBottom: '0.6rem' }}>
-              <summary style={{ fontWeight: 700, cursor: 'pointer' }}>{faq.question}</summary>
-              <p className="section-copy" style={{ marginTop: '0.4rem', paddingLeft: '0.75rem' }}>{faq.answer}</p>
-            </details>
-          ))}
+          <h2 style={{ fontSize: '1.05rem', fontWeight: 800, marginBottom: '0.75rem' }}>Frequently Asked Questions</h2>
+          <FaqAccordion items={faqs} />
         </section>
 
         <AdSlot slot="0000000005" label="Blog bottom in-article" />

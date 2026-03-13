@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Dice Roller | Free D4-D20 Dice Tool',
     description: 'Roll D4 to D20 dice online with multi-roll support and history.',
-    path: `/${params.locale}/dice-roller`
+    path: `/${params.locale}/dice-roller`,
+    locale: params.locale
   })
 }
 

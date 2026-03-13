@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Team Generator | Free Random Group Splitter',
     description: 'Generate random teams from a name list for classes, workshops, and games.',
-    path: `/${params.locale}/team-generator`
+    path: `/${params.locale}/team-generator`,
+    locale: params.locale
   })
 }
 

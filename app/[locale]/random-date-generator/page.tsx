@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Random Date Generator | Free Date Picker',
     description: 'Generate random dates inside a custom date range instantly.',
-    path: `/${params.locale}/random-date-generator`
+    path: `/${params.locale}/random-date-generator`,
+    locale: params.locale
   })
 }
 

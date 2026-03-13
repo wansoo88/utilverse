@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Spin the Wheel | Free Random Picker',
     description: 'Create a custom random wheel and spin to pick a winner in seconds.',
-    path: `/${params.locale}/spin-the-wheel`
+    path: `/${params.locale}/spin-the-wheel`,
+    locale: params.locale
   })
 }
 

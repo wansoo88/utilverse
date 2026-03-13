@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Icebreaker Question Generator | Free Prompt Tool',
     description: 'Generate random icebreaker questions for teams, classes, and parties.',
-    path: `/${params.locale}/icebreaker-question-generator`
+    path: `/${params.locale}/icebreaker-question-generator`,
+    locale: params.locale
   })
 }
 

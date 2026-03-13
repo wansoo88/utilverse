@@ -21,7 +21,8 @@ export function generateMetadata({ params }: { params: { locale: string } }) {
   return buildMeta({
     title: 'All Decision Tools | Random, Picker, Games, Utility',
     description: 'Browse all random decision tools by category: random generators, pickers, games, and utility tools.',
-    path: `/${params.locale}/tools`
+    path: `/${params.locale}/tools`,
+    locale: params.locale
   })
 }
 

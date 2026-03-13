@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Baby Name Generator | Free Name Ideas Tool',
     description: 'Generate random baby name ideas by category in one click.',
-    path: `/${params.locale}/baby-name-generator`
+    path: `/${params.locale}/baby-name-generator`,
+    locale: params.locale
   })
 }
 

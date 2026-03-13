@@ -5,7 +5,7 @@
 | 항목 | 상태 | 비고 |
 |------|------|------|
 | 블로그 외부 링크(blogspot) → 내부 /blog 링크 전환 | ✅ 완료 | Header.tsx, ToolPageShell.tsx, app/[locale]/page.tsx |
-| Google Search Console 등록 + sitemap 제출 | ⏳ 미완료 | 수동 작업 필요 (Search Console 접속 후 sitemap.xml 제출) |
+| Google Search Console 등록 + sitemap 제출 | ✅ 완료 | 2026-03-13 사이트맵 제출 + 주요 URL 7개 색인 수동 요청 완료 |
 
 ---
 
@@ -50,4 +50,4 @@
 
 ---
 
-_마지막 업데이트: 2026-03-13 (이번 세션 완료 기준)_
+_마지막 업데이트: 2026-03-13 (Search Console 사이트맵 제출 + 색인 수동 요청 완료)_

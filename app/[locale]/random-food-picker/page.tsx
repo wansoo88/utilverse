@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Random Food Picker | What Should I Eat?',
     description: 'Pick a meal randomly from your custom food list in one click.',
-    path: `/${params.locale}/random-food-picker`
+    path: `/${params.locale}/random-food-picker`,
+    locale: params.locale
   })
 }
 

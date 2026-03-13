@@ -10,7 +10,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'About | Random Decision',
     description: 'About Random Decision — free browser-based random decision tools for students, teachers, streamers, and friend groups.',
-    path: `/${params.locale}/about`
+    path: `/${params.locale}/about`,
+    locale: params.locale
   })
 }
 

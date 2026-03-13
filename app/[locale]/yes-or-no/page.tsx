@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Yes or No Generator | Free Decision Tool',
     description: 'Generate random yes/no answers for quick decisions and games.',
-    path: `/${params.locale}/yes-or-no`
+    path: `/${params.locale}/yes-or-no`,
+    locale: params.locale
   })
 }
 

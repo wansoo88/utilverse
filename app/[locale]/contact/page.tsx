@@ -3,12 +3,14 @@ import { notFound } from 'next/navigation'
 import { getLegalBundle } from '@/lib/content/legal'
 import { buildMeta } from '@/lib/seo'
 import { isLocale } from '@/lib/i18n'
+import { ContactForm } from '@/components/common/ContactForm'
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   return buildMeta({
     title: 'Contact | Random Decision',
     description: 'Contact Random Decision for feedback, support, and partnership inquiries.',
-    path: `/${params.locale}/contact`
+    path: `/${params.locale}/contact`,
+    locale: params.locale
   })
 }
 
@@ -34,6 +36,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
             {legal.contactEmail}
           </a>
         </p>
+        <ContactForm />
       </section>
     </div>
   )

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { baseUrl } from '@/lib/site'
+import { locales } from '@/lib/i18n'
 
 export const siteConfig = {
   name: 'Random Decision',
@@ -11,17 +12,34 @@ export const siteConfig = {
 export function buildMeta({
   title,
   description,
-  path
+  path,
+  locale
 }: {
   title: string
   description: string
   path: string
+  locale?: string
 }): Metadata {
   const url = `${siteConfig.baseUrl}${path}`
+
+  // hreflang alternates: locale가 있으면 모든 언어 버전 생성
+  let alternates: Metadata['alternates'] = { canonical: url }
+  if (locale) {
+    // path에서 로케일 prefix를 제거해서 공통 suffix 추출
+    // path 형식: /{locale}/... → /{otherLocale}/...
+    const suffix = path.replace(new RegExp(`^/${locale}`), '')
+    const languages: Record<string, string> = {}
+    for (const loc of locales) {
+      languages[loc] = `${siteConfig.baseUrl}/${loc}${suffix}`
+    }
+    languages['x-default'] = `${siteConfig.baseUrl}/en${suffix}`
+    alternates = { canonical: url, languages }
+  }
+
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates,
     openGraph: {
       title,
       description,
@@ -69,6 +87,9 @@ export function blogPostingSchema(params: {
   description: string
   locale: string
   slug: string
+  publishedDate?: string
+  updatedDate?: string
+  author?: string
 }) {
   const url = `${siteConfig.baseUrl}/${params.locale}/blog/${params.slug}`
   return {
@@ -77,9 +98,11 @@ export function blogPostingSchema(params: {
     headline: params.title,
     description: params.description,
     inLanguage: params.locale,
+    ...(params.publishedDate && { datePublished: params.publishedDate }),
+    ...(params.updatedDate && { dateModified: params.updatedDate }),
     author: {
-      '@type': 'Organization',
-      name: siteConfig.name
+      '@type': 'Person',
+      name: params.author ?? siteConfig.name
     },
     publisher: {
       '@type': 'Organization',

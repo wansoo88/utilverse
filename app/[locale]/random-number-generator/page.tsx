@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Random Number Generator | Free Online Tool',
     description: 'Generate random integers with range, count, and unique mode options.',
-    path: `/${params.locale}/random-number-generator`
+    path: `/${params.locale}/random-number-generator`,
+    locale: params.locale
   })
 }
 

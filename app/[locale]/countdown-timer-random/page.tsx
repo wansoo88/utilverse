@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Countdown Timer Random | Free Unpredictable Timer Tool',
     description: 'Run random-duration countdown rounds for games, classes, and activities.',
-    path: `/${params.locale}/countdown-timer-random`
+    path: `/${params.locale}/countdown-timer-random`,
+    locale: params.locale
   })
 }
 

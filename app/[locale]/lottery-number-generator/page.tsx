@@ -8,7 +8,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return buildMeta({
     title: 'Lottery Number Generator | Free Random Number Set',
     description: 'Generate unique lottery-style number combinations quickly.',
-    path: `/${params.locale}/lottery-number-generator`
+    path: `/${params.locale}/lottery-number-generator`,
+    locale: params.locale
   })
 }
 
