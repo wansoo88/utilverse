@@ -44,10 +44,22 @@
 
 ---
 
+## Phase 5 — SEO 추가 최적화 (2026-03-13)
+
+| 항목 | 상태 | 비고 |
+|------|------|------|
+| 홈 페이지 generateMetadata 추가 | ✅ 완료 | 6개 로케일별 title/description 분리 (app/[locale]/page.tsx) |
+| buildMeta() OG 이미지 연결 | ✅ 완료 | og:image + twitter:image 전 페이지 자동 적용 (og-default.png 기본값) |
+| Organization JSON-LD 추가 | ✅ 완료 | app/layout.tsx에 전역 1회 삽입 — 사이트 브랜드 신호 |
+| blogPostingSchema image 필드 추가 | ✅ 완료 | Google Discover 노출 요건 충족, publisher logo 추가 |
+| robots.txt AdsBot/Mediapartners 명시 | ✅ 완료 | AdSense 광고 봇 명시적 허용 — 수익 최적화 |
+
+---
+
 ## 에드센스
 
 - 신청 완료 (2026-03-12 기준 심사 대기 중)
 
 ---
 
-_마지막 업데이트: 2026-03-13 (Phase 1~4 전체 완료)_
+_마지막 업데이트: 2026-03-13 (Phase 1~5 전체 완료)_

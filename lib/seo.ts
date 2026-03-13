@@ -13,14 +13,17 @@ export function buildMeta({
   title,
   description,
   path,
-  locale
+  locale,
+  image
 }: {
   title: string
   description: string
   path: string
   locale?: string
+  image?: string
 }): Metadata {
   const url = `${siteConfig.baseUrl}${path}`
+  const ogImage = image ?? `${siteConfig.baseUrl}/og-default.png`
 
   // hreflang alternates: locale가 있으면 모든 언어 버전 생성
   let alternates: Metadata['alternates'] = { canonical: url }
@@ -45,13 +48,26 @@ export function buildMeta({
       description,
       url,
       siteName: siteConfig.name,
-      type: 'website'
+      type: 'website',
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }]
     },
     twitter: {
       card: 'summary_large_image',
       title,
-      description
+      description,
+      images: [ogImage]
     }
+  }
+}
+
+export function organizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: siteConfig.name,
+    url: siteConfig.baseUrl,
+    logo: `${siteConfig.baseUrl}/og-default.png`,
+    sameAs: []
   }
 }
 
@@ -90,13 +106,16 @@ export function blogPostingSchema(params: {
   publishedDate?: string
   updatedDate?: string
   author?: string
+  image?: string
 }) {
   const url = `${siteConfig.baseUrl}/${params.locale}/blog/${params.slug}`
+  const image = params.image ?? `${siteConfig.baseUrl}/og-default.png`
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: params.title,
     description: params.description,
+    image,
     inLanguage: params.locale,
     ...(params.publishedDate && { datePublished: params.publishedDate }),
     ...(params.updatedDate && { dateModified: params.updatedDate }),
@@ -106,7 +125,8 @@ export function blogPostingSchema(params: {
     },
     publisher: {
       '@type': 'Organization',
-      name: siteConfig.name
+      name: siteConfig.name,
+      logo: { '@type': 'ImageObject', url: `${siteConfig.baseUrl}/og-default.png` }
     },
     mainEntityOfPage: url,
     url

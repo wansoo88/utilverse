@@ -2,7 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { DM_Sans, Space_Grotesk } from 'next/font/google'
-import { siteConfig } from '@/lib/seo'
+import { siteConfig, organizationSchema } from '@/lib/seo'
 
 const bodyFont = DM_Sans({ subsets: ['latin'], variable: '--font-body' })
 const displayFont = Space_Grotesk({ subsets: ['latin'], variable: '--font-display' })
@@ -35,6 +35,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             __html:
               "try{const t=localStorage.getItem('theme');document.documentElement.dataset.theme=t==='light'?'light':'dark'}catch(e){document.documentElement.dataset.theme='dark'}"
           }}
+        />
+        {/* Organization JSON-LD — 사이트 전체 브랜드 신호 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }}
         />
         {children}
       </body>
