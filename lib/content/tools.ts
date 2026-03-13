@@ -535,18 +535,37 @@ export const toolContent: Record<ToolKey, ToolContent> = {
     ]
   },
   'baby-name-generator': {
-    title: 'Baby Name Generator',
-    subtitle: 'Generate random baby name ideas by style category.',
-    howToUse: ['Choose a name type.', 'Click generate baby name.', 'Collect favorites from repeated rounds.'],
-    features: ['Category filter', 'Instant random name', 'History list', 'Simple one-click UX', 'Mobile ready'],
-    useCases: ['Parent naming brainstorm', 'Creative writing character names', 'Game NPC naming', 'Naming workshop prompts'],
-    tips: ['Run multiple rounds before shortlisting.', 'Combine random picks with family criteria.', 'Keep a saved list of favorites.'],
+    title: 'Free Baby Name Generator',
+    subtitle: 'Discover random baby name ideas by style — a fun spark for your naming journey.',
+    howToUse: [
+      'Select a name style or category that fits the direction you have in mind, such as classic, modern, nature-inspired, or gender-neutral, to focus the generator on names that match your taste before you start browsing results.',
+      'Press the generate button and the tool returns a random name from the selected category. Each result appears clearly so you can evaluate it at a glance and decide whether to add it to your shortlist or keep generating.',
+      'Run the generator multiple times across different categories and use the history panel to collect a varied set of candidates. Reviewing a batch of names side by side makes it easier to notice which ones genuinely resonate with you.'
+    ],
+    features: [
+      'Style and category filtering that lets you narrow results to a specific naming direction — whether you prefer timeless classics, modern coinages, nature-themed names, or culturally inspired options — before each generation.',
+      'Instant one-click name generation that surfaces a fresh suggestion in under a second, removing the friction of manually browsing long name lists and letting you evaluate options at a comfortable, unhurried pace.',
+      'Local history panel that saves every name generated during your session so you can scroll back through your results, compare candidates, and avoid accidentally repeating names you already considered and rejected.',
+      'Fast regenerate flow that returns a new name from the same category without resetting your session state, making it practical to work through many options in a short sitting without losing your place.',
+      'Responsive mobile layout that works comfortably on a phone so you can browse name ideas during downtime, share the screen with a partner on the couch, or capture inspiration whenever it strikes throughout the day.'
+    ],
+    useCases: [
+      'Help expecting parents break through early naming paralysis by using the generator as a low-pressure starting point that surfaces names they may never have considered without the stress of a blank page.',
+      'Support creative writers and game designers who need character names that feel authentic and varied, using the style categories to match name tone to setting, era, or cultural context in their work.',
+      'Spark naming workshop discussions in parenting communities or pregnancy groups by generating a rotating stream of conversation-starting names that prompt reactions and help participants articulate what they actually like.',
+      'Assist parents who are stuck between two strong candidates by generating a fresh third option that sometimes resolves a deadlock, or confirms that the options already on the list are in fact the right ones.'
+    ],
+    tips: [
+      'Generate at least ten to fifteen names per category before drawing any conclusions, because a small sample often skews toward a narrow style and a larger batch gives a much more representative picture of what a category has to offer.',
+      'Pay attention to your instinctive reactions as each name appears — if you feel a small pull of interest before you have time to analyze it, mark that name down even if you cannot immediately explain why it appeals to you.',
+      'Combine the random generator with practical family criteria like syllable count, how the name sounds with your surname, or meaningful initials after you have built a long list, rather than filtering by those rules too early and missing great candidates.'
+    ],
     faqs: [
-      { question: 'Can I pick by type?', answer: 'Yes, choose neutral, girl, or boy sets.' },
-      { question: 'Are names globally exhaustive?', answer: 'No, this is a lightweight starter set.' },
-      { question: 'Can I generate repeatedly?', answer: 'Yes, generate as many names as needed.' },
-      { question: 'Does it save favorites?', answer: 'It saves generated history locally.' },
-      { question: 'Can I clear old names?', answer: 'Yes, with clear history.' }
+      { question: 'Can I filter by gender or style before generating?', answer: 'Yes, the generator includes category and style options you can select before each run so the results stay relevant to the direction you are exploring, whether that is a specific gender association, a cultural origin, or a general aesthetic like minimalist or vintage.' },
+      { question: 'How large is the name pool behind the generator?', answer: 'The generator draws from a curated starter collection covering a broad range of styles and origins. It is designed to surface discovery-worthy names rather than exhaustively list every known name, so think of it as an inspiration engine rather than a complete global database.' },
+      { question: 'Can I save names I like between visits?', answer: 'The current session history is stored locally in your browser, which means it persists while the tab is open but resets on a full page reload. For names you want to keep long-term, copy your favorites into a note or document before closing the browser.' },
+      { question: 'Is this useful for writers choosing character names rather than real baby names?', answer: 'Yes, many writers use this tool when developing characters because the style categories help match name tone to fictional setting, and the rapid generation speed lets you audition many candidates quickly without the cognitive overhead of manual research.' },
+      { question: 'What if I keep getting names I have already seen before?', answer: 'In any finite name pool, repetition becomes more likely as you generate more results. Switch to a different category to access a fresh pool, or use the history panel to track what has already appeared so you can skip repeats and focus on new suggestions.' }
     ],
     related: [
       { href: '/random-name-picker', label: 'Random Name Picker' },
@@ -555,18 +574,37 @@ export const toolContent: Record<ToolKey, ToolContent> = {
     ]
   },
   'icebreaker-question-generator': {
-    title: 'Icebreaker Question Generator',
-    subtitle: 'Generate conversation starters for team, classroom, or party settings.',
-    howToUse: ['Choose a category.', 'Click generate icebreaker.', 'Use history for session flow control.'],
-    features: ['Category-based prompts', 'One-click random question', 'History logging', 'Fast pacing for facilitators', 'Clean mobile UX'],
-    useCases: ['Team meeting warm-ups', 'Class participation starters', 'Party conversation prompts', 'Workshop networking rounds'],
-    tips: ['Pick one category per round for consistency.', 'Set speaking time limits before asking.', 'Skip sensitive prompts for mixed groups.'],
+    title: 'Free Icebreaker Question Generator',
+    subtitle: 'Spark conversations instantly with random icebreaker questions for any setting.',
+    howToUse: [
+      'Choose the category that best matches your setting — such as professional team warmup, classroom introduction, or casual social gathering — so the questions generated fit the tone and comfort level of everyone in the room.',
+      'Press generate and the tool returns a single random icebreaker question from your selected category. Read it aloud or share it on screen, give everyone a moment to think, and then invite responses in whatever order works for your group.',
+      'Use the history panel to track which questions have already been asked during a longer session, allowing you to skip repeats and maintain a fresh, engaging flow without having to remember every prompt you have already used.'
+    ],
+    features: [
+      'Category-based question sets covering distinct settings like professional team meetings, classroom activities, party and social events, and general networking, so every generated prompt feels appropriately pitched for your audience.',
+      'One-click random generation that surfaces a fresh question in under a second, removing the pressure from facilitators who would otherwise need to memorize or manually search for conversation starters during a live session.',
+      'Local history logging that records every question generated during your current browser session, giving you a running record that prevents awkward repetition and helps you plan pacing across a multi-round icebreaker activity.',
+      'Fast regenerate action that skips past any prompt that feels too sensitive or off-topic for your specific group without losing your current settings, so you can moderate the flow in real time without breaking session momentum.',
+      'Clean, minimal interface that renders well on both projected displays and personal devices, making it equally practical for a facilitator running the tool on a laptop in a conference room or a host sharing it on a phone at a dinner table.'
+    ],
+    useCases: [
+      'Warm up distributed or hybrid teams at the start of a weekly meeting, using questions that invite personal sharing and help remote participants feel present and connected before the main agenda begins.',
+      'Open classroom sessions with a low-stakes social question that helps students practice speaking in front of peers, builds psychological safety early in a course, and gives the teacher a quick read on group energy and mood.',
+      'Facilitate networking rounds at workshops, conferences, or community events by giving pairs or small groups a rotating question to react to, replacing the awkward unstructured mingle with a guided conversation that actually produces connection.',
+      'Energize party gatherings or game nights by using icebreaker prompts as conversation cards, helping guests who do not know each other find common ground quickly and creating the relaxed atmosphere that makes the rest of the evening more enjoyable.'
+    ],
+    tips: [
+      'Preview one or two questions in your selected category before the session starts so you can verify the tone matches your group, particularly for professional settings where overly personal questions could create discomfort even with good intentions.',
+      'Set a clear speaking time limit of one to two minutes per person before posing the question so participants know the expectations, which reduces anxiety for quieter members and prevents the activity from running past its allocated slot.',
+      'When facilitating a mixed group with varying familiarity levels, stick to lighter categories early in the session and only advance to deeper or more reflective questions once the group has warmed up and trust has had time to build.'
+    ],
     faqs: [
-      { question: 'Can I change categories?', answer: 'Yes, switch between team, classroom, and party categories.' },
-      { question: 'Does it repeat questions?', answer: 'It may repeat over time in a small prompt pool.' },
-      { question: 'Can I track asked questions?', answer: 'Yes, recent prompts are stored in history.' },
-      { question: 'Is this good for remote teams?', answer: 'Yes, it works well for online meetings and calls.' },
-      { question: 'Can I clear old prompts?', answer: 'Yes, clear history is available.' }
+      { question: 'Can I switch categories between questions during a live session?', answer: 'Yes, you can change the category at any time without losing your history. This is useful when you want to shift tone mid-session, such as starting with a light fun question to warm up and then moving to a more reflective professional prompt once the group is engaged.' },
+      { question: 'Will the generator repeat questions during the same session?', answer: 'Repetition becomes possible in any finite prompt pool as you generate more questions. The history panel shows everything asked so far so you can spot a repeat immediately and press generate again to get a fresh question without disrupting the session flow.' },
+      { question: 'Is this tool suitable for large groups or only small teams?', answer: 'It works for any group size. For large groups, use the generated question as a whole-room prompt where a few volunteers respond, or split into breakout pairs and have each pair use the same question simultaneously to keep the activity time-efficient.' },
+      { question: 'Can I use this tool for remote or asynchronous teams?', answer: 'Yes, it works well for remote settings. Read the generated question in a video call or paste it into a team chat channel as a thread starter. The asynchronous version works particularly well for distributed teams across time zones who cannot participate simultaneously.' },
+      { question: 'Are the questions appropriate for professional workplace settings?', answer: 'The professional and team categories are designed with workplace appropriateness in mind, focusing on light personal sharing, fun hypotheticals, and work-relevant topics. That said, always use your judgment as a facilitator — preview a few questions before your session and skip anything that feels misaligned with your specific team culture.' }
     ],
     related: [
       { href: '/random-name-picker', label: 'Random Name Picker' },
