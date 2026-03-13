@@ -15,7 +15,7 @@
 |------|------|------|
 | OG 이미지 추가 (주요 도구 5개 + 기본) | ⏳ 미완료 | |
 | 하위 10개 도구 콘텐츠 강화 | ⏳ 미완료 | food-picker, date-generator 등 |
-| Contact 페이지에 폼 추가 | ⏳ 미완료 | |
+| Contact 페이지에 폼 추가 | ✅ 완료 | ContactForm 컴포넌트 생성 (mailto 연동) |
 | 블로그 글에 날짜/저자 표시 추가 | ✅ 완료 | app/[locale]/blog/[slug]/page.tsx에 이미 구현됨 |
 
 ---
@@ -38,9 +38,9 @@
 
 | 항목 | 상태 | 비고 |
 |------|------|------|
-| hreflang 태그 추가 | ⏳ 미완료 | |
-| 블로그 글 날짜/저자 메타데이터 (JSON-LD 반영) | ⏳ 미완료 | |
-| FAQ 컴포넌트 아코디언으로 시각화 개선 | ⏳ 미완료 | |
+| hreflang 태그 추가 | ✅ 완료 | 22개 페이지 buildMeta에 6개 언어 + x-default alternates 추가 |
+| 블로그 글 날짜/저자 메타데이터 (JSON-LD 반영) | ✅ 완료 | blogPostingSchema에 datePublished, dateModified, Person author 추가 |
+| FAQ 컴포넌트 아코디언으로 시각화 개선 | ✅ 완료 | FaqAccordion 컴포넌트 생성, 도구/블로그 페이지 모두 적용 |
 
 ---
 
@@ -50,4 +50,4 @@
 
 ---
 
-_마지막 업데이트: 2026-03-13 (Search Console 사이트맵 제출 + 색인 수동 요청 완료)_
+_마지막 업데이트: 2026-03-13 (hreflang, FAQ 아코디언, Contact 폼, 블로그 JSON-LD 완료)_
