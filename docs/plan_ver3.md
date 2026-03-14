@@ -360,6 +360,366 @@ Web Audio API 합성음
 
 ---
 
+---
+
+## Phase 11 — 디자인 품질 & Premium Feel (P1)
+
+_배경: 현재 디자인은 7.5/10 수준. Framer Motion·glassmorphism·mesh gradient로 프리미엄 신호는 있으나,_
+_Hero 구조·섹션 레이아웃·타이포그래피·마이크로인터랙션 곳곳에 "AI SaaS 템플릿" 냄새가 남아 있음._
+
+### 11-1. Hero — "Live Tool Preview" 인터랙티브화 ★★★ (핵심)
+
+**현재 문제**: Hero 미디어 자리에 정적 SVG 이미지만 존재.
+경쟁사(flipsimu.com, wheelofnames.com)는 Hero 자체가 도구임 — 첫눈에 "이게 뭔지" 바로 체험.
+
+**개선**: Hero 우측에 실제로 동작하는 미니 Coin Flip을 삽입.
+
+```
+Hero 레이아웃 (데스크톱)
+┌─────────────────────────┬────────────────────┐
+│ .hero-copy (텍스트·CTA) │  미니 Coin Flip    │
+│                         │  [3D 코인 + Flip]  │
+│                         │  결과: HEADS 🎉    │
+└─────────────────────────┴────────────────────┘
+```
+
+- **컴포넌트**: `components/home/HeroLiveTool.tsx` (client)
+  - Coin Flip 로직 인라인 포함 (CoinFlipTool 재사용 불가 → 경량 복사본)
+  - 버튼 1개 + 3D flip 애니메이션 + confetti — 완전 동작
+  - "Full tool →" 링크로 `/[locale]/coin-flip` 유도
+- **모바일**: 미니 툴 숨김, `.hero-copy`만 표시 (성능 보호)
+- **UX 효과**: 방문자가 1초 안에 "이 사이트가 뭘 하는지" 체험
+
+### 11-2. 타이포그래피 — Gradient Text 시스템화 ★★☆
+
+**현재 문제**: 모든 텍스트가 동일한 `var(--text)` 색상. "AI 나열식" 느낌.
+
+```css
+/* globals.css 추가 */
+
+/* Hero 타이틀 — brand gradient */
+.hero-title {
+  background: linear-gradient(135deg,
+    var(--text) 0%,
+    color-mix(in srgb, var(--brand) 80%, var(--text)) 55%,
+    var(--brand-2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.03em;          /* 현재 -0.02em에서 강화 */
+}
+
+/* 섹션 타이틀 — 핵심 단어만 accent */
+.section-title em {                  /* <em>으로 강조 단어 마크업 */
+  font-style: normal;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 통계 숫자 — 더 임팩트 있게 */
+.mini-stat strong {
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.6rem;                 /* 현재보다 10% 확대 */
+  letter-spacing: -0.01em;
+}
+
+/* 도구별 gradient 네이밍 */
+.text-g-coin   { background: linear-gradient(135deg, #FFD700, #FFA500); }
+.text-g-dice   { background: linear-gradient(135deg, #A855F7, #7C3AED); }
+.text-g-wheel  { background: linear-gradient(135deg, #10B981, #059669); }
+.text-g-yesno  { background: linear-gradient(135deg, #2ECC8A, #F43F5E); }
+.text-g-number { background: linear-gradient(135deg, #0EA5E9, #06B6D4); }
+/* 위 모두에 -webkit-background-clip: text; -webkit-text-fill-color: transparent 적용 */
+```
+
+- **적용 범위**: hero-title, 각 ToolPageShell의 h1 강조 단어, mini-stat 숫자
+- **주의**: 남발 금지 — 한 뷰포트 내 최대 2~3개 gradient text만
+
+### 11-3. Bento Card — Accent Glow 고도화 ★★☆
+
+**현재 문제**: Hover 시 shadow·scale이 모든 카드 동일. 도구별 개성 없음.
+
+```tsx
+// BentoCard.tsx — onMouseEnter/Leave에 dynamic glow 추가
+<Link
+  onMouseEnter={e => {
+    const el = e.currentTarget as HTMLElement
+    el.style.boxShadow = `0 0 0 1px ${tool.accentColor}60, 0 8px 32px ${tool.accentColor}30, 0 24px 48px ${tool.accentColor}10`
+    el.style.borderColor = tool.accentColor + '80'
+  }}
+  onMouseLeave={e => {
+    const el = e.currentTarget as HTMLElement
+    el.style.boxShadow = ''
+    el.style.borderColor = ''
+  }}
+>
+  {/* 카드 상단 accent line — 현재 미존재, 신규 추가 */}
+  <div
+    aria-hidden="true"
+    style={{
+      position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
+      background: `linear-gradient(90deg, transparent, ${tool.accentColor}, transparent)`,
+      borderRadius: '24px 24px 0 0',
+      opacity: 0.8,
+    }}
+  />
+```
+
+### 11-4. 버튼 Ripple + 네비게이션 언더라인 ★☆☆
+
+**현재 문제**: 버튼 클릭이 `scale(0.98)` 외에 시각 피드백 없음. Nav 링크에 현재 위치 표시 없음.
+
+```css
+/* globals.css */
+
+/* 버튼 Ripple */
+.btn { position: relative; overflow: hidden; }
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.btn:active::after { opacity: 1; transform: scale(2.5); transition: none; }
+
+/* Nav 언더라인 slide */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 2px;
+  background: var(--brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after { transform: scaleX(1); }
+```
+
+### 11-5. 결과 칩 — Glow Pulse 강화 ★★☆
+
+**현재 문제**: `.result-chip`이 색상 변화만 있고 glow 없음. 결과가 약하게 느껴짐.
+
+```css
+/* globals.css */
+.result-good {
+  box-shadow:
+    0 0 0 1px #2ecc8a40,
+    0 0 20px #2ecc8a30,
+    0 4px 16px rgba(0,0,0,0.15);
+  animation: glowPulseGreen 2s ease-in-out infinite;
+}
+.result-warn {
+  box-shadow:
+    0 0 0 1px #f43f5e40,
+    0 0 20px #f43f5e30,
+    0 4px 16px rgba(0,0,0,0.15);
+  animation: glowPulseRed 2s ease-in-out infinite;
+}
+@keyframes glowPulseGreen {
+  0%, 100% { box-shadow: 0 0 0 1px #2ecc8a40, 0 0 20px #2ecc8a30, 0 4px 16px rgba(0,0,0,0.15); }
+  50%       { box-shadow: 0 0 0 1px #2ecc8a60, 0 0 35px #2ecc8a50, 0 4px 16px rgba(0,0,0,0.15); }
+}
+@keyframes glowPulseRed {
+  0%, 100% { box-shadow: 0 0 0 1px #f43f5e40, 0 0 20px #f43f5e30, 0 4px 16px rgba(0,0,0,0.15); }
+  50%       { box-shadow: 0 0 0 1px #f43f5e60, 0 0 35px #f43f5e50, 0 4px 16px rgba(0,0,0,0.15); }
+}
+```
+
+### 11-6. Cursor Aura ★☆☆ (구현 0줄 CSS, 임팩트 체감 높음)
+
+마우스 커서를 따라다니는 brand color glow.
+JS 없이 CSS `radial-gradient` + `@property` or JS 최소 구현.
+
+```tsx
+// components/common/CursorAura.tsx (client, SSR-safe)
+'use client'
+import { useEffect } from 'react'
+
+export function CursorAura() {
+  useEffect(() => {
+    const el = document.createElement('div')
+    el.id = 'cursor-aura'
+    document.body.appendChild(el)
+    const move = (e: MouseEvent) => {
+      el.style.setProperty('--x', e.clientX + 'px')
+      el.style.setProperty('--y', e.clientY + 'px')
+    }
+    window.addEventListener('mousemove', move, { passive: true })
+    return () => { window.removeEventListener('mousemove', move); el.remove() }
+  }, [])
+  return null
+}
+```
+
+```css
+/* globals.css */
+#cursor-aura {
+  pointer-events: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 600px; height: 600px;
+  transform: translate(calc(var(--x, -9999px) - 300px), calc(var(--y, -9999px) - 300px));
+  background: radial-gradient(circle,
+    color-mix(in srgb, var(--brand) 8%, transparent) 0%,
+    transparent 70%);
+  z-index: 0;
+  transition: transform 0.12s ease-out;
+  border-radius: 50%;
+}
+@media (hover: none) { #cursor-aura { display: none; } } /* 터치 기기 비활성 */
+```
+
+- `app/[locale]/layout.tsx`에 `<CursorAura />` 1줄 추가
+- `prefers-reduced-motion` 시 `transition: none`
+
+### 11-7. Theme Toggle — Circular Reveal 전환 ★☆☆
+
+**현재 문제**: 다크/라이트 전환이 즉각 flash. 고급 사이트들은 클릭 위치에서 원형으로 퍼지는 reveal.
+
+```tsx
+// ThemeToggle.tsx — View Transitions API 활용 (Progressive Enhancement)
+const handleToggle = (e: React.MouseEvent) => {
+  if (!document.startViewTransition) {
+    setTheme(next); return
+  }
+  const { clientX: x, clientY: y } = e
+  const transition = document.startViewTransition(() => setTheme(next))
+  transition.ready.then(() => {
+    const radius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    )
+    document.documentElement.animate(
+      { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+      { duration: 400, easing: 'ease-in-out', pseudoElement: '::view-transition-new(root)' }
+    )
+  })
+}
+```
+
+- 미지원 브라우저(Safari 구버전)는 기존 방식으로 graceful fallback
+- 번들 추가 0 bytes (브라우저 네이티브 API)
+
+### 11-8. ToolPageShell 섹션 레이아웃 다양화 ★★☆
+
+**현재 문제**: 모든 도구 페이지가 "How to Use → Features → Use Cases → Tips → FAQ" 고정 구조.
+방문자가 두 번째 도구 페이지부터 "다 똑같아 보임".
+
+**개선 전략**: 섹션 타입에 따라 3가지 레이아웃 교차 사용
+
+| 레이아웃 타입 | 구조 | 적용 섹션 |
+|-------------|------|---------|
+| `prose` | 현재 방식 (텍스트 나열) | FAQ, How to Use |
+| `grid-2` | 2컬럼 아이콘 카드 | Features, Use Cases |
+| `highlight` | 좌측 accent bar + 큰 텍스트 | Tips, Key Stat |
+
+```tsx
+// ToolPageShell.tsx 내 섹션 렌더러 분기
+function Section({ type, title, items }: SectionProps) {
+  if (type === 'grid-2') return (
+    <div className="tool-section-grid2">
+      {items.map(item => (
+        <div key={item.title} className="tool-feature-card">
+          <span className="tool-feature-icon" aria-hidden="true">{item.icon}</span>
+          <strong>{item.title}</strong>
+          <p>{item.body}</p>
+        </div>
+      ))}
+    </div>
+  )
+  if (type === 'highlight') return (
+    <div className="tool-section-highlight">
+      <div className="highlight-bar" />
+      <div><strong className="section-title">{title}</strong>{items.map(...)}</div>
+    </div>
+  )
+  return <div className="tool-section-prose">...</div> // 현재 방식
+}
+```
+
+### 11-9. 모바일 Hero 재순서 + Bento 터치 최적화 ★☆☆
+
+```css
+/* globals.css */
+@media (max-width: 768px) {
+  /* 이미지를 텍스트 위로 */
+  .hero-panel { grid-template-columns: 1fr; }
+  .hero-copy  { order: 2; }
+  .hero-media { order: 1; max-height: 220px; }
+
+  /* Hero 통계 1열로 */
+  .hero-stat-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+
+  /* Bento 터치 피드백 */
+  .bento-card:active { transform: scale(0.96); }
+  .btn { -webkit-tap-highlight-color: transparent; }
+  @media (hover: none) {
+    .btn:active { box-shadow: 0 8px 20px rgba(0,0,0,0.25); }
+  }
+}
+```
+
+---
+
+### Phase 11 변경 파일 요약
+
+```
+components/home/HeroLiveTool.tsx       — 신규: Hero 인터랙티브 미니 Coin Flip
+components/common/CursorAura.tsx       — 신규: 마우스 커서 aura (client)
+app/[locale]/page.tsx                  — HeroLiveTool 삽입, hero-media 교체
+app/[locale]/layout.tsx                — CursorAura 추가
+components/layout/ToolPageShell.tsx    — 섹션 레이아웃 3종 분기
+components/layout/Header.tsx           — nav-link ::after 언더라인 클래스 추가
+components/common/ThemeToggle.tsx      — View Transitions circular reveal
+app/globals.css                        — gradient text, glow pulse, ripple, cursor aura, nav underline
+```
+
+---
+
+### Phase 11 완료 기준 (Definition of Done)
+
+- [ ] Hero에서 Coin을 Flip하면 3D 애니메이션 + 결과 표시 (3초 이내)
+- [ ] `.hero-title`이 gradient 텍스트로 렌더링
+- [ ] Bento Card hover 시 각 도구의 accentColor glow 확인
+- [ ] 버튼 클릭 시 ripple 퍼짐 확인
+- [ ] 다크/라이트 전환 시 circular reveal (Chrome 111+, 나머지 fallback)
+- [ ] 마우스 이동 시 cursor aura 추적 (모바일 비활성 확인)
+- [ ] 도구 페이지 Features 섹션이 2컬럼 카드 레이아웃으로 표시
+- [ ] `prefers-reduced-motion: reduce` 시 모든 애니메이션(aura transition 포함) 중단
+
+---
+
+### 우선순위 정리 (임팩트 ÷ 난이도)
+
+| 항목 | 임팩트 | 난이도 | ROI |
+|------|--------|--------|-----|
+| 11-1 Hero Live Tool | ★★★ | 중간 | 최고 |
+| 11-3 Bento Accent Glow | ★★☆ | 낮음 | 높음 |
+| 11-2 Gradient Text | ★★☆ | 낮음 | 높음 |
+| 11-5 Result Glow Pulse | ★★☆ | 낮음 | 높음 |
+| 11-6 Cursor Aura | ★★☆ | 낮음 | 높음 |
+| 11-7 Theme Circular Reveal | ★☆☆ | 낮음 | 중간 |
+| 11-4 Ripple + Nav Underline | ★☆☆ | 낮음 | 중간 |
+| 11-8 ToolPageShell 다양화 | ★★☆ | 중간 | 중간 |
+| 11-9 모바일 최적화 | ★☆☆ | 낮음 | 중간 |
+
+**권장 구현 순서**: 11-3 → 11-2 → 11-5 → 11-6 → 11-4 → 11-7 → 11-1 → 11-8 → 11-9
+_(CSS 전용 항목 먼저, 컴포넌트 신설 항목 나중에)_
+
+---
+
 ## 미포함 항목 (범위 외)
 
 다음 항목은 이번 Plan Ver 3 범위에서 제외 (별도 계획 필요 시 논의):
@@ -372,5 +732,5 @@ Web Audio API 합성음
 
 ---
 
-_이 계획은 Phase 7→8→9→10 순서로 진행하며, P0(Phase 7, 8)를 먼저 구현합니다._
-_작성: 2026-03-14_
+_이 계획은 Phase 7→8→9→10→11 순서로 진행하며, P0(Phase 7, 8)를 먼저 구현합니다._
+_작성: 2026-03-14 | Phase 11 추가: 2026-03-14_
