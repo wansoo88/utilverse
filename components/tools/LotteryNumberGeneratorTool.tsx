@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomInt } from '@/lib/random'
+import { playSound } from '@/lib/audio'
 
 export function LotteryNumberGeneratorTool() {
   const [count, setCount] = useState(6)
@@ -22,6 +23,7 @@ export function LotteryNumberGeneratorTool() {
     out.sort((a, b) => a - b)
     setResult(out)
     push(`${new Date().toLocaleTimeString()}: ${out.join(', ')}`)
+    playSound('success')
   }
 
   return (

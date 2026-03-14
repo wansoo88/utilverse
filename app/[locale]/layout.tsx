@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { CookieBanner } from '@/components/common/CookieBanner'
 import { CursorAura } from '@/components/common/CursorAura'
+import { AchievementToastProvider } from '@/components/common/AchievementToastProvider'
 import { isLocale, locales, type Locale } from '@/lib/i18n'
 
 export function generateStaticParams() {
@@ -41,6 +42,7 @@ export default function LocaleLayout({
       </main>
       <CookieBanner locale={locale} />
       <CursorAura />
+      <AchievementToastProvider />
     </div>
   )
 }

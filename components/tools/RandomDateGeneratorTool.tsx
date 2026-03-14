@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomInt } from '@/lib/random'
+import { playSound } from '@/lib/audio'
 
 function formatDate(value: Date) {
   return value.toISOString().split('T')[0]
@@ -25,6 +26,7 @@ export function RandomDateGeneratorTool() {
     const next = formatDate(new Date(day * 86400000))
     setResult(next)
     push(`${new Date().toLocaleTimeString()}: ${next}`)
+    playSound('pop')
   }
 
   return (

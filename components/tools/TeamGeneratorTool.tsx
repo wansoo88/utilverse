@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { shuffle } from '@/lib/random'
+import { playSound } from '@/lib/audio'
 
 export function TeamGeneratorTool() {
   const [raw, setRaw] = useState('Alex\nSam\nJordan\nTaylor\nChris\nDana')
@@ -22,6 +23,7 @@ export function TeamGeneratorTool() {
     })
     setTeams(result)
     push(`${new Date().toLocaleTimeString()}: ${result.map((t, i) => `T${i + 1}[${t.join(',')}]`).join(' | ')}`)
+    playSound('success')
   }
 
   return (

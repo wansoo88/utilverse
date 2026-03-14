@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { pickRandom } from '@/lib/random'
+import { playSound } from '@/lib/audio'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { CopyButton } from '@/components/common/CopyButton'
 
@@ -110,6 +111,7 @@ export function IcebreakerQuestionTool() {
     const next = pickRandom(pool)
     setResult(next)
     push(`${new Date().toLocaleTimeString()}: ${next}`)
+    playSound('pop')
   }
 
   return (

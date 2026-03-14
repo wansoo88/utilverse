@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomInt } from '@/lib/random'
+import { playSound } from '@/lib/audio'
 
 function randomColor() {
   const r = randomInt(0, 255)
@@ -21,6 +22,7 @@ export function RandomColorTool() {
     const next = randomColor()
     setColor(next)
     push(`${new Date().toLocaleTimeString()}: ${next.hex} / rgb(${next.r}, ${next.g}, ${next.b})`)
+    playSound('pop')
   }
 
   return (

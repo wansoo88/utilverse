@@ -6,6 +6,8 @@ import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomBool } from '@/lib/random'
 import { burstConfetti } from '@/lib/confetti'
 import { CopyButton } from '@/components/common/CopyButton'
+import { playSound } from '@/lib/audio'
+import { unlockAchievement, trackToolUsed } from '@/lib/useAchievements'
 
 export function YesNoTool() {
   const [result, setResult] = useState<'Yes' | 'No' | ''>('')
@@ -22,6 +24,9 @@ export function YesNoTool() {
       setResult(next)
       setPhase('result')
       push(`${new Date().toLocaleTimeString()}: ${next}`)
+      playSound(next === 'Yes' ? 'yes' : 'no')
+      unlockAchievement(next === 'Yes' ? 'first-yes' : 'first-no')
+      trackToolUsed('yes-no')
       if (next === 'Yes') burstConfetti()
     }, 700)
   }

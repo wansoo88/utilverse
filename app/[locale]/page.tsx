@@ -11,6 +11,8 @@ import { StaggerChildren, StaggerItem } from '@/components/motion/StaggerChildre
 import { ScaleIn } from '@/components/motion/ScaleIn'
 import { withBasePath } from '@/lib/site'
 import { buildMeta } from '@/lib/seo'
+import { LiveCounter } from '@/components/home/LiveCounter'
+import { BadgeGallery } from '@/components/common/BadgeGallery'
 
 const homeMeta: Record<string, { title: string; description: string }> = {
   en: {
@@ -71,6 +73,9 @@ export default function HomePage({ params }: { params: { locale: string } }) {
           </FadeIn>
           <FadeIn direction="up" delay={0.14}>
             <p className="section-copy">{dict.home.subtitle}</p>
+          </FadeIn>
+          <FadeIn direction="up" delay={0.16}>
+            <LiveCounter />
           </FadeIn>
           <FadeIn direction="up" delay={0.2}>
             <div className="hero-cta-row">
@@ -143,6 +148,9 @@ export default function HomePage({ params }: { params: { locale: string } }) {
       </section>
 
       <AdSlot slot="0000000003" label="Homepage middle slot" />
+
+      {/* Achievement Gallery */}
+      <BadgeGallery />
     </div>
   )
 }
