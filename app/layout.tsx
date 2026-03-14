@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { DM_Sans, Space_Grotesk } from 'next/font/google'
+import Script from 'next/script'
 import { siteConfig, organizationSchema } from '@/lib/seo'
 
 const bodyFont = DM_Sans({ subsets: ['latin'], variable: '--font-body' })
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT
+  const gaId = process.env.NEXT_PUBLIC_GA_ID
 
   return (
     <html lang="en" data-theme="dark" className={`${bodyFont.variable} ${displayFont.variable}`}>
@@ -42,6 +44,23 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }}
         />
         {children}
+        {/* GA4 — env-gate, afterInteractive로 성능 영향 최소화 */}
+        {gaId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}', { page_path: window.location.pathname });
+              `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   )
