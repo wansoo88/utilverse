@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomInt } from '@/lib/random'
+import { playSound } from '@/lib/audio'
 
 export function CountdownTimerRandomTool() {
   const [min, setMin] = useState(5)
@@ -23,6 +24,7 @@ export function CountdownTimerRandomTool() {
     if (running && remaining === 0 && picked !== null) {
       setRunning(false)
       push(`${new Date().toLocaleTimeString()}: timer finished at ${picked}s`)
+      playSound('timer-done')
     }
   }, [running, remaining, picked, push])
 

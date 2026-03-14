@@ -115,7 +115,7 @@ export function ToolPageShell({
         <div className="tool-shell-hero">
           <div>
             <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.75rem', flexWrap: 'wrap' }}>
-              <h1 className="section-title" style={{ margin: 0 }}>{content.title}</h1>
+              <h1 className="section-title tool-main-title" style={{ margin: 0 }}>{content.title}</h1>
               <ShareButton title={content.title} text={content.subtitle} />
             </div>
             <p className="section-copy" style={{ margin: '0.55rem 0 0.95rem' }}>
@@ -142,37 +142,41 @@ export function ToolPageShell({
 
       <section className="card" style={{ marginTop: '1rem', padding: '1.2rem' }}>
         <h2 className="section-title">Features</h2>
-        <ul className="section-copy" style={{ paddingLeft: '1rem' }}>
+        <div className="tool-section-grid2">
           {content.features.map((item) => (
-            <li key={item} style={{ marginBottom: '0.45rem' }}>
+            <div key={item} className="tool-feature-card section-copy">
+              <i className="tool-feature-icon">✓</i>
               {item}
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
 
       <AdSlot slot="0000000002" label="In-content Ad (between sections)" />
 
       <section className="card" style={{ marginTop: '1rem', padding: '1.2rem' }}>
         <h2 className="section-title">Use Cases</h2>
-        <ul className="section-copy" style={{ paddingLeft: '1rem' }}>
+        <div className="tool-section-grid2">
           {content.useCases.map((item) => (
-            <li key={item} style={{ marginBottom: '0.45rem' }}>
+            <div key={item} className="tool-feature-card section-copy">
+              <i className="tool-feature-icon">›</i>
               {item}
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
 
       <section className="card" style={{ marginTop: '1rem', padding: '1.2rem' }}>
         <h2 className="section-title">Tips & Strategy</h2>
-        <ul className="section-copy" style={{ paddingLeft: '1rem' }}>
-          {content.tips.map((item) => (
-            <li key={item} style={{ marginBottom: '0.45rem' }}>
-              {item}
-            </li>
-          ))}
-        </ul>
+        <div className="tool-section-highlight">
+          <ul className="section-copy" style={{ paddingLeft: '1rem', margin: 0 }}>
+            {content.tips.map((item) => (
+              <li key={item} style={{ marginBottom: '0.45rem' }}>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <section className="card" style={{ marginTop: '1rem', padding: '1.2rem' }}>

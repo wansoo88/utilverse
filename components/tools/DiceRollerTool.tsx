@@ -1,15 +1,35 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomInt } from '@/lib/random'
 import { sideCannonConfetti } from '@/lib/confetti'
+import { playSound } from '@/lib/audio'
+import { StatsPanel } from '@/components/common/StatsPanel'
+import { unlockAchievement, trackToolUsed } from '@/lib/useAchievements'
 
 const diceTypes = [4, 6, 8, 10, 12, 20]
 
-const DICE_FACES: Record<number, string> = {
-  1: '⚀', 2: '⚁', 3: '⚂', 4: '⚃', 5: '⚄', 6: '⚅'
+// SVG dot positions for D6
+const DOT_POSITIONS: Record<number, [number, number][]> = {
+  1: [[50, 50]],
+  2: [[25, 25], [75, 75]],
+  3: [[25, 25], [50, 50], [75, 75]],
+  4: [[25, 25], [75, 25], [25, 75], [75, 75]],
+  5: [[25, 25], [75, 25], [50, 50], [25, 75], [75, 75]],
+  6: [[25, 25], [75, 25], [25, 50], [75, 50], [25, 75], [75, 75]]
+}
+
+function DiceFaceSVG({ value }: { value: number }) {
+  const dots = DOT_POSITIONS[value] ?? []
+  return (
+    <svg viewBox="0 0 100 100" width="100%" height="100%" aria-label={`Die showing ${value}`}>
+      {dots.map(([cx, cy], i) => (
+        <circle key={i} cx={cx} cy={cy} r={8} fill="white" />
+      ))}
+    </svg>
+  )
 }
 
 export function DiceRollerTool() {
@@ -19,26 +39,47 @@ export function DiceRollerTool() {
   const [phase, setPhase] = useState<'input' | 'running' | 'result'>('input')
   const { items, push, clear } = useLocalHistory('history-dice')
 
-  const roll = () => {
+  const roll = useCallback(() => {
+    if (phase === 'running') return
     setPhase('running')
+    playSound('dice')
     window.setTimeout(() => {
       const values = Array.from({ length: count }, () => randomInt(1, sides))
       setResult(values)
       setPhase('result')
       const sum = values.reduce((acc, cur) => acc + cur, 0)
       push(`${new Date().toLocaleTimeString()}: [${values.join(', ')}] total=${sum}`)
-      // Big confetti when all dice are max
+      unlockAchievement('first-roll')
+      trackToolUsed('dice-roller')
+      if (items.length + 1 >= 10) unlockAchievement('roll-10')
       if (values.every((v) => v === sides)) {
         sideCannonConfetti()
       }
     }, 650)
-  }
+  }, [phase, count, sides, push])
+
+  // Space to roll
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.code === 'Space' && !(e.target instanceof HTMLInputElement) && !(e.target instanceof HTMLSelectElement)) {
+        e.preventDefault()
+        roll()
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [roll])
 
   const sum = result.reduce((a, b) => a + b, 0)
+  const maxPossible = sides * count
+
+  // Session stats
+  const rollCount = items.length
+  const allMaxRolls = items.filter((i) => i.includes(`total=${maxPossible}`)).length
 
   return (
     <div className="card" style={{ padding: '1rem' }}>
-      <p className="section-copy">Step 1. Choose die and count. Step 2. Roll. Step 3. Check total and rerun.</p>
+      <p className="section-copy">Choose die type and count, then roll. Space to reroll.</p>
       <div className="grid md:grid-cols-3 gap-3" style={{ marginTop: '0.7rem' }}>
         <label>
           <span style={{ fontWeight: 600 }}>Die type</span>
@@ -54,7 +95,7 @@ export function DiceRollerTool() {
         </label>
         <div className="flex items-end">
           <button className="btn btn-primary w-full" type="button" onClick={roll} disabled={phase === 'running'}>
-            {phase === 'running' ? 'Rolling...' : 'Roll Dice'}
+            {phase === 'running' ? 'Rolling…' : 'Roll Dice'}
           </button>
         </div>
       </div>
@@ -85,11 +126,14 @@ export function DiceRollerTool() {
                   background: 'linear-gradient(135deg, #A855F7, #7C3AED)',
                   color: '#fff',
                   fontWeight: 800,
-                  fontSize: sides === 6 ? '1.6rem' : '1.1rem',
-                  boxShadow: '0 4px 12px rgba(168, 85, 247, 0.4)'
+                  fontSize: '1.1rem',
+                  boxShadow: '0 4px 12px rgba(168, 85, 247, 0.4)',
+                  padding: sides === 6 ? '6px' : undefined
                 }}
               >
-                {sides === 6 && val <= 6 ? DICE_FACES[val] : val}
+                {sides === 6 && val >= 1 && val <= 6
+                  ? <DiceFaceSVG value={val} />
+                  : val}
               </motion.div>
             ))}
           </motion.div>
@@ -107,7 +151,7 @@ export function DiceRollerTool() {
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               className="result-chip result-good"
             >
-              Total: {sum}
+              Total: {sum} / {maxPossible}
             </motion.p>
           )}
         </AnimatePresence>
@@ -117,6 +161,13 @@ export function DiceRollerTool() {
           </button>
         )}
       </div>
+
+      {rollCount > 0 && (
+        <StatsPanel stats={[
+          { label: 'Rolls', value: rollCount },
+          { label: 'Max rolls', value: allMaxRolls }
+        ]} />
+      )}
 
       <div style={{ marginTop: '0.9rem' }}>
         <p style={{ fontWeight: 700 }}>History</p>

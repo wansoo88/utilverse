@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomInt } from '@/lib/random'
+import { playSound } from '@/lib/audio'
 
 const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -20,6 +21,7 @@ export function RandomLetterTool() {
     })
     setResult(next)
     push(`${new Date().toLocaleTimeString()}: ${next.join(', ')}`)
+    playSound('pop')
   }
 
   return (

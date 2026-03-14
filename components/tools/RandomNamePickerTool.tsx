@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { pickRandom } from '@/lib/random'
+import { playSound } from '@/lib/audio'
 
 export function RandomNamePickerTool() {
   const [raw, setRaw] = useState('Alex\nSam\nJordan\nTaylor')
@@ -20,6 +21,7 @@ export function RandomNamePickerTool() {
     const next = pickRandom(names)
     setResult(next)
     push(`${new Date().toLocaleTimeString()}: ${next}`)
+    playSound('pop')
   }
 
   return (

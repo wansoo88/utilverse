@@ -5,11 +5,15 @@ import { blogPosts } from '@/lib/content/blog'
 import { toolCatalog } from '@/lib/content/catalog'
 import { getDictionary, isLocale } from '@/lib/i18n'
 import { BentoCard } from '@/components/home/BentoCard'
+import { HeroLiveTool } from '@/components/home/HeroLiveTool'
 import { FadeIn } from '@/components/motion/FadeIn'
 import { StaggerChildren, StaggerItem } from '@/components/motion/StaggerChildren'
 import { ScaleIn } from '@/components/motion/ScaleIn'
 import { withBasePath } from '@/lib/site'
 import { buildMeta } from '@/lib/seo'
+import { LiveCounter } from '@/components/home/LiveCounter'
+import { BadgeGallery } from '@/components/common/BadgeGallery'
+import { TodayChallenge } from '@/components/home/TodayChallenge'
 
 const homeMeta: Record<string, { title: string; description: string }> = {
   en: {
@@ -59,6 +63,9 @@ export default function HomePage({ params }: { params: { locale: string } }) {
 
   return (
     <div className="container-page">
+      {/* Today's Challenge Banner */}
+      <TodayChallenge locale={locale} />
+
       {/* Hero Section */}
       <section className="hero-panel card" style={{ marginBottom: '1.5rem' }}>
         <div className="hero-copy">
@@ -70,6 +77,9 @@ export default function HomePage({ params }: { params: { locale: string } }) {
           </FadeIn>
           <FadeIn direction="up" delay={0.14}>
             <p className="section-copy">{dict.home.subtitle}</p>
+          </FadeIn>
+          <FadeIn direction="up" delay={0.16}>
+            <LiveCounter />
           </FadeIn>
           <FadeIn direction="up" delay={0.2}>
             <div className="hero-cta-row">
@@ -99,17 +109,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
             ))}
           </div>
         </div>
-        <div className="hero-media">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={withBasePath('/media/hero-decision.svg')}
-            alt="Decision tools visual"
-            width={640}
-            height={360}
-            className="hero-float"
-            loading="eager"
-          />
-        </div>
+        <HeroLiveTool locale={locale} />
       </section>
 
       {/* Bento Grid */}
@@ -152,6 +152,9 @@ export default function HomePage({ params }: { params: { locale: string } }) {
       </section>
 
       <AdSlot slot="0000000003" label="Homepage middle slot" />
+
+      {/* Achievement Gallery */}
+      <BadgeGallery />
     </div>
   )
 }

@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { pickRandom } from '@/lib/random'
+import { playSound } from '@/lib/audio'
 
 export function RandomFoodPickerTool() {
   const [raw, setRaw] = useState('Pizza\nSushi\nTacos\nPasta\nSalad')
@@ -17,6 +18,7 @@ export function RandomFoodPickerTool() {
     const next = pickRandom(options)
     setResult(next)
     push(`${new Date().toLocaleTimeString()}: ${next}`)
+    playSound('pop')
   }
 
   return (

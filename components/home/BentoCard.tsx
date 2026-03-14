@@ -26,6 +26,16 @@ export function BentoCard({ tool, locale }: { tool: ToolCatalogItem; locale: str
       <FavoriteButton href={`/${locale}${tool.href}`} name={tool.name} />
       <Link
         href={`/${locale}${tool.href}`}
+        onMouseEnter={e => {
+          const el = e.currentTarget as HTMLElement
+          el.style.boxShadow = `0 0 0 1px ${hexToRgba(accent, 0.5)}, 0 8px 32px ${hexToRgba(accent, 0.28)}, 0 24px 48px ${hexToRgba(accent, 0.1)}`
+          el.style.borderColor = hexToRgba(accent, 0.6)
+        }}
+        onMouseLeave={e => {
+          const el = e.currentTarget as HTMLElement
+          el.style.boxShadow = ''
+          el.style.borderColor = ''
+        }}
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -38,9 +48,22 @@ export function BentoCard({ tool, locale }: { tool: ToolCatalogItem; locale: str
           color: 'var(--text)',
           position: 'relative',
           overflow: 'hidden',
-          transition: 'border-color 0.2s ease'
+          transition: 'border-color 0.25s ease, box-shadow 0.25s ease'
         }}
       >
+        {/* Top accent line */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '2px',
+            background: `linear-gradient(90deg, transparent, ${hexToRgba(accent, 0.7)}, transparent)`,
+            borderRadius: '24px 24px 0 0',
+          }}
+        />
         {/* Glow top-right */}
         <div
           aria-hidden="true"

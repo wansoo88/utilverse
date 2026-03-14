@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { getDictionary, localePath, type Locale } from '@/lib/i18n'
 import { ThemeToggle } from '@/components/common/ThemeToggle'
+import { SoundToggle } from '@/components/common/SoundToggle'
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher'
 import { MobileNav } from './MobileNav'
 
@@ -35,6 +36,7 @@ export function Header({ locale }: { locale: Locale }) {
         </nav>
 
         <div className="flex items-center gap-2">
+          <SoundToggle />
           <ThemeToggle />
           {/* Mobile nav */}
           <MobileNav links={navLinks} />

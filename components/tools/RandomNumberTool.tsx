@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useLocalHistory } from '@/lib/useLocalHistory'
 import { randomInt } from '@/lib/random'
 import { CopyButton } from '@/components/common/CopyButton'
+import { playSound } from '@/lib/audio'
 
 export function RandomNumberTool() {
   const [min, setMin] = useState(1)
@@ -16,6 +17,7 @@ export function RandomNumberTool() {
 
   const generate = () => {
     if (max < min) return
+    playSound('slot')
     const pool = Array.from({ length: max - min + 1 }, (_, i) => i + min)
     const next: number[] = []
 
