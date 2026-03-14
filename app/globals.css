@@ -551,6 +551,17 @@ a {
   transform: scaleX(1);
 }
 
+.site-nav a[aria-current='page'] {
+  color: var(--brand);
+  border-color: color-mix(in srgb, var(--brand) 35%, transparent);
+  background: color-mix(in srgb, var(--brand) 10%, transparent);
+}
+
+.site-nav a[aria-current='page']::after {
+  transform: scaleX(1);
+  background: var(--brand);
+}
+
 .site-footer {
   padding: 1rem;
   margin-top: 2rem;

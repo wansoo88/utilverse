@@ -13,6 +13,7 @@ import { withBasePath } from '@/lib/site'
 import { buildMeta } from '@/lib/seo'
 import { LiveCounter } from '@/components/home/LiveCounter'
 import { BadgeGallery } from '@/components/common/BadgeGallery'
+import { TodayChallenge } from '@/components/home/TodayChallenge'
 
 const homeMeta: Record<string, { title: string; description: string }> = {
   en: {
@@ -62,6 +63,9 @@ export default function HomePage({ params }: { params: { locale: string } }) {
 
   return (
     <div className="container-page">
+      {/* Today's Challenge Banner */}
+      <TodayChallenge locale={locale} />
+
       {/* Hero Section */}
       <section className="hero-panel card" style={{ marginBottom: '1.5rem' }}>
         <div className="hero-copy">
