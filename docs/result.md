@@ -130,7 +130,7 @@ const idx = seed % CHALLENGES.length  // 30개 챌린지 순환
 - `components/home/BentoCard.tsx`: `onMouseEnter`/`onMouseLeave` accent 글로우
 - 카드 상단 accent 컬러 라인
 
-#### 11-4: 네비게이션 Active 상태 (이번 세션)
+#### 11-4: 네비게이션 Active 상태
 - `app/globals.css`에 `.site-nav a[aria-current='page']` 스타일 추가
 ```css
 .site-nav a[aria-current='page'] {
@@ -143,7 +143,37 @@ const idx = seed % CHALLENGES.length  // 30개 챌린지 순환
   background: var(--brand);
 }
 ```
-- 버튼 리플: `globals.css` `.btn::after` radial-gradient 리플이 이미 존재 (lines 433-449)
+- 버튼 리플: `globals.css` `.btn::after` radial-gradient 리플이 이미 존재
+
+#### 11-5: Result 칩 Glow Pulse
+- `.result-bad` 클래스 추가 (빨간 glow — `#f43f5e`)
+- `@keyframes glowPulseRed` 추가
+- `YesNoTool.tsx` No 결과를 `result-warn`(노란) → `result-bad`(빨간)으로 변경
+- 색상 의미 체계 완성: green(Yes/Heads) / yellow(Tails) / red(No)
+
+#### 11-6: Cursor Aura
+- `components/common/CursorAura.tsx` 신규 생성 — `mousemove` 이벤트로 `--x`/`--y` CSS 변수 업데이트
+- `app/globals.css`에 `#cursor-aura` radial-gradient 스타일 추가 (touch 기기 비활성)
+- `app/[locale]/layout.tsx`에 `<CursorAura />` 마운트
+
+#### 11-7: ThemeToggle Circular Reveal
+- `components/common/ThemeToggle.tsx`에 View Transitions API 적용
+- 클릭 위치에서 원형으로 퍼지는 `clipPath` 애니메이션 (380ms)
+- 미지원 브라우저 graceful fallback
+
+#### 11-8: ToolPageShell 섹션 레이아웃 3종 다양화
+- `components/layout/ToolPageShell.tsx` 업데이트
+  - Features → `tool-section-grid2` (2컬럼 카드)
+  - Use Cases → `tool-section-grid2`
+  - Tips → `tool-section-highlight` (좌측 accent bar)
+- `globals.css`에 CSS 클래스 추가
+
+#### 11-9: 모바일 Hero + Bento 터치 최적화
+- `globals.css` `@media (max-width: 768px)` 추가
+  - `.hero-copy order:2`, `.hero-media order:1` — 이미지 먼저
+  - `.hero-stat-grid repeat(3, 1fr)`
+  - `.bento-card:active scale(0.96)` — 터치 피드백
+  - `.btn -webkit-tap-highlight-color: transparent`
 
 ---
 
@@ -164,12 +194,15 @@ const idx = seed % CHALLENGES.length  // 30개 챌린지 순환
 | HSL 균등 분포 색상 | 옵션 수 관계없이 시각적으로 균형 잡힌 색상 자동 배분 |
 | 날짜 시드 챌린지 | 서버/클라이언트 모두 동일 결과, API 불필요 |
 | Canvas API 직접 렌더링 | CSS conic-gradient 대비 텍스트/포인터 제어 자유도 높음 |
+| result-bad 분리 (red) | green=Yes/Heads, yellow=Tails, red=No — 색상 의미 명확화 |
+| View Transitions API | 번들 0 추가로 circular reveal 테마 전환 (미지원 graceful fallback) |
+| Cursor Aura (CSS var) | `mousemove` → `--x`/`--y` CSS 변수 주입 → CSS `radial-gradient` 렌더링 (JS 최소화) |
 
 ---
 
 ## 파일 변경 목록 (전체)
 
-### 신규 생성 (14개)
+### 신규 생성 (16개)
 - `lib/wheelStorage.ts`
 - `lib/audio.ts`
 - `lib/useAchievements.ts`
@@ -184,8 +217,9 @@ const idx = seed % CHALLENGES.length  // 30개 챌린지 순환
 - `components/home/LiveCounter.tsx`
 - `components/home/TodayChallenge.tsx`
 - `components/home/HeroLiveTool.tsx`
+- `components/common/CursorAura.tsx`
 
-### 수정 (18개)
+### 수정 (21개)
 - `components/tools/SpinWheelTool.tsx` (전면 재작성)
 - `components/tools/CoinFlipTool.tsx` (재작성)
 - `components/tools/DiceRollerTool.tsx` (재작성)
@@ -202,6 +236,9 @@ const idx = seed % CHALLENGES.length  // 30개 챌린지 순환
 - `components/tools/BabyNameGeneratorTool.tsx`
 - `components/tools/IcebreakerQuestionTool.tsx`
 - `components/layout/Header.tsx`
+- `components/layout/ToolPageShell.tsx` (섹션 레이아웃 3종)
+- `components/common/ThemeToggle.tsx` (Circular Reveal)
+- `app/globals.css` (result-bad, glowPulseRed, cursor-aura, nav active, mobile 최적화)
 - `app/[locale]/layout.tsx`
 - `app/[locale]/page.tsx`
 - `app/globals.css`

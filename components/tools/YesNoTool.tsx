@@ -101,7 +101,7 @@ export function YesNoTool() {
         )}
         {result && (
           <span
-            className={`result-chip ${isYes ? 'result-good' : 'result-warn'}`}
+            className={`result-chip ${isYes ? 'result-good' : 'result-bad'}`}
           >
             {isYes ? '✓ Yes!' : '✗ No!'}
           </span>
