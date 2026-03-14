@@ -29,7 +29,7 @@ export const CHALLENGES: Challenge[] = [
   { id: 14, emoji: '💬', text: 'Use Icebreaker to find a question for your next meeting opener!', tool: 'icebreaker-question-generator', toolLabel: 'Icebreaker' },
   { id: 15, emoji: '🪙', text: 'Coin flip showdown: Heads wins 3 times in a row. How many flips does it take?', tool: 'coin-flip', toolLabel: 'Coin Flip' },
   { id: 16, emoji: '🎲', text: 'Roll a D20 — if you get 20, screenshot and share it!', tool: 'dice-roller', toolLabel: 'Dice Roller' },
-  { id: 17, emoji: '🎡', text: 'Create a custom wheel with your team's names for today's presenter!', tool: 'spin-the-wheel', toolLabel: 'Spin Wheel' },
+  { id: 17, emoji: '🎡', text: "Create a custom wheel with your team's names for today's presenter!", tool: 'spin-the-wheel', toolLabel: 'Spin Wheel' },
   { id: 18, emoji: '✅', text: 'Ask the generator: "Should I take a break right now?" Follow the answer!', tool: 'yes-or-no', toolLabel: 'Yes or No' },
   { id: 19, emoji: '🔢', text: 'Generate a random number 1–52 — look up that playing card and read its fortune!', tool: 'random-number-generator', toolLabel: 'Random Number' },
   { id: 20, emoji: '👥', text: 'Pick a random name from your contacts list to text "Hey!" to today!', tool: 'random-name-picker', toolLabel: 'Name Picker' },
