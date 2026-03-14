@@ -15,11 +15,40 @@ export function ThemeToggle() {
     setMounted(true)
   }, [])
 
-  const onToggle = () => {
+  const onToggle = (e: React.MouseEvent) => {
     const next = theme === 'dark' ? 'light' : 'dark'
-    setTheme(next)
-    localStorage.setItem('theme', next)
-    document.documentElement.dataset.theme = next
+    const applyTheme = () => {
+      setTheme(next)
+      localStorage.setItem('theme', next)
+      document.documentElement.dataset.theme = next
+    }
+
+    if (typeof document.startViewTransition !== 'function') {
+      applyTheme()
+      return
+    }
+
+    const { clientX: x, clientY: y } = e
+    const transition = document.startViewTransition(applyTheme)
+    transition.ready.then(() => {
+      const radius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
+      )
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${radius}px at ${x}px ${y}px)`
+          ]
+        },
+        {
+          duration: 380,
+          easing: 'ease-in-out',
+          pseudoElement: '::view-transition-new(root)'
+        }
+      )
+    })
   }
 
   if (!mounted) {
@@ -29,7 +58,7 @@ export function ThemeToggle() {
   return (
     <button
       className="btn"
-      onClick={onToggle}
+      onClick={(e) => onToggle(e)}
       type="button"
       aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
       style={{ minWidth: 'unset', padding: '0.5rem 0.75rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}

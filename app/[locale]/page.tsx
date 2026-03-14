@@ -5,6 +5,7 @@ import { blogPosts } from '@/lib/content/blog'
 import { toolCatalog } from '@/lib/content/catalog'
 import { getDictionary, isLocale } from '@/lib/i18n'
 import { BentoCard } from '@/components/home/BentoCard'
+import { HeroLiveTool } from '@/components/home/HeroLiveTool'
 import { FadeIn } from '@/components/motion/FadeIn'
 import { StaggerChildren, StaggerItem } from '@/components/motion/StaggerChildren'
 import { ScaleIn } from '@/components/motion/ScaleIn'
@@ -99,17 +100,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
             ))}
           </div>
         </div>
-        <div className="hero-media">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={withBasePath('/media/hero-decision.svg')}
-            alt="Decision tools visual"
-            width={640}
-            height={360}
-            className="hero-float"
-            loading="eager"
-          />
-        </div>
+        <HeroLiveTool locale={locale} />
       </section>
 
       {/* Bento Grid */}

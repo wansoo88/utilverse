@@ -146,7 +146,16 @@ a {
   font-family: var(--font-display), 'Segoe UI', sans-serif;
   font-size: clamp(1.8rem, 3.8vw, 2.9rem);
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  background: linear-gradient(
+    135deg,
+    var(--text) 0%,
+    color-mix(in srgb, var(--brand) 70%, var(--text)) 55%,
+    var(--brand-2) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .hero-cta-row {
@@ -173,9 +182,14 @@ a {
 
 .mini-stat strong {
   display: block;
-  font-size: 1.15rem;
+  font-size: 1.28rem;
   line-height: 1.1;
   font-family: var(--font-display), 'Segoe UI', sans-serif;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .mini-stat span {
@@ -217,6 +231,19 @@ a {
   font-weight: 700;
   font-family: var(--font-display), 'Segoe UI', sans-serif;
   margin: 0 0 0.5rem;
+}
+
+/* 도구 메인 타이틀 (h1) — 더 강한 gradient */
+.tool-main-title {
+  background: linear-gradient(
+    135deg,
+    var(--text) 0%,
+    color-mix(in srgb, var(--brand) 65%, var(--text)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.025em;
 }
 
 .section-copy {
@@ -398,7 +425,27 @@ a {
   min-height: 48px;
   min-width: 124px;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
   transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.btn:active::after {
+  opacity: 1;
+  transform: scale(1);
+  transition: none;
 }
 
 .btn:hover {
@@ -475,13 +522,33 @@ a {
   border-radius: 999px;
   color: var(--text-muted);
   border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
   transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: var(--brand);
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .site-nav a:hover {
   border-color: var(--line);
   color: var(--text);
   background: color-mix(in srgb, var(--card-raised) 82%, transparent);
+}
+
+.site-nav a:hover::after {
+  transform: scaleX(1);
 }
 
 .site-footer {
@@ -525,14 +592,22 @@ a {
 
 .result-good {
   background: color-mix(in srgb, #2ecc8a 20%, transparent);
-  border-color: color-mix(in srgb, #2ecc8a 40%, var(--line));
-  box-shadow: 0 0 12px color-mix(in srgb, #2ecc8a 20%, transparent);
+  border-color: color-mix(in srgb, #2ecc8a 50%, var(--line));
+  box-shadow:
+    0 0 0 1px rgba(46, 204, 138, 0.25),
+    0 0 18px rgba(46, 204, 138, 0.25),
+    0 4px 12px rgba(0, 0, 0, 0.12);
+  animation: glowPulseGreen 2.4s ease-in-out infinite;
 }
 
 .result-warn {
   background: color-mix(in srgb, #f5c451 22%, transparent);
-  border-color: color-mix(in srgb, #f5c451 40%, var(--line));
-  box-shadow: 0 0 12px color-mix(in srgb, #f5c451 20%, transparent);
+  border-color: color-mix(in srgb, #f5c451 50%, var(--line));
+  box-shadow:
+    0 0 0 1px rgba(245, 196, 81, 0.25),
+    0 0 18px rgba(245, 196, 81, 0.22),
+    0 4px 12px rgba(0, 0, 0, 0.12);
+  animation: glowPulseYellow 2.4s ease-in-out infinite;
 }
 
 .result-muted {
@@ -595,6 +670,77 @@ a {
   100% { transform: translateY(0); }
 }
 
+@keyframes glowPulseGreen {
+  0%, 100% {
+    box-shadow: 0 0 0 1px rgba(46, 204, 138, 0.25), 0 0 18px rgba(46, 204, 138, 0.25), 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(46, 204, 138, 0.45), 0 0 32px rgba(46, 204, 138, 0.45), 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+}
+
+@keyframes glowPulseYellow {
+  0%, 100% {
+    box-shadow: 0 0 0 1px rgba(245, 196, 81, 0.25), 0 0 18px rgba(245, 196, 81, 0.22), 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(245, 196, 81, 0.45), 0 0 32px rgba(245, 196, 81, 0.4), 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* Cursor Aura */
+#cursor-aura {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 560px;
+  height: 560px;
+  transform: translate(calc(var(--x, -9999px) - 280px), calc(var(--y, -9999px) - 280px));
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--brand) 7%, transparent) 0%,
+    transparent 68%
+  );
+  z-index: 9999;
+  border-radius: 50%;
+  transition: transform 0.1s ease-out;
+}
+
+@media (hover: none) {
+  #cursor-aura { display: none; }
+}
+
+/* Tool section layouts (11-8) */
+.tool-section-grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+}
+
+.tool-feature-card {
+  padding: 0.85rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--card-raised) 55%, transparent);
+  line-height: 1.55;
+}
+
+.tool-feature-icon {
+  display: inline-block;
+  font-size: 1rem;
+  margin-right: 0.4rem;
+  color: var(--brand);
+  font-style: normal;
+}
+
+.tool-section-highlight {
+  border-left: 3px solid var(--brand);
+  padding: 0.75rem 1rem;
+  border-radius: 0 12px 12px 0;
+  background: color-mix(in srgb, var(--brand) 5%, transparent);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -639,8 +785,13 @@ a {
     padding: 1rem 0.8rem 2rem;
   }
 
+  /* Hero: 이미지 먼저, 텍스트 아래 */
+  .hero-copy  { order: 2; }
+  .hero-media { order: 1; max-height: 260px; }
+
   .hero-stat-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.45rem;
   }
 
   .tool-gallery {
@@ -663,5 +814,18 @@ a {
   .bento-sm {
     grid-column: span 1;
     grid-row: span 1;
+  }
+
+  /* Bento 터치 피드백 */
+  .bento-card:active {
+    transform: scale(0.96) !important;
+  }
+
+  .btn {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .tool-section-grid2 {
+    grid-template-columns: 1fr;
   }
 }
