@@ -22,7 +22,7 @@ export const CHALLENGES: Challenge[] = [
   { id: 7,  emoji: '🔤', text: 'Generate 5 random letters and make a word from them!', tool: 'random-letter-generator', toolLabel: 'Letter Generator' },
   { id: 8,  emoji: '🎨', text: 'Generate 3 random colors — can you name a paint they resemble?', tool: 'random-color-generator', toolLabel: 'Color Generator' },
   { id: 9,  emoji: '⏱️', text: 'Start a random timer — pause everything until it rings!', tool: 'countdown-timer-random', toolLabel: 'Countdown Timer' },
-  { id: 10, emoji: '🍕', text: 'Add 6 foods you've been craving and let the wheel pick tonight's dinner!', tool: 'random-food-picker', toolLabel: 'Food Picker' },
+  { id: 10, emoji: '🍕', text: "Add 6 foods you've been craving and let the wheel pick tonight's dinner!", tool: 'random-food-picker', toolLabel: 'Food Picker' },
   { id: 11, emoji: '📅', text: 'Generate a random date in the next year — plan something for that day!', tool: 'random-date-generator', toolLabel: 'Date Generator' },
   { id: 12, emoji: '🎰', text: 'Generate lottery numbers and check if any match a real draw!', tool: 'lottery-number-generator', toolLabel: 'Lottery Numbers' },
   { id: 13, emoji: '👶', text: 'Generate 3 baby names from different styles and vote on your favorite!', tool: 'baby-name-generator', toolLabel: 'Baby Names' },
