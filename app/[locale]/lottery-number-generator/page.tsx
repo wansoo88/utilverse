@@ -8,8 +8,8 @@ import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const i18n = getToolI18n('lottery-number-generator', params.locale)
   return buildMeta({
-    title: i18n?.metaTitle ?? 'Lottery Number Generator | Free Random Number Set',
-    description: i18n?.metaDescription ?? 'Generate unique lottery-style number combinations quickly.',
+    title: i18n?.metaTitle ?? 'Lottery Number Generator — Free Lucky Picks',
+    description: i18n?.metaDescription ?? "Generate unique lottery-style number combinations in one click. Customize range & count. Free, no signup. Try your luck today!",
     path: `/${params.locale}/lottery-number-generator`,
     locale: params.locale
   })

@@ -8,8 +8,8 @@ import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const i18n = getToolI18n('icebreaker-question-generator', params.locale)
   return buildMeta({
-    title: i18n?.metaTitle ?? 'Icebreaker Question Generator | Free Prompt Tool',
-    description: i18n?.metaDescription ?? 'Generate random icebreaker questions for teams, classes, and parties.',
+    title: i18n?.metaTitle ?? 'Icebreaker Question Generator — Free Prompts',
+    description: i18n?.metaDescription ?? "Generate random icebreaker questions for meetings, classes & parties. Fun, work-safe & engaging. Free, no signup. Break the ice in one click.",
     path: `/${params.locale}/icebreaker-question-generator`,
     locale: params.locale
   })

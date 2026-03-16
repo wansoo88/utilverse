@@ -8,8 +8,8 @@ import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const i18n = getToolI18n('dice-roller', params.locale)
   return buildMeta({
-    title: i18n?.metaTitle ?? 'Dice Roller | Free D4-D20 Dice Tool',
-    description: i18n?.metaDescription ?? 'Roll D4 to D20 dice online with multi-roll support and history.',
+    title: i18n?.metaTitle ?? 'Dice Roller — Free D4 to D20 Online Dice',
+    description: i18n?.metaDescription ?? "Roll virtual dice from D4 to D20 online. Multi-dice rolls, total sum & history. Free, no download. Perfect for D&D, board games & RPG.",
     path: `/${params.locale}/dice-roller`,
     locale: params.locale
   })

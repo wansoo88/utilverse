@@ -8,8 +8,8 @@ import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const i18n = getToolI18n('random-color', params.locale)
   return buildMeta({
-    title: i18n?.metaTitle ?? 'Random Color Generator | Free HEX and RGB Tool',
-    description: i18n?.metaDescription ?? 'Generate random colors with HEX and RGB values plus instant preview.',
+    title: i18n?.metaTitle ?? 'Random Color Generator — Free HEX and RGB',
+    description: i18n?.metaDescription ?? "Generate a random color with instant HEX, RGB & preview. Copy with one click. Free, no signup. Great for design, art & web projects.",
     path: `/${params.locale}/random-color`,
     locale: params.locale
   })

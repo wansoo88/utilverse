@@ -8,8 +8,8 @@ import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const i18n = getToolI18n('random-name-picker', params.locale)
   return buildMeta({
-    title: i18n?.metaTitle ?? 'Random Name Picker | Free Online Tool',
-    description: i18n?.metaDescription ?? 'Pick random names instantly for classrooms, raffles, and group activities.',
+    title: i18n?.metaTitle ?? 'Random Name Picker — Free Online Name Drawer',
+    description: i18n?.metaDescription ?? "Pick a random name from your list in one click. Paste names, draw a winner, repeat. Free, no signup. Perfect for classrooms, raffles & group decisions.",
     path: `/${params.locale}/random-name-picker`,
     locale: params.locale
   })

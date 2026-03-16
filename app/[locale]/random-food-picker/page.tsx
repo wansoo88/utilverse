@@ -8,8 +8,8 @@ import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const i18n = getToolI18n('random-food-picker', params.locale)
   return buildMeta({
-    title: i18n?.metaTitle ?? 'Random Food Picker | What Should I Eat?',
-    description: i18n?.metaDescription ?? 'Pick a meal randomly from your custom food list in one click.',
+    title: i18n?.metaTitle ?? 'Random Food Picker — What Should I Eat Today?',
+    description: i18n?.metaDescription ?? "Can't decide what to eat? Add your food options and get a random pick. Free, no signup. Settle dinner debates in one spin.",
     path: `/${params.locale}/random-food-picker`,
     locale: params.locale
   })

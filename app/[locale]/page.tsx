@@ -10,35 +10,35 @@ import { FadeIn } from '@/components/motion/FadeIn'
 import { StaggerChildren, StaggerItem } from '@/components/motion/StaggerChildren'
 import { ScaleIn } from '@/components/motion/ScaleIn'
 import { withBasePath } from '@/lib/site'
-import { buildMeta } from '@/lib/seo'
+import { buildMeta, faqSchema, webAppSchema } from '@/lib/seo'
 import { LiveCounter } from '@/components/home/LiveCounter'
 import { BadgeGallery } from '@/components/common/BadgeGallery'
 import { TodayChallenge } from '@/components/home/TodayChallenge'
 
 const homeMeta: Record<string, { title: string; description: string }> = {
   en: {
-    title: 'Free Online Random Decision Tools | Coin Flip, Dice, Wheel & More',
-    description: 'Make fast, fair decisions with free online tools: coin flip, dice roller, wheel spinner, yes/no generator, random number, and 10 more. No sign-up needed.',
+    title: 'Random Decision Maker — 15 Free Tools | Utilverse',
+    description: "Can't decide? Get an instant random pick with 15 free tools — coin flip, dice, wheel, yes/no, name picker & more. No signup. Works on any device.",
   },
   es: {
-    title: 'Herramientas de Decisión Aleatoria Gratis | Moneda, Dados, Ruleta',
-    description: 'Toma decisiones rápidas y justas con herramientas gratuitas: lanzar moneda, tirar dados, girar ruleta, sí/no, números aleatorios y más. Sin registro.',
+    title: 'Decisión Aleatoria — 15 Herramientas Gratis | Utilverse',
+    description: '¿No puedes decidir? Elige al instante con 15 herramientas gratis: cara o cruz, dados, ruleta, sí/no, sorteo de nombres y más. Sin registro, en cualquier dispositivo.',
   },
   pt: {
-    title: 'Ferramentas de Decisão Aleatória Grátis | Moeda, Dados, Roleta',
-    description: 'Tome decisões rápidas e justas com ferramentas gratuitas: cara ou coroa, dado, roleta, sim/não, números aleatórios e mais. Sem cadastro.',
+    title: 'Decisão Aleatória — 15 Ferramentas Grátis | Utilverse',
+    description: 'Não consegue decidir? Escolha na hora com 15 ferramentas grátis: cara ou coroa, dados, roleta, sim/não, sorteio de nomes e mais. Sem cadastro.',
   },
   ar: {
-    title: 'أدوات القرار العشوائي المجانية | عملة، نرد، عجلة والمزيد',
-    description: 'اتخذ قرارات سريعة وعادلة مع أدوات مجانية: قلب عملة، رمي نرد، عجلة الحظ، نعم/لا، أرقام عشوائية والمزيد. بدون تسجيل.',
+    title: 'أداة القرار العشوائي — 15 أداة مجانية | Utilverse',
+    description: 'لا تستطيع الاختيار؟ احصل على قرار فوري مع 15 أداة مجانية: قلب عملة، نرد، عجلة، نعم/لا والمزيد. بدون تسجيل، يعمل على أي جهاز.',
   },
   hi: {
-    title: 'मुफ्त रैंडम डिसीजन टूल्स | कॉइन फ्लिप, डाइस, व्हील और अधिक',
-    description: 'कॉइन फ्लिप, डाइस रोलर, स्पिन व्हील, हाँ/ना जनरेटर, रैंडम नंबर और 10+ टूल्स। तेज़, निष्पक्ष फैसले लें। रजिस्ट्रेशन की ज़रूरत नहीं।',
+    title: 'रैंडम डिसीजन मेकर — 15 मुफ्त टूल्स | Utilverse',
+    description: 'फैसला नहीं कर पा रहे? 15 मुफ्त टूल्स से तुरंत चुनें — कॉइन फ्लिप, डाइस, व्हील, हाँ/ना और अधिक। बिना रजिस्ट्रेशन, किसी भी डिवाइस पर।',
   },
   tr: {
-    title: 'Ücretsiz Rastgele Karar Araçları | Yazı Tura, Zar, Çark ve Daha Fazlası',
-    description: 'Yazı tura, zar atma, çark çevirme, evet/hayır üretici, rastgele sayı ve 10+ araçla hızlı, adil kararlar verin. Kayıt gerekmez.',
+    title: 'Rastgele Karar Verici — 15 Ücretsiz Araç | Utilverse',
+    description: 'Karar veremiyor musunuz? 15 ücretsiz araçla anında seçim yapın: yazı tura, zar, çark, evet/hayır ve daha fazlası. Kayıt yok, her cihazda çalışır.',
   },
 }
 
@@ -53,6 +53,35 @@ export function generateMetadata({ params }: { params: { locale: string } }) {
   })
 }
 
+const homeWebAppSchema = webAppSchema(
+  'Random Decision Maker',
+  '/en',
+  'Free online random decision tools: coin flip, dice roller, wheel spinner, yes/no generator, random name picker, and 10 more. No signup needed.'
+)
+
+const homeFaqSchema = faqSchema([
+  {
+    question: 'How does the random decision maker work?',
+    answer: 'Enter your options, click the button, and the tool randomly selects one for you using a crypto-safe randomization algorithm for fair results every time.'
+  },
+  {
+    question: 'Are all the decision tools completely free?',
+    answer: 'Yes — all 15 tools are completely free with no signup, no account, and no hidden fees. Use them as many times as you want.'
+  },
+  {
+    question: 'Can I use these tools for group decisions?',
+    answer: 'Absolutely. Tools like Spin the Wheel, Random Name Picker, and Team Generator are built specifically for group decisions — just enter everyone\'s options and let the tool decide fairly.'
+  },
+  {
+    question: 'Is the randomness truly fair?',
+    answer: 'Yes. All tools use crypto.getRandomValues() — the same cryptographic randomness used in security applications — rather than Math.random(), which can be biased.'
+  },
+  {
+    question: 'Do these tools work on mobile?',
+    answer: 'Yes, all tools are fully responsive and work on any device — phone, tablet, or desktop — with no download or app installation required.'
+  }
+])
+
 export default function HomePage({ params }: { params: { locale: string } }) {
   if (!isLocale(params.locale)) {
     notFound()
@@ -63,6 +92,8 @@ export default function HomePage({ params }: { params: { locale: string } }) {
 
   return (
     <div className="container-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeWebAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqSchema) }} />
       {/* Today's Challenge Banner */}
       <TodayChallenge locale={locale} />
 
