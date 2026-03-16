@@ -8,8 +8,8 @@ import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const i18n = getToolI18n('countdown-timer-random', params.locale)
   return buildMeta({
-    title: i18n?.metaTitle ?? 'Countdown Timer Random | Free Unpredictable Timer Tool',
-    description: i18n?.metaDescription ?? 'Run random-duration countdown rounds for games, classes, and activities.',
+    title: i18n?.metaTitle ?? 'Random Countdown Timer — Free Surprise Timer',
+    description: i18n?.metaDescription ?? "Set a countdown timer with a random duration — perfect for games, classrooms & focus sprints. Free, no signup. Surprise yourself!",
     path: `/${params.locale}/countdown-timer-random`,
     locale: params.locale
   })

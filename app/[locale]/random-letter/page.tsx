@@ -8,8 +8,8 @@ import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const i18n = getToolI18n('random-letter', params.locale)
   return buildMeta({
-    title: i18n?.metaTitle ?? 'Random Letter Generator | Free A-Z Picker',
-    description: i18n?.metaDescription ?? 'Generate random letters for games, writing prompts, and classroom exercises.',
+    title: i18n?.metaTitle ?? 'Random Letter Generator — Free A-Z Picker',
+    description: i18n?.metaDescription ?? "Generate random letters A-Z in one click. Perfect for word games, Scrabble, writing prompts & classroom activities. Free, no signup.",
     path: `/${params.locale}/random-letter`,
     locale: params.locale
   })

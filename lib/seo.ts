@@ -83,6 +83,23 @@ export function softwareSchema(name: string, path: string) {
   }
 }
 
+export function webAppSchema(name: string, path: string, description: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name,
+    url: `${siteConfig.baseUrl}${path}`,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'All',
+    description,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD'
+    }
+  }
+}
+
 export function faqSchema(items: Array<{ question: string; answer: string }>) {
   return {
     '@context': 'https://schema.org',

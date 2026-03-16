@@ -8,8 +8,8 @@ import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const i18n = getToolI18n('baby-name-generator', params.locale)
   return buildMeta({
-    title: i18n?.metaTitle ?? 'Baby Name Generator | Free Name Ideas Tool',
-    description: i18n?.metaDescription ?? 'Generate random baby name ideas by category in one click.',
+    title: i18n?.metaTitle ?? 'Baby Name Generator — Free Random Name Ideas',
+    description: i18n?.metaDescription ?? "Discover random baby name ideas by style: classic, modern & nature. Free, no signup. Find the perfect name for your little one.",
     path: `/${params.locale}/baby-name-generator`,
     locale: params.locale
   })

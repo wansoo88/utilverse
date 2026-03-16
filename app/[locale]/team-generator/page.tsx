@@ -8,8 +8,8 @@ import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const i18n = getToolI18n('team-generator', params.locale)
   return buildMeta({
-    title: i18n?.metaTitle ?? 'Team Generator | Free Random Group Splitter',
-    description: i18n?.metaDescription ?? 'Generate random teams from a name list for classes, workshops, and games.',
+    title: i18n?.metaTitle ?? 'Team Generator — Free Random Group Splitter',
+    description: i18n?.metaDescription ?? "Split any name list into random, balanced teams in seconds. Set team size or count. Free, no signup. Perfect for sports, classrooms & game nights.",
     path: `/${params.locale}/team-generator`,
     locale: params.locale
   })

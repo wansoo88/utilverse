@@ -8,8 +8,8 @@ import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const i18n = getToolI18n('coin-flip', params.locale)
   return buildMeta({
-    title: i18n?.metaTitle ?? 'Coin Flip | Free Online Coin Toss Tool',
-    description: i18n?.metaDescription ?? 'Flip a virtual coin instantly with history and mobile-friendly controls.',
+    title: i18n?.metaTitle ?? 'Coin Flip — Free Online Heads or Tails Tool',
+    description: i18n?.metaDescription ?? "Flip a virtual coin and get instant heads or tails. 3D animation, flip history & crypto-fair randomness. Free, no login. Great for quick decisions.",
     path: `/${params.locale}/coin-flip`,
     locale: params.locale
   })

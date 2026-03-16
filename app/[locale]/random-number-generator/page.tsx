@@ -8,8 +8,8 @@ import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const i18n = getToolI18n('random-number-generator', params.locale)
   return buildMeta({
-    title: i18n?.metaTitle ?? 'Random Number Generator | Free Online Tool',
-    description: i18n?.metaDescription ?? 'Generate random integers with range, count, and unique mode options.',
+    title: i18n?.metaTitle ?? 'Random Number Generator — Free, Any Range',
+    description: i18n?.metaDescription ?? "Generate a random number in any range instantly. Set min, max, count & unique mode. Free, no signup. Great for games, raffles & stats.",
     path: `/${params.locale}/random-number-generator`,
     locale: params.locale
   })

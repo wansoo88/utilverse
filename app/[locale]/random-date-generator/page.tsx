@@ -8,8 +8,8 @@ import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const i18n = getToolI18n('random-date-generator', params.locale)
   return buildMeta({
-    title: i18n?.metaTitle ?? 'Random Date Generator | Free Date Picker',
-    description: i18n?.metaDescription ?? 'Generate random dates inside a custom date range instantly.',
+    title: i18n?.metaTitle ?? 'Random Date Generator — Free Date Picker',
+    description: i18n?.metaDescription ?? "Generate a random date within any range instantly. Free, no signup. Great for planning games, testing, creative prompts & event ideas.",
     path: `/${params.locale}/random-date-generator`,
     locale: params.locale
   })

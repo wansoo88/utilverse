@@ -8,8 +8,8 @@ import { buildMeta, faqSchema, softwareSchema } from '@/lib/seo'
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   const i18n = getToolI18n('yes-or-no', params.locale)
   return buildMeta({
-    title: i18n?.metaTitle ?? 'Yes or No Generator | Free Decision Tool',
-    description: i18n?.metaDescription ?? 'Generate random yes/no answers for quick decisions and games.',
+    title: i18n?.metaTitle ?? 'Yes or No Generator — Instant Free Answer',
+    description: i18n?.metaDescription ?? "Get a random yes or no answer instantly. Ask any question and let fate decide. Dramatic reveal animation. Free, no signup. Great for quick decisions.",
     path: `/${params.locale}/yes-or-no`,
     locale: params.locale
   })
