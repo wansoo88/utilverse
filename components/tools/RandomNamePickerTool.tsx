@@ -6,8 +6,12 @@ import { useLocalHistory } from '@/lib/useLocalHistory'
 import { pickRandom } from '@/lib/random'
 import { playSound } from '@/lib/audio'
 
-export function RandomNamePickerTool() {
-  const [raw, setRaw] = useState('Alex\nSam\nJordan\nTaylor')
+export function RandomNamePickerTool({
+  initialRaw = 'Alex\nSam\nJordan\nTaylor'
+}: {
+  initialRaw?: string
+} = {}) {
+  const [raw, setRaw] = useState(initialRaw)
   const [result, setResult] = useState('')
   const { items, push, clear } = useLocalHistory('history-name-picker')
 

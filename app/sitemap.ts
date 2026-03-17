@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next'
 import { locales } from '@/lib/i18n'
 import { blogPosts } from '@/lib/content/blog'
 import { baseUrl } from '@/lib/site'
+import { toolVariants } from '@/lib/content/variants'
 
 const toolPaths = [
   '',
@@ -47,5 +48,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   )
 
-  return [...pages, ...posts]
+  const variants = locales.flatMap((locale) =>
+    Object.keys(toolVariants).flatMap((toolSlug) =>
+      (toolVariants[toolSlug] ?? []).map((v) => ({
+        url: `${baseUrl}/${locale}/${toolSlug}/${v.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.6
+      }))
+    )
+  )
+
+  return [...pages, ...posts, ...variants]
 }

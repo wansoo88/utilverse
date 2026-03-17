@@ -10,9 +10,15 @@ import { StatsPanel } from '@/components/common/StatsPanel'
 import { playSound } from '@/lib/audio'
 import { unlockAchievement, trackToolUsed } from '@/lib/useAchievements'
 
-export function CoinFlipTool() {
-  const [headsLabel, setHeadsLabel] = useState('Heads')
-  const [tailsLabel, setTailsLabel] = useState('Tails')
+export function CoinFlipTool({
+  initialHeadsLabel = 'Heads',
+  initialTailsLabel = 'Tails'
+}: {
+  initialHeadsLabel?: string
+  initialTailsLabel?: string
+} = {}) {
+  const [headsLabel, setHeadsLabel] = useState(initialHeadsLabel)
+  const [tailsLabel, setTailsLabel] = useState(initialTailsLabel)
   const [showCustomize, setShowCustomize] = useState(false)
   const [result, setResult] = useState<'heads' | 'tails' | ''>('')
   const [error, setError] = useState<string>('')

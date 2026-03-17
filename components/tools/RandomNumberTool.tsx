@@ -7,9 +7,15 @@ import { randomInt } from '@/lib/random'
 import { CopyButton } from '@/components/common/CopyButton'
 import { playSound } from '@/lib/audio'
 
-export function RandomNumberTool() {
-  const [min, setMin] = useState(1)
-  const [max, setMax] = useState(100)
+export function RandomNumberTool({
+  initialMin = 1,
+  initialMax = 100
+}: {
+  initialMin?: number
+  initialMax?: number
+} = {}) {
+  const [min, setMin] = useState(initialMin)
+  const [max, setMax] = useState(initialMax)
   const [count, setCount] = useState(1)
   const [unique, setUnique] = useState(false)
   const [result, setResult] = useState<number[]>([])

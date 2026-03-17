@@ -86,13 +86,15 @@ export function ToolPageShell({
   content,
   tool,
   faqJsonLd,
-  softwareJsonLd
+  softwareJsonLd,
+  variantLinks
 }: {
   locale: string
   content: ToolContent
   tool: ReactNode
   faqJsonLd: object
   softwareJsonLd: object
+  variantLinks?: Array<{ label: string; href: string }>
 }) {
   const catalogItem = getCatalogItemByTitle(content.title)
   const toolIcon = catalogItem?.icon ?? '🎲'
@@ -183,6 +185,19 @@ export function ToolPageShell({
         <h2 className="section-title">FAQ</h2>
         <FaqAccordion items={content.faqs} />
       </section>
+
+      {variantLinks && variantLinks.length > 0 && (
+        <section className="card" style={{ marginTop: '1rem', padding: '1.2rem' }}>
+          <h2 className="section-title">Try These Variations</h2>
+          <div className="flex flex-wrap gap-3">
+            {variantLinks.map((v) => (
+              <Link key={v.href} className="btn" href={v.href}>
+                {v.label}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="card" style={{ marginTop: '1rem', padding: '1.2rem' }}>
         <h2 className="section-title">Related Tools</h2>

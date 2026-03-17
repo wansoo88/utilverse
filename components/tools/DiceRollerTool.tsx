@@ -32,9 +32,15 @@ function DiceFaceSVG({ value }: { value: number }) {
   )
 }
 
-export function DiceRollerTool() {
-  const [sides, setSides] = useState(6)
-  const [count, setCount] = useState(2)
+export function DiceRollerTool({
+  initialSides = 6,
+  initialCount = 2
+}: {
+  initialSides?: number
+  initialCount?: number
+} = {}) {
+  const [sides, setSides] = useState(initialSides)
+  const [count, setCount] = useState(initialCount)
   const [result, setResult] = useState<number[]>([])
   const [phase, setPhase] = useState<'input' | 'running' | 'result'>('input')
   const { items, push, clear } = useLocalHistory('history-dice')
