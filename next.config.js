@@ -45,22 +45,6 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['framer-motion']
   },
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/random-decision/en',
-        permanent: true,
-        basePath: false
-      },
-      {
-        source: '/random-decision',
-        destination: '/random-decision/en',
-        permanent: true,
-        basePath: false
-      }
-    ]
-  },
   async headers() {
     return [
       {
